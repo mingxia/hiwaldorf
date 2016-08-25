@@ -2,9 +2,11 @@
 == 歌引
 :hardbreaks:
 
+ifdef::backend-html5[]
 ++++
 <div class="poemsbody">
 ++++
+endif::[]
 
 梦里听见丧鼓响，
 一个轱辘翻下床，

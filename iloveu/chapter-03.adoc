@@ -2,9 +2,11 @@
 == 泡天（人类诞生）
 :hardbreaks:
 
+ifdef::backend-html5[]
 ++++
 <div class="poemsbody">
 ++++
+endif::[]
 
 === 三番洪水
 

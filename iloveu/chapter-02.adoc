@@ -2,9 +2,11 @@
 == 后天（天地出现）
 :hardbreaks:
 
+ifdef::backend-html5[]
 ++++
 <div class="poemsbody">
 ++++
+endif::[]
 
 === 盘古开天
 

@@ -2,9 +2,11 @@
 == 先天（宇宙起源）
 :hardbreaks:
 
+ifdef::backend-html5[]
 ++++
 <div class="poemsbody">
 ++++
+endif::[]
 
 === 黑暗
 

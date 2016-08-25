@@ -2,9 +2,11 @@
 == 治世（社会形成）
 :hardbreaks:
 
+ifdef::backend-html5[]
 ++++
 <div class="poemsbody">
 ++++
+endif::[]
 
 === 三皇
 
