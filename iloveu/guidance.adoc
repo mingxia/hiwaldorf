@@ -38,10 +38,10 @@
 
 ### 核心故事
 
-[cols="5*^.^2",width="100%",options="header"]
+[cols="4*^.^2",width="100%",options="header"]
 |====================
-| 主题阶段：| 先天 | 后天 | 泡天 |  治世
-| **故事列表**：|
+| 先天 | 后天 | 泡天 |  治世
+|
 1. 黑暗老祖掌江山 +
 2. 母子婚配生混沌 +
 3. 江沽历险造水土 +
@@ -101,7 +101,7 @@
 ### 发行者
 
 ====
-image::images/logo.png[caption="",width=200px,align="center"]
+image::resources/images/logo.png[caption="",width=200px,align="center"]
 
 * `彩蝶计划`：一家人智学启迪下的非营利性儿童发展机构。目前主要专注于民间故事、童谣的采集、整理、研究与分享，并秉持“尊重传统，传递精神”的宗旨，透过源手艺项目，从事民间手工艺的挖掘和传播。
 
@@ -110,4 +110,4 @@ image::images/logo.png[caption="",width=200px,align="center"]
 
 ### 版权(C)
 
-毋容质疑，这是一份艰难的工作。如果您正阅读的这份文档（包含PDF、MOBI、EPUB）并非从彩蝶计划直接获得，则意味着盗版行为的发生。请通过 http://weidian.com/item.html?itemID=1925017130[彩蝶计划微店] 付费购买，以便获得长期持续的版本更新。
+毋容质疑，这是一份艰巨的工作。如果您正阅读的这份文档（包含PDF、MOBI、EPUB）并非从彩蝶计划直接获得，则意味着盗版行为的发生。请通过 http://weidian.com/item.html?itemID=1925017130[彩蝶计划微店] 付费购买，以便自动获得最新版本。

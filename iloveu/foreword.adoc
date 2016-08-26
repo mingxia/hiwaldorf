@@ -1,5 +1,3 @@
-[preface]
-
 [[foreword-section, foreword]]
 == 前言
 

@@ -1,18 +1,25 @@
-= 《黑暗传》彩蝶整理版
+= 《黑暗传》彩蝶整理版: 汉民族的创世史诗
+彩蝶计划&名下 <caidie@caidie.org>
 :author:    彩蝶计划&名下 
 :email:     caidie@caidie.org
 :revdate:   2016年8月25日
 :revnumber: 1.0.0
 :doctype: book
 :encoding: utf-8
+:icons: font
+:icon-set: fa
 :lang: zh-CN
 :toc: left
 :toclevels: 2
 :toc-title: 目录
 :keywords: 黑暗传, 汉族, 创世史诗, 彩蝶计划
-:stylesheet: css/darkness.css
-:description: 汉民族的创世史诗
+:stylesheet: resources/css/darkness.css
+:pdf-page-size: B5
+:pdf-style: resources/themes/darkness-theme.yml
+:pdf-fontsdir: resources/fonts
+ifdef::backend-html5[]
 :numbered:
+endif::[]
 
 include::foreword.adoc[]
 

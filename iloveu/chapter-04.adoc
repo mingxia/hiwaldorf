@@ -926,6 +926,8 @@ endif::[]
 至今江山胜迹在，
 千秋万代颂英灵。
 
+ifdef::backend-html5[]
 ++++
 </div>
 ++++
+endif::[]
