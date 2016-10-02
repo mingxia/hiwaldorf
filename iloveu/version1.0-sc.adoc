@@ -1,9 +1,9 @@
 = 《黑暗传》彩蝶整理版: 汉民族的创世史诗
 彩蝶计划&名下 <caidie@caidie.org>
-:author:    彩蝶计划&名下 
+:author:    彩蝶计划&名下
 :email:     caidie@caidie.org
-:revdate:   2016年8月25日
-:revnumber: 1.0.0
+:revdate:   2016年10月2日
+:revnumber: 2.0.0
 :doctype: book
 :encoding: utf-8
 :icons: font
