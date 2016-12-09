@@ -1,0 +1,242 @@
+//Mixins
+//===========================================================
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Retina images
+//
+// Short retina mixin for setting background-image and -size
+
+.img-retina(@file-1x; @file-2x; @width-1x; @height-1x) {
+  background-image: url("@{file-1x}");
+  /* HiDPI */
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url("@{file-2x}");
+    background-size: @width-1x @height-1x;
+  }
+}
+
+.position( @top: auto; @right: auto; @bottom: auto; @left: auto){
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+//Opacity
+.opacity(@opacity) {
+	opacity: @opacity;
+	// IE8 filter
+	@opacity-ie: (@opacity * 100);
+	filter: ~"alpha(opacity=@{opacity-ie})";
+}
+//Color, Background color
+.color2rgba( @baseColor: #000; @fallbackColor: #000; @opacity:1  ){
+	color: @fallbackColor;
+	color: rgba(red(@baseColor), green(@baseColor), blue(@baseColor), @opacity);
+}
+.background-color2rgba( @baseColor: #000; @fallbackColor: #000; @opacity:1  ){
+	background-color: @fallbackColor;
+	background-color: rgba(red(@baseColor), green(@baseColor), blue(@baseColor), @opacity);
+}
+.border-color2rgba( @baseColor: #000; @fallbackColor: #000; @opacity:1  ){
+	border-color: @fallbackColor;
+	border-color: rgba(red(@baseColor), green(@baseColor), blue(@baseColor), @opacity);
+}
+// Text overflow
+// Requires inline-block or block for proper styling
+.text-overflow() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+//Border radius
+.border-radius( @radius: 3px ) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+	box-shadow: @shadow;
+	-webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+	-moz-box-shadow: @shadow;
+}
+//Transition
+.transition(@param){
+	transition: @param;
+	-webkit-transition: @param;
+	-moz-transition: @param;
+}
+.animation(@param){
+	animation:@param;
+	-webkit-animation:@param;
+	-moz-animation:@param;
+}
+//Transformations
+.transform(@param){
+	
+	transform: @param;
+	-webkit-transform: @param;
+	-moz-transform: @param;
+	-ms-transform: @param; // IE9+
+}
+.scale(@ratio) {
+	-webkit-transform: scale(@ratio);
+	-ms-transform: scale(@ratio); // IE9+
+	transform: scale(@ratio);
+}
+.translate(@x; @y) {
+	-webkit-transform: translate(@x, @y);
+	-ms-transform: translate(@x, @y); // IE9+
+	transform: translate(@x, @y);
+}
+.skew(@x; @y) {
+	-webkit-transform: skew(@x, @y);
+	-ms-transform: skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
+	transform: skew(@x, @y);
+}
+.translate3d(@x; @y; @z) {
+	-webkit-transform: translate3d(@x, @y, @z);
+	transform: translate3d(@x, @y, @z);
+}
+
+.rotate(@degrees) {
+	-webkit-transform: rotate(@degrees);
+	-ms-transform: rotate(@degrees); // IE9+
+	transform: rotate(@degrees);
+}
+.rotateX(@degrees) {
+	-webkit-transform: rotateX(@degrees);
+	-ms-transform: rotateX(@degrees); // IE9+
+	transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+	-webkit-transform: rotateY(@degrees);
+	-ms-transform: rotateY(@degrees); // IE9+
+	transform: rotateY(@degrees);
+}
+.rotateZ(@degrees) {
+	-webkit-transform: rotateZ(@degrees);
+	-ms-transform: rotateZ(@degrees); // IE9+
+	transform: rotateZ(@degrees);
+}
+.perspective(@perspective) {
+	-webkit-perspective: @perspective;
+	-moz-perspective: @perspective;
+	perspective: @perspective;
+}
+.perspective-origin(@perspective) {
+	-webkit-perspective-origin: @perspective;
+	-moz-perspective-origin: @perspective;
+	perspective-origin: @perspective;
+}
+.transform-origin(@origin) {
+	-webkit-transform-origin: @origin;
+	-moz-transform-origin: @origin;
+	transform-origin: @origin;
+}
+//Box sizing
+.box-sizing(@boxmodel) {
+	-webkit-box-sizing: @boxmodel;
+	-moz-box-sizing: @boxmodel;
+	box-sizing: @boxmodel;
+}
+
+// GRADIENTS
+// --------------------------------------------------
+
+#gradient {
+
+  // Horizontal gradient, from left to right
+  //
+  // Creates two color stops, start and end, by specifying a color and position for each color stop.
+  // Color stops are not available in IE9 and below.
+  .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image: -webkit-linear-gradient(left, color-stop(@start-color @start-percent), color-stop(@end-color @end-percent)); // Safari 5.1-6, Chrome 10+
+    background-image:  linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
+  }
+
+  // Vertical gradient, from top to bottom
+  //
+  // Creates two color stops, start and end, by specifying a color and position for each color stop.
+  // Color stops are not available in IE9 and below.
+  .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Safari 5.1-6, Chrome 10+
+    background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
+  }
+
+  .directional(@start-color: #555; @end-color: #333; @deg: 45deg) {
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(@deg, @start-color, @end-color); // Safari 5.1-6, Chrome 10+
+    background-image: linear-gradient(@deg, @start-color, @end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  }
+  .diagonal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%; @deg: 45deg; @impt:~"") {
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(@deg, @start-color @start-percent, @end-color @end-percent) @impt;
+    background-image: linear-gradient(@deg, @start-color @start-percent, @end-color @end-percent) @impt;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=1 );
+  }
+  .horizontal-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+    background-image: -webkit-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
+    background-image: linear-gradient(to right, @start-color, @mid-color @color-stop, @end-color);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+  .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+    background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+  .radial(@inner-color: #555; @outer-color: #333) {
+    background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+    background-image: radial-gradient(circle, @inner-color, @outer-color);
+    background-repeat: no-repeat;
+  }
+  .striped(@color: rgba(255,255,255,.15); @angle: 45deg) {
+    background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+    background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  }
+}
+
+// Reset filters for IE
+//
+// When you need to remove a gradient background, do not forget to use this to reset
+// the IE filter for IE9 and below.
+.reset-filter() {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}

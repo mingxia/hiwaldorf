@@ -1,0 +1,438 @@
+=== Sparkle ===
+Author: wpthms (aka wpthms)
+Author URL: http://wpthms.com
+Description: An Outstanding Magazine theme
+License: GNU General Public License v3.0
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+=== Support ===
+Please post your questions in our Support Forum - http://wpthms.com/
+
+=== Update Guide ===
+
+Recommendation: Backup old version of theme and Theme options data before updating.
+
+* After updated:
+  - Clear your cache from Cache plugins, also to CDN cache and browser cache to take an effect.
+  - Re-save theme options to overwrite dynamic css.
+=== Changelog ===
+
+= v2.0.7 - Oct 21 2016
+- Fixed backend UI issue
+
+= v2.0.6 - Oct 19 2016
+- Update framework.
+- Updated plugins.
+- Removed deprecated functions.
+- Updated urls
+- Updated localized strings.
+- Minor bug fixes
+
+
+= v2.0.5 - Aug 31 2016
+- Update post list template
+- Fix thumbnail size issue.
+- Redefined default thumbnail size
+- Rearrange share buttons
+- Update facebook share count api
+- Removed deprecated plugins and function
+- Update Font awesome 4.6.31
+
+- File Changed:
+  + js/yt.custom.js
+  + includes/templates/post-meta-desc-alt.php
+
+= v2.0.4 - Apr 21 2016
+- Improved framework
+- Removed outdated jquery event and deprecated expression
+- Fixed Minor css bug
+- Updated Shortcode Generator (v1.0.7.3)
+- Updated Sidebar Generator (v1.0.3)
+- Updated Post View Tracker (v1.0.3.3)
+- Hidden ability to use background image or regular image for post thumbnails - default: regular images ( To switch to background image, please ask us on dedicated support forum for help )
+- File Changed:
+  + framework/admin/assets/js/admin-smart-widget.js
+  + framework/admin/assets/js/admin-smart-widget.min.js
+  + framework/admin/assets/js/admin-widget-script.js
+  + framework/admin/assets/js/admin-widget-script.min.js
+  + framework/admin/assets/js/wpthms.js
+  + framework/admin/assets/js/wpthms.min.js
+  + framework/extended/class.tgm-plugin-activation.php
+  + includes/templates/func-post-list.php
+  + includes/templates/megamenu-ajax.php
+  + includes/templates/megamenu-regular.php
+  + includes/templates/megamenu-ymal.php
+  + js/yt.custom.js
+  + js/yt.custom.min.js
+  + content-classic.php
+  + content-audio.php
+  + content-gallery.php
+  + content-hero-post.php
+  + content-image.php
+  + content-link.php
+  + content-quote.php
+  + content-single.php
+  + content-video.php
+  + content.php
+  + style.css
+  + misc.
+
+
+= v2.0.3 - Apr 17 2016
+************************************
+- Fixed minor bugs.
+- Improved hero brick ux.
+- Fixed minor css bug.
+- Updated Visual Composer Plugin.
+- Removed deprecated function.
+- Fixed localizable string issue.
+- Compatible to WP 4.5.
+
+= v2.0.2 - mar 09 2016
+************************************
+- Fixed minor bugs
+- Fixed Login area issue.
+- Fixed css bug
+- Added Lazy load support for You might also like area.
+- Updated Visual Composer Plugin
+
+= v2.0.1 - feb 12 2016
+************************************
+- Fixed Top menu css issue.
+- Fixed WPML compat bug.
+- Updated Languague files
+- Fix minor css bug.
+
+= v2.0.0 - feb 10 2016 - Big Update
+************************************
+- Fixed Minor Bugs
+- Removed Query Post metabox (not necessary)
+- Moved Hero Banner Settings to Theme Options.
+- Improved Hero Banner, doesn't require standard size for thumbnails anymore.
+- Added New features and layout for hero banner.
+  + New three layouts
+  + 4 Hero brick gap sizes
+  + Shuffle posts feature
+- Post list module for Visual Composer including horizontal posts block, supports infinite scroll.
+- Added Classic blog style.
+- Optimized Google pagespeed.
+- Removed Site icons and link to default WordPress site identity in customizer.
+- Back to nativeness.
+- Improved host compatibility.
+- Rewrote Custom CSS method.
+- Improved UX for touchscreen.
+- Improved thumbnail structure.
+- Rewrite/Rearrange templates.
+- Easier customizing.
+- still updating...
+- Improved category accent color
+- Updated Google fonts
+- Updated Visual composer
+- Updated Documentation
+
+= v1.0.5.2 - Oct 5 2015
+************************************
+- Fixed Minor Bugs
+- Improved Jetpack compatibility
+- Added support for asynchronous JavaScript plugin
+- Changed default posts navigation for archive page
+- Removed Support for Visual Composer
+
+= v1.0.5.1 - Jun 15 2015
+************************************
+- Update Visual Composer 4.6 (contains fix for XSS vulnerability in the prettyPhoto )
+- Update Shortcode Generator 1.0.7.1
+- Update Simple Post View Plugin 1.0.3.2
+- Improved infinite scroll compatibility for Jetpack
+
+= v1.0.5.0 - Jun 15 2015
+************************************
+- fixed scrolling issue for tabs shortcode/visual composer
+
+= v1.0.4.9 - Apr 25 2015
+************************************
+- added WooCommerce Quantity Increment to recommended plugins
+- FIXED XSS vulnerability
+- Improved Mobile Menu
+- Improved Jetpack Infinite Scroll Compatibility
+
+= v1.0.4.8 - Mar 11 2015
+************************************
+* Updated:
+  - Added time period 60 days and 90 days for post list widget
+  - Fixed sub menu list for sticky megamenu
+  - Fixed Social sharing counter issue
+
+= v1.0.4.7 - Mar 10 2015
+************************************
+* Updated:
+  - Fixed Minor bugs
+  - Improved performance and appearance for mobile devices
+  - Fixed sticky issue on mobile menu
+
+= v1.0.4.6 - Mar 6 2015
+************************************
+* Updated:
+  - Fixed Changing logo issue
+  - Fixed Minor bugs
+  - Updated documentation
+
+= v1.0.4.5 - Mar 2 2015
+************************************
+* Updated:
+  - Fixed Wrong template for default meta description and author info description
+  - Fixed Google font subsets issue
+
+= v1.0.4.4 - Mar 1 2015
+************************************
+
+* Updated:
+
+  - Megamenu bugs
+  - Fixed changing font issue in v1.0.4.3
+  - Fixed Ads 125 widget bugs
+  - Fixed Post duplication issue
+  - Fixed Pinterest undefined issue
+  - Added Autoptimize plugin compatibility
+  - Allow users to overwrite via templates includes/templates
+
+  - Improved mobile menu
+
+  - Improved performance in backend side
+  - Improved Ads 125 widget with sortable blocks
+
+  - Updated Language files
+  - Updated Core
+
+  - Update Plugins
+  - Update Demo data
+  - Update docs
+
+* Files changed:
+  - framework
+  - includes
+  - language
+  - /
+
+= v1.0.4.3 - September 3 2014
+************************************
+
+* Fixed:
+  - Filter by tag issue for Main Loop
+  - invalid markup
+  - Css issues
+  - Minor bugs
+  - Google Microdata missing fields
+
+* Improved:
+  - Improve performance in backend side
+  - Clean code
+  - Select tags and categories using autocomplete field in widgets, theme options, metabox
+
+* Updated:
+  - Language files
+  - Core
+  - YT Shortcode Generator
+  - Visual Composer Plugin
+
+* Files changed:
+  - framework
+  - includes
+  - language
+  - /
+
+= v1.0.4.2 - September 3 2014
+************************************
+* Fixed:
+  - Datetime issue on megamenu
+  - Broken image when pin a single post with pinterest sharing button.
+  - Layout overlapping on Touch screen
+  - Boxed-layout issue on Large screen size
+  - Minor bugs
+  - Hero Banner issue
+  - Pinterest sharing button issue
+  - Css issues
+  - Minor bugs
+  - Gallery Post format issue
+
+* Improved:
+  - Performance
+  - Clean code
+
+* Updated:
+  - Language files
+  - Core
+  - Remove loading spinner for no effect with Hero Banner
+  - YT Shortcode Generator
+  - YT Simple Post Views Tracker
+  - Visual Composer Plugin
+
+  
+* Files changed:
+  - framework
+  - includes
+
+= v1.0.4.1 - August 8 2014
+************************************
+
+= v1.0.4 - August 8 2014
+************************************
+
+* Fixed: 
+  - You might also like messed up layout on small screen
+  - Single Page/post title font size was not effected by Theme Options
+  - Oembed for youtube playlist.
+  - Reponsiveness on megamenu regular request.
+  - Content background pattern issue
+  - Incompatibility between Smart widget and Jetpack Widget Visibility (aka WordPress Failure Notice when trying to save "Smart Tabby Widget" )
+  - Data not save on Ad Space 125 when using code field.
+  - 'All' link issue for megamenu
+
+* Improved:
+  - Performance
+  - Ajax Handler
+  - Ad Space 125 admin ui
+  - Direction nav ui
+  - Button hover/active state
+  - Animation
+  - UI/UX
+
+* Added:
+  - Jetpack Photon Compatibility for various image sizes
+  - Ajax search for Modal search
+  - Infinite scroll feature for post thumbnail widget
+  - Ad space between posts from Ajax Post widget amd Post thumnmail widget
+  - Ad space before single post content
+  - Default bg color for Light header.
+  - Review info on every post
+  - Post format icon for post thumbnail widget
+  - Options to show/hide main sidebar/sub sidebar on small screen sizes.
+  - Border for two column layout
+  - Visual Composer compatibility
+  - Option to replace default media gallery with flexslider
+  - News Ticker
+
+* Updated:
+  - Language files
+  - yt-shortcode-generator v1.0.3
+  - Reverted to the default params (user settings) for the_time, get_the_time, the_date, get_the_date
+  - Allow embedding shortcode to ads positions
+  - No effect to hero banner
+  - Hooks for Single post
+  - Upload button for live blog post.
+  - Ajax tag search for metabox.
+  - Mobile_Detect class
+  - Google Webfonts
+  - Bootstrap 3.2.0
+  - Removed yt_site_social_sharing_post() and replace with yt_site_social_sharing_buttons()
+  - Documentation
+
+* Files changed:
+  - framework
+  - includes
+  - content.php
+  - content-single.php
+  - style.css
+  - css
+
+= v1.0.3 - June 10 2014
+************************************
+
+* Fixed: 
+  - Minor bugs
+  - Responsiveness on iPad
+  - Touchless on iOS
+  - Pagination issue for Home page when we use Custom Posts query and set the page as Front page.  
+
+* Improved:
+  - Performance
+  - Ajax Response time
+
+* Added:
+  - Ability to split excerpt automatically
+  - Usual loading method for News megamenu
+
+* Updated:
+  - Localized strings
+  - Language
+  - Documentation
+  
+* Files changed:
+  - framework/admin/includes/yt-function-options.php
+  - framework/yt-admin-hooks.php
+  - framework/yt-admin-init.php
+  - framework/widgets/widget-mailchimp.php
+  - includes/theme-interface.php
+  - includes/theme-functions.php
+  - includes/theme-hooks.php
+  - includes/theme-scripts.php
+  - includes/theme-config.php
+  - includes/theme-options.php
+  - includes/theme-general-functions.php
+  - includes/widgets/widget-ajax-posts-by-category.php
+  - content.php
+  - js/yt-custom
+  - style.css
+  - languages
+
+= v1.0.2 - June 4 2014
+************************************
+
+* Fixed: 
+  - Scroll fix menu
+  - Minor bugs
+
+* Improved:
+  - Performance
+  
+* Files changed:
+  - framework/admin/includes/yt-options-settings.api.php
+  - includes/theme-interface.php
+  - js/yt-custom
+  - style.css
+
+* Updated:
+  - documentation
+
+= v1.0.1 - June 1 2014
+************************************
+
+* Fixed: 
+  - Responsive issue with Boxed-layout & Large display
+  - Countdown issue
+  - Minor bugs
+
+* Improved:
+  - Loading speed 
+  - Woocommerce style 
+
+* Added:
+  - Support for WP-Review
+  - Support touch for main menu on Android
+  - Author meta info in Author page and Single post
+  - Increase level of sub-menu for Main navigation
+
+* Updated:
+  - Shortcode generator v1.0.2 
+
+* Files changed:
+  - framework/admin/includes/yt-functions-field-types.php
+  - framework/admin/includes/yt-functions.php
+  - includes/theme-config.php
+  - includes/theme-styling.php
+  - includes/theme-interface.php
+  - includes/theme-options.php
+  - includes/theme-general-functions.php
+  - includes/theme-functions.php
+  - includes/theme-hooks.php
+  - css/woocommerce
+  - css/woocommerce-smallscreen
+  - js/yt.custom
+  - style.css
+  - 404
+  - documentation
+
+= v1.0
+************************************
+* First release!
+
