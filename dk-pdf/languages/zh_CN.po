@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DK PDF\n"
+"POT-Creation-Date: 2015-07-04 12:26+0100\n"
+"PO-Revision-Date: 2016-12-10 09:38+0800\n"
+"Last-Translator: Emili Castells <emili.castells@dinamiko.com@dinamiko.com>\n"
+"Language-Team: Emili Castells <emili.castells@dinamiko.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../dk-pdf.php:85 ../dk-pdf.php:89 ../includes/class-dkpdf-settings.php:496
+#: ../includes/class-dkpdf-settings.php:505
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: ../includes/class-dkpdf-admin-api.php:160
+msgid "Upload an image"
+msgstr "上传一张图片"
+
+#: ../includes/class-dkpdf-admin-api.php:160
+msgid "Use image"
+msgstr "使用图片"
+
+#: ../includes/class-dkpdf-admin-api.php:160
+msgid "Upload new image"
+msgstr "上传新图片"
+
+#: ../includes/class-dkpdf-admin-api.php:161
+msgid "Remove image"
+msgstr "移除图片"
+
+#: ../includes/class-dkpdf-settings.php:47
+#: ../includes/class-dkpdf-settings.php:413
+msgid "DK PDF Settings"
+msgstr "DK PDF设置"
+
+#: ../includes/class-dkpdf-settings.php:79
+msgid "Settings"
+msgstr "设置"
+
+#: ../includes/class-dkpdf-settings.php:93
+msgid "PDF Button"
+msgstr "PDF按钮"
+
+#: ../includes/class-dkpdf-settings.php:98
+msgid "Button text"
+msgstr "按钮文字"
+
+#: ../includes/class-dkpdf-settings.php:106
+msgid "Post types to apply:"
+msgstr "要应用的文章类型︰"
+
+#: ../includes/class-dkpdf-settings.php:114
+msgid "Action"
+msgstr "执行"
+
+#: ../includes/class-dkpdf-settings.php:122
+msgid "Position"
+msgstr "位置"
+
+#: ../includes/class-dkpdf-settings.php:130
+msgid "Align"
+msgstr "垂直对齐"
+
+#: ../includes/class-dkpdf-settings.php:140
+msgid "PDF Header & Footer"
+msgstr "PDF 页眉与页脚"
+
+#: ../includes/class-dkpdf-settings.php:145
+msgid "Header logo"
+msgstr "头部logo"
+
+#: ../includes/class-dkpdf-settings.php:153
+msgid "Header show title"
+msgstr "头部显示文字"
+
+#: ../includes/class-dkpdf-settings.php:160
+msgid "Header show pagination"
+msgstr "头部显示页码"
+
+#: ../includes/class-dkpdf-settings.php:167
+msgid "Footer text"
+msgstr "底部文字"
+
+#: ../includes/class-dkpdf-settings.php:168
+msgid "HTML tags are allowed."
+msgstr "允许HTML标记。"
+
+#: ../includes/class-dkpdf-settings.php:175
+msgid "Footer show title"
+msgstr "页脚显示标题"
+
+#: ../includes/class-dkpdf-settings.php:182
+msgid "Footer show pagination"
+msgstr "页脚显示分页"
+
+#: ../includes/class-dkpdf-settings.php:465
+msgid "Save Settings"
+msgstr "保存设置"
+
+#: ../includes/dkpdf-functions.php:198
+msgid "Create PDF"
+msgstr "创建PDF"
+
+#: ../includes/dkpdf-metaboxes.php:13
+msgid "Disable DK PDF Button:"
+msgstr "禁用PDF按钮"
+
+#: ../includes/dkpdf-metaboxes.php:37
+msgid "DK PDF"
+msgstr "DK PDF"
