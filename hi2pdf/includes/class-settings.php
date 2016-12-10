@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class DKPDF_Settings {
+class Hi2PDF_Settings {
 
 	private static $_instance = null;
 	public $parent = null;
@@ -14,7 +14,7 @@ class DKPDF_Settings {
 
 		$this->parent = $parent;
 
-		$this->base = 'dkpdf_';
+		$this->base = 'hi2pdf_';
 
 		// Initialise settings
 		add_action( 'init', array( $this, 'init_settings' ), 11 );
@@ -25,9 +25,9 @@ class DKPDF_Settings {
 		// Add settings page to menu
 		add_action( 'admin_menu' , array( $this, 'add_menu_item' ) );
 
-		// Add settings link to plugins page	
-		add_filter( 'plugin_action_links_' . plugin_basename( DKPDF_PLUGIN_FILE ) , array( $this, 'add_settings_link' ) );
-		
+		// Add settings link to plugins page
+		add_filter( 'plugin_action_links_' . plugin_basename( Hi2PDF_PLUGIN_FILE ) , array( $this, 'add_settings_link' ) );
+
 	}
 
 	/**
@@ -39,56 +39,56 @@ class DKPDF_Settings {
 	}
 
 	/**
-	 * Adds DK PDF admin menu
+	 * Adds Hi2PDF admin menu
 	 * @return void
 	 */
 	public function add_menu_item () {
-		
+
 		// main menu
-		$page = add_menu_page( 'DK PDF', 'DK PDF', 'manage_options', 'dkpdf' . '_settings',  array( $this, 'settings_page' ) );	
+		$page = add_menu_page( 'Hi2PDF', 'Hi2PDF', 'manage_options', 'hi2pdf' . '_settings',  array( $this, 'settings_page' ) );
 
 		// Addons submenu
-		add_submenu_page( 'dkpdf' . '_settings', 'Addons', 'Addons', 'manage_options', 'dkpdf-addons', array( $this, 'dkpdf_addons_screen' ));
-	
+		add_submenu_page( 'hi2pdf' . '_settings', 'Addons', 'Addons', 'manage_options', 'hi2pdf-addons', array( $this, 'hi2pdf_addons_screen' ));
+
 		// support
-		add_submenu_page( 'dkpdf' . '_settings', 'Support', 'Support', 'manage_options', 'dkpdf-support', array( $this, 'dkpdf_support_screen' ));
+		add_submenu_page( 'hi2pdf' . '_settings', 'Support', 'Support', 'manage_options', 'hi2pdf-support', array( $this, 'hi2pdf_support_screen' ));
 
 		// settings assets
 		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
 
 	}
 
-	public function dkpdf_support_screen() { ?>
-		
-		<div class="wrap">
-			<h2 style="float:left;width:100%;">DK PDF Support</h2>
+	public function hi2pdf_support_screen() { ?>
 
-			<div class="dkpdf-item">			
+		<div class="wrap">
+			<h2 style="float:left;width:100%;">Hi2PDF Support</h2>
+
+			<div class="hi2pdf-item">
 				<h3>Documentation</h3>
-				<p>Everything you need to know for getting DK PDF up and running.</p>
-				<p><a href="http://wp.dinamiko.com/demos/dkpdf/documentation/" target="_blank">Go to Documentation</a></p>
+				<p>Everything you need to know for getting Hi2PDF up and running.</p>
+				<p><a href="http://wp.dinamiko.com/demos/hi2pdf/documentation/" target="_blank">Go to Documentation</a></p>
 			</div>
 
-			<div class="dkpdf-item">			
+			<div class="hi2pdf-item">
 				<h3>Support</h3>
 				<p>Having trouble? don't worry, create a ticket in the support forum.</p>
 				<p><a href="https://wordpress.org/support/plugin/dk-pdf" target="_blank">Go to Support</a></p>
 			</div>
 		</div>
 
-		<?php do_action( 'dkpdf_after_support' );?>
+		<?php do_action( 'hi2pdf_after_support' );?>
 
 	<?php }
 
-	public function dkpdf_addons_screen() { ?>
+	public function hi2pdf_addons_screen() { ?>
 
 		<div class="wrap">
-			<h2>DK PDF Addons</h2>
+			<h2>Hi2PDF Addons</h2>
 
-			<div class="dkpdf-item">			
-				<h3>DK PDF Generator</h3>
+			<div class="hi2pdf-item">
+				<h3>Hi2PDF Generator</h3>
 				<p>Allows creating PDF documents with your selected WordPress content, also allows adding a Cover and a Table of contents.</p>
-				<p><a href="http://codecanyon.net/item/dk-pdf-generator/13530581" target="_blank">Go to DK PDF Generator</a></p>
+				<p><a href="http://codecanyon.net/item/dk-pdf-generator/13530581" target="_blank">Go to Hi2PDF Generator</a></p>
 			</div>
 
 		</div>
@@ -102,7 +102,7 @@ class DKPDF_Settings {
 	public function settings_assets () {
 
 		// We're including the farbtastic script & styles here because they're needed for the colour picker
-		// If you're not including a colour picker field then you can leave these calls out as well as the farbtastic dependency for the dkpdf-admin-js script below
+		// If you're not including a colour picker field then you can leave these calls out as well as the farbtastic dependency for the hi2pdf-admin-js script below
 		wp_enqueue_style( 'farbtastic' );
     	wp_enqueue_script( 'farbtastic' );
 
@@ -110,11 +110,11 @@ class DKPDF_Settings {
     	// If you're not including an image upload then you can leave this function call out
     	wp_enqueue_media();
 
-    	
-    	wp_register_script( 'dkpdf' . '-settings-js', plugins_url( 'dk-pdf/assets/js/settings-admin.js' ), array( 'farbtastic', 'jquery' ), '1.0.0' );
-    	wp_enqueue_script( 'dkpdf' . '-settings-js' );
-    	
-    	
+
+    	wp_register_script( 'hi2pdf' . '-settings-js', plugins_url( 'dk-pdf/assets/js/settings-admin.js' ), array( 'farbtastic', 'jquery' ), '1.0.0' );
+    	wp_enqueue_script( 'hi2pdf' . '-settings-js' );
+
+
 	}
 
 	/**
@@ -123,7 +123,7 @@ class DKPDF_Settings {
 	 * @return array 		Modified links
 	 */
 	public function add_settings_link ( $links ) {
-		$settings_link = '<a href="admin.php?page=' . 'dkpdf' . '_settings">' . __( 'Settings', 'dkpdf' ) . '</a>';
+		$settings_link = '<a href="admin.php?page=' . 'hi2pdf' . '_settings">' . __( 'Settings', 'hi2pdf' ) . '</a>';
   		array_push( $links, $settings_link );
   		return $links;
 	}
@@ -134,24 +134,24 @@ class DKPDF_Settings {
 	 */
 	private function settings_fields () {
 
-		$post_types_arr = dkpdf_get_post_types();
+		$post_types_arr = hi2pdf_get_post_types();
 
 		// pdf button settings
 		$settings['pdfbtn'] = array(
-			'title'					=> __( 'PDF Button', 'dkpdf' ),
+			'title'					=> __( 'PDF Button', 'hi2pdf' ),
 			'description'			=> '',
 			'fields'				=> array(
 				array(
 					'id' 			=> 'pdfbutton_text',
-					'label'			=> __( 'Button text' , 'dkpdf' ),
+					'label'			=> __( 'Button text' , 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'text',
 					'default'		=> 'PDF Button',
 					'placeholder'	=> ''
-				),				
+				),
 				array(
 					'id' 			=> 'pdfbutton_post_types',
-					'label'			=> __( 'Post types to apply:', 'dkpdf' ),
+					'label'			=> __( 'Post types to apply:', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'checkbox_multi',
 					'options'		=> $post_types_arr,
@@ -159,7 +159,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'pdfbutton_action',
-					'label'			=> __( 'Action', 'dkpdf' ),
+					'label'			=> __( 'Action', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'radio',
 					'options'		=> array( 'open' => 'Open PDF in new Window', 'download' => 'Download PDF directly' ),
@@ -167,7 +167,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'pdfbutton_position',
-					'label'			=> __( 'Position', 'dkpdf' ),
+					'label'			=> __( 'Position', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'radio',
 					'options'		=> array( 'shortcode' => 'Use shortcode', 'before' => 'Before content', 'after' => 'After content' ),
@@ -175,7 +175,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'pdfbutton_align',
-					'label'			=> __( 'Align', 'dkpdf' ),
+					'label'			=> __( 'Align', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'radio',
 					'options'		=> array( 'left' => 'Left', 'center' => 'Center', 'right' => 'Right' ),
@@ -186,13 +186,13 @@ class DKPDF_Settings {
 
 
 		// pdf setup
-		$settings['dkpdf_setup'] = array(
-			'title'					=> __( 'PDF Setup', 'dkpdfg' ),
+		$settings['hi2pdf_setup'] = array(
+			'title'					=> __( 'PDF Setup', 'hi2pdfg' ),
 			'description'			=> '',
 			'fields'				=> array(
 				array(
 					'id' 			=> 'page_orientation',
-					'label'			=> __( 'Page orientation', 'dkpdfg' ),
+					'label'			=> __( 'Page orientation', 'hi2pdfg' ),
 					'description'	=> '',
 					'type'			=> 'radio',
 					'options'		=> array( 'vertical' => 'Vertical', 'horizontal' => 'Horizontal' ),
@@ -200,7 +200,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'font_size',
-					'label'			=> __( 'Font size', 'dkpdfg' ),
+					'label'			=> __( 'Font size', 'hi2pdfg' ),
 					'description'	=> 'In points (pt)',
 					'type'			=> 'number',
 					'default'		=> '12',
@@ -208,7 +208,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'margin_left',
-					'label'			=> __( 'Margin left', 'dkpdfg' ),
+					'label'			=> __( 'Margin left', 'hi2pdfg' ),
 					'description'	=> 'In points (pt)',
 					'type'			=> 'number',
 					'default'		=> '15',
@@ -216,7 +216,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'margin_right',
-					'label'			=> __( 'Margin right', 'dkpdfg' ),
+					'label'			=> __( 'Margin right', 'hi2pdfg' ),
 					'description'	=> 'In points (pt)',
 					'type'			=> 'number',
 					'default'		=> '15',
@@ -224,7 +224,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'margin_top',
-					'label'			=> __( 'Margin top', 'dkpdfg' ),
+					'label'			=> __( 'Margin top', 'hi2pdfg' ),
 					'description'	=> 'In points (pt)',
 					'type'			=> 'number',
 					'default'		=> '50',
@@ -232,7 +232,7 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'margin_bottom',
-					'label'			=> __( 'Margin bottom', 'dkpdfg' ),
+					'label'			=> __( 'Margin bottom', 'hi2pdfg' ),
 					'description'	=> 'In points (pt)',
 					'type'			=> 'number',
 					'default'		=> '30',
@@ -240,24 +240,24 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'margin_header',
-					'label'			=> __( 'Margin header', 'dkpdfg' ),
+					'label'			=> __( 'Margin header', 'hi2pdfg' ),
 					'description'	=> 'In points (pt)',
 					'type'			=> 'number',
 					'default'		=> '15',
 					'placeholder'	=> '15'
-				),								
+				),
 
 			)
 		);
 
 		// header & footer settings
 		$settings['pdf_header_footer'] = array(
-			'title'	=> __( 'PDF Header & Footer', 'dkpdf' ),
+			'title'	=> __( 'PDF Header & Footer', 'hi2pdf' ),
 			'description'			=> '',
 			'fields'				=> array(
 				array(
 					'id' 			=> 'pdf_header_image',
-					'label'			=> __( 'Header logo' , 'dkpdf' ),
+					'label'			=> __( 'Header logo' , 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'image',
 					'default'		=> '',
@@ -265,36 +265,36 @@ class DKPDF_Settings {
 				),
 				array(
 					'id' 			=> 'pdf_header_show_title',
-					'label'			=> __( 'Header show title', 'dkpdf' ),
+					'label'			=> __( 'Header show title', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'checkbox',
 					'default'		=> ''
 				),
 				array(
 					'id' 			=> 'pdf_header_show_pagination',
-					'label'			=> __( 'Header show pagination', 'dkpdf' ),
+					'label'			=> __( 'Header show pagination', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'checkbox',
 					'default'		=> ''
 				),
 				array(
 					'id' 			=> 'pdf_footer_text',
-					'label'			=> __( 'Footer text' , 'dkpdf' ),
-					'description'	=> __( 'HTML tags: a, br, em, strong, hr, p, h1 to h4', 'dkpdf' ),
+					'label'			=> __( 'Footer text' , 'hi2pdf' ),
+					'description'	=> __( 'HTML tags: a, br, em, strong, hr, p, h1 to h4', 'hi2pdf' ),
 					'type'			=> 'textarea',
 					'default'		=> '',
 					'placeholder'	=> ''
 				),
 				array(
 					'id' 			=> 'pdf_footer_show_title',
-					'label'			=> __( 'Footer show title', 'dkpdf' ),
+					'label'			=> __( 'Footer show title', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'checkbox',
 					'default'		=> ''
 				),
 				array(
 					'id' 			=> 'pdf_footer_show_pagination',
-					'label'			=> __( 'Footer show pagination', 'dkpdf' ),
+					'label'			=> __( 'Footer show pagination', 'hi2pdf' ),
 					'description'	=> '',
 					'type'			=> 'checkbox',
 					'default'		=> ''
@@ -305,28 +305,28 @@ class DKPDF_Settings {
 
 		// style settings
 		$settings['pdf_css'] = array(
-			'title'	=> __( 'PDF CSS', 'dkpdf' ),
+			'title'	=> __( 'PDF CSS', 'hi2pdf' ),
 			'description'			=> '',
 			'fields'				=> array(
 				array(
 					'id' 			=> 'pdf_custom_css',
-					'label'			=> __( 'PDF Custom CSS' , 'dkpdf' ),
-					'description'	=> __( '', 'dkpdf' ),
+					'label'			=> __( 'PDF Custom CSS' , 'hi2pdf' ),
+					'description'	=> __( '', 'hi2pdf' ),
 					'type'			=> 'textarea_code',
 					'default'		=> '',
 					'placeholder'	=> ''
 				),
 				array(
 					'id' 			=> 'print_wp_head',
-					'label'			=> __( 'Use your enqueued theme and plugin CSS', 'dkpdf' ),
-					'description'	=> __( 'Adds wp_head() in PDF head', 'dkpdf' ),
+					'label'			=> __( 'Use your enqueued theme and plugin CSS', 'hi2pdf' ),
+					'description'	=> __( 'Adds wp_head() in PDF head', 'hi2pdf' ),
 					'type'			=> 'checkbox',
 					'default'		=> ''
 				),
 			)
 		);
 
-		$settings = apply_filters( 'dkpdf' . '_settings_fields', $settings );
+		$settings = apply_filters( 'hi2pdf' . '_settings_fields', $settings );
 
 		return $settings;
 
@@ -354,7 +354,7 @@ class DKPDF_Settings {
 				if ( $current_section && $current_section != $section ) continue;
 
 				// Add section to page
-				add_settings_section( $section, $data['title'], array( $this, 'settings_section' ), 'dkpdf' . '_settings' );
+				add_settings_section( $section, $data['title'], array( $this, 'settings_section' ), 'hi2pdf' . '_settings' );
 
 				foreach ( $data['fields'] as $field ) {
 
@@ -366,10 +366,10 @@ class DKPDF_Settings {
 
 					// Register field
 					$option_name = $this->base . $field['id'];
-					register_setting( 'dkpdf' . '_settings', $option_name, $validation );
+					register_setting( 'hi2pdf' . '_settings', $option_name, $validation );
 
 					// Add field to page
-					add_settings_field( $field['id'], $field['label'], array( $this->parent->admin, 'display_field' ), 'dkpdf' . '_settings', $section, array( 'field' => $field, 'prefix' => $this->base ) );
+					add_settings_field( $field['id'], $field['label'], array( $this->parent->admin, 'display_field' ), 'hi2pdf' . '_settings', $section, array( 'field' => $field, 'prefix' => $this->base ) );
 				}
 
 				if ( ! $current_section ) break;
@@ -390,13 +390,13 @@ class DKPDF_Settings {
 
 		if( isset( $_GET['settings-updated']) ) { ?>
 		    <div id="message" class="updated">
-		        <p><?php _e('Settings saved.', 'dkpdf');?></p>
+		        <p><?php _e('Settings saved.', 'hi2pdf');?></p>
 		    </div>
 		<?php }
 
 		// Build page HTML
-		$html = '<div class="wrap" id="' . 'dkpdf' . '_settings">' . "\n";
-			$html .= '<h2>' . __( 'DK PDF Settings' , 'dkpdf' ) . '</h2>' . "\n";
+		$html = '<div class="wrap" id="' . 'hi2pdf' . '_settings">' . "\n";
+			$html .= '<h2>' . __( 'Hi2PDF Settings' , 'hi2pdf' ) . '</h2>' . "\n";
 
 			$tab = '';
 			if ( isset( $_GET['tab'] ) && $_GET['tab'] ) {
@@ -442,13 +442,13 @@ class DKPDF_Settings {
 
 				// Get settings fields
 				ob_start();
-				settings_fields( 'dkpdf' . '_settings' );
-				do_settings_sections( 'dkpdf' . '_settings' );
+				settings_fields( 'hi2pdf' . '_settings' );
+				do_settings_sections( 'hi2pdf' . '_settings' );
 				$html .= ob_get_clean();
 
 				$html .= '<p class="submit">' . "\n";
 					$html .= '<input type="hidden" name="tab" value="' . esc_attr( $tab ) . '" />' . "\n";
-					$html .= '<input name="Submit" type="submit" class="button-primary" value="' . esc_attr( __( 'Save Settings' , 'dkpdf' ) ) . '" />' . "\n";
+					$html .= '<input name="Submit" type="submit" class="button-primary" value="' . esc_attr( __( 'Save Settings' , 'hi2pdf' ) ) . '" />' . "\n";
 				$html .= '</p>' . "\n";
 			$html .= '</form>' . "\n";
 
@@ -458,7 +458,7 @@ class DKPDF_Settings {
 	}
 
 	/**
-	 * Main DKPDF_Settings Instance
+	 * Main Hi2PDF_Settings Instance
 	 */
 	public static function instance ( $parent ) {
 		if ( is_null( self::$_instance ) ) {

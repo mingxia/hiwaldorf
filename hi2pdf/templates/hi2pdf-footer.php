@@ -1,18 +1,18 @@
 <?php 
 /**
-* dkpdf-footer.php
+* hi2pdf-footer.php
 * This template is used to display content in PDF Footer
 *
-* Do not edit this template directly, 
-* copy this template and paste in your theme inside a directory named dkpdf 
-*/ 
+* Do not edit this template directly,
+* copy this template and paste in your theme inside a directory named hi2pdf
+*/
 ?>
 
-<?php 
+<?php
 	global $post;
-	$pdf_footer_text = sanitize_option( 'dkpdf_pdf_footer_text', get_option( 'dkpdf_pdf_footer_text' ) );
-	$pdf_footer_show_title = sanitize_option( 'dkpdf_pdf_footer_show_title', get_option( 'dkpdf_pdf_footer_show_title' ) );
-	$pdf_footer_show_pagination = sanitize_option( 'dkpdf_pdf_footer_show_pagination', get_option( 'dkpdf_pdf_footer_show_pagination' ) );
+	$pdf_footer_text = sanitize_option( 'hi2pdf_pdf_footer_text', get_option( 'hi2pdf_pdf_footer_text' ) );
+	$pdf_footer_show_title = sanitize_option( 'hi2pdf_pdf_footer_show_title', get_option( 'hi2pdf_pdf_footer_show_title' ) );
+	$pdf_footer_show_pagination = sanitize_option( 'hi2pdf_pdf_footer_show_pagination', get_option( 'hi2pdf_pdf_footer_show_pagination' ) );
 ?>
 
 <?php
@@ -28,7 +28,7 @@
 
 						echo $pdf_footer_text;
 
-					} 
+					}
 
 				?>
 
@@ -38,7 +38,7 @@
 
 						echo get_the_title( $post->ID );
 
-					} 
+					}
 
 				?>
 
@@ -46,9 +46,9 @@
 					// check if Footer show pagination is checked
 					if ( $pdf_footer_show_pagination ) {
 
-						echo apply_filters( 'dkpdf_footer_pagination', '| {PAGENO}' );
+						echo apply_filters( 'hi2pdf_footer_pagination', '| {PAGENO}' );
 
-					} 
+					}
 
 				?>
 
@@ -58,6 +58,3 @@
 	<?php }
 
 ?>
-
-
-

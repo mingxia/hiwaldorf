@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 * adds dashboard page
 */
 function hi2pdf_welcome_screen_page(){
-    add_dashboard_page('DK PDF Welcome', 'DK PDF Welcome', 'manage_options', 'hi2pdf-welcome', 'hi2pdf_welcome_page');
+    add_dashboard_page('Hi2PDF Welcome', 'Hi2PDF Welcome', 'manage_options', 'hi2pdf-welcome', 'hi2pdf_welcome_page');
 }
 
 // output hi2pdf-welcome dashboard page
@@ -14,11 +14,11 @@ function hi2pdf_welcome_page(){ ?>
 
     <div class="wrap">
 
-      <h1>Welcome to DK PDF <?php echo DKPDF_VERSION;?></h1>
+      <h1>Welcome to Hi2PDF <?php echo DKPDF_VERSION;?></h1>
       <h2 style="font-size:140%;">What's new in this version:</h2>
       <ul>
         <li>
-          <h3 style="margin-top:20px;">DK PDF admin menu</h3>
+          <h3 style="margin-top:20px;">Hi2PDF admin menu</h3>
           <?php
             $img1 = plugins_url( 'assets/images/hi2pdf-admin-menu.jpg', DKPDF_PLUGIN_FILE );
           ?>

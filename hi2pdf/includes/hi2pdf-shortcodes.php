@@ -4,8 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
 * [hi2pdf-button]
-* This shortcode is used to display DK PDF Button
-* doesn't has attributes, uses settings from DK PDF Settings / PDF Button
+* This shortcode is used to display Hi2PDF Button
+* doesn't has attributes, uses settings from Hi2PDF Settings / PDF Button
 */
 function hi2pdf_button_shortcode( $atts, $content = null ) {
 

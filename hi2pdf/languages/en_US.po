@@ -1,118 +1,117 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: DK PDF\n"
-"POT-Creation-Date: 2015-07-04 12:26+0100\n"
-"PO-Revision-Date: 2016-12-10 09:32+0800\n"
-"Last-Translator: Emili Castells <emili.castells@dinamiko.com@dinamiko.com>\n"
-"Language-Team: Emili Castells <emili.castells@dinamiko.com>\n"
-"Language: zh_CN\n"
+"Project-Id-Version: Hi2PDF\n"
+"POT-Creation-Date: 2016-07-04 12:26+0100\n"
+"PO-Revision-Date: 2016-07-04 12:26+0100\n"
+"Last-Translator: Ming Xia <fu.shuaifeng@163.com>\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.7.7\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../dk-pdf.php:85 ../dk-pdf.php:89 ../includes/class-dkpdf-settings.php:496
-#: ../includes/class-dkpdf-settings.php:505
+#: ../hi2pdf.php:85 ../hi2pdf.php:89 ../includes/class-settings.php:496
+#: ../includes/class-settings.php:505
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: ../includes/class-dkpdf-admin-api.php:160
+#: ../includes/class-admin-api.php:160
 msgid "Upload an image"
-msgstr "上传一张图片"
+msgstr ""
 
-#: ../includes/class-dkpdf-admin-api.php:160
+#: ../includes/class-admin-api.php:160
 msgid "Use image"
-msgstr "使用图片"
+msgstr ""
 
-#: ../includes/class-dkpdf-admin-api.php:160
+#: ../includes/class-admin-api.php:160
 msgid "Upload new image"
-msgstr "上传新图片"
+msgstr ""
 
-#: ../includes/class-dkpdf-admin-api.php:161
+#: ../includes/class-admin-api.php:161
 msgid "Remove image"
-msgstr "移除图片"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:47
-#: ../includes/class-dkpdf-settings.php:413
-msgid "DK PDF Settings"
-msgstr "DK PDF设置"
+#: ../includes/class-settings.php:47
+#: ../includes/class-settings.php:413
+msgid "Hi2PDF Settings"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:79
+#: ../includes/class-settings.php:79
 msgid "Settings"
-msgstr "设置"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:93
+#: ../includes/class-settings.php:93
 msgid "PDF Button"
-msgstr "PDF按钮"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:98
+#: ../includes/class-settings.php:98
 msgid "Button text"
-msgstr "按钮文字"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:106
+#: ../includes/class-settings.php:106
 msgid "Post types to apply:"
 msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:114
+#: ../includes/class-settings.php:114
 msgid "Action"
-msgstr "执行"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:122
+#: ../includes/class-settings.php:122
 msgid "Position"
-msgstr "位置"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:130
+#: ../includes/class-settings.php:130
 msgid "Align"
 msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:140
+#: ../includes/class-settings.php:140
 msgid "PDF Header & Footer"
 msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:145
+#: ../includes/class-settings.php:145
 msgid "Header logo"
-msgstr "头部logo"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:153
+#: ../includes/class-settings.php:153
 msgid "Header show title"
-msgstr "头部显示文字"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:160
+#: ../includes/class-settings.php:160
 msgid "Header show pagination"
-msgstr "头部显示页码"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:167
+#: ../includes/class-settings.php:167
 msgid "Footer text"
-msgstr "底部文字"
+msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:168
+#: ../includes/class-settings.php:168
 msgid "HTML tags are allowed."
 msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:175
+#: ../includes/class-settings.php:175
 msgid "Footer show title"
 msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:182
+#: ../includes/class-settings.php:182
 msgid "Footer show pagination"
 msgstr ""
 
-#: ../includes/class-dkpdf-settings.php:465
+#: ../includes/class-settings.php:465
 msgid "Save Settings"
-msgstr "保存设置"
+msgstr ""
 
 #: ../includes/dkpdf-functions.php:198
 msgid "Create PDF"
-msgstr "创建PDF"
+msgstr ""
 
 #: ../includes/dkpdf-metaboxes.php:13
-msgid "Disable DK PDF Button:"
-msgstr "禁用PDF按钮"
+msgid "Disable Hi2PDF Button:"
+msgstr ""
 
 #: ../includes/dkpdf-metaboxes.php:37
-msgid "DK PDF"
+msgid "Hi2PDF"
 msgstr ""

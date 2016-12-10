@@ -1,11 +1,11 @@
-<?php 
+<?php
 /**
-* dkpdf-index.php
+* hi2pdf-index.php
 * This template is used to display the content in the PDF
 *
-* Do not edit this template directly, 
-* copy this template and paste in your theme inside a directory named dkpdf 
-*/ 
+* Do not edit this template directly,
+* copy this template and paste in your theme inside a directory named hi2pdf
+*/
 ?>
 
 <html>
@@ -13,14 +13,14 @@
 
     	<link type="text/css" rel="stylesheet" href="<?php echo get_bloginfo( 'stylesheet_url' ); ?>" media="all" />
 
-    	<?php 
-    		$wp_head = get_option( 'dkpdf_print_wp_head', '' );
+    	<?php
+    		$wp_head = get_option( 'hi2pdf_print_wp_head', '' );
 
     		if( $wp_head == 'on' ) {
 
     			wp_head();
 
-    		} 
+    		}
     	?>
 
       	<style type="text/css">
@@ -30,11 +30,11 @@
       			font-size: 100%;
       		}
 
-			<?php 
+			<?php
 				// get pdf custom css option
-				$css = get_option( 'dkpdf_pdf_custom_css', '' );
-				echo $css; 
-			?>			
+				$css = get_option( 'hi2pdf_pdf_custom_css', '' );
+				echo $css;
+			?>
 
 		</style>
 
@@ -55,14 +55,14 @@
 
 	    		<?php
 	    			// image
-	    			$image = wp_get_attachment_image( $post->ID, 'full' ); 
+	    			$image = wp_get_attachment_image( $post->ID, 'full' );
 
 	    			if( $image ) {
 
-	    				echo $image; 
+	    				echo $image;
 
 	    			}
-	    			
+
 	    		?>
 
 	    		<?php
@@ -78,13 +78,13 @@
 
 	    		?>
 
-	    		<?php 
+	    		<?php
 	    			// metadata
 	    			$metadata =  wp_get_attachment_metadata( $post->ID );
 
 	    			if( $metadata ) {
 
-	    				$metadata_width = $metadata['width']; 
+	    				$metadata_width = $metadata['width'];
 	    				$metadata_height = $metadata['height'];
 	    				$image_meta = $metadata['image_meta'];
 
@@ -95,7 +95,7 @@
 
 	    				 	echo $key. ': '. $value .'<br>';
 
-	    				} 
+	    				}
 
 	    			}
 
@@ -111,30 +111,30 @@
 			 	'p' => $pdf,
 			 	'post_type' => $post_type,
 			 	'post_status' => 'publish'
-			); 
-		    	    
-		    $the_query = new WP_Query( apply_filters( 'dkpdf_query_args', $args ) );
-		    	    
+			);
+
+		    $the_query = new WP_Query( apply_filters( 'hi2pdf_query_args', $args ) );
+
 		    if ( $the_query->have_posts() ) {
-		    	    
+
 		    	while ( $the_query->have_posts() ) {
 		    	    $the_query->the_post();
 		    	    global $post;
 		    	    ?>
 
-		    	    <div class="dkpdf-content">
+		    	    <div class="hi2pdf-content">
 
 		    	    	<?php the_content(); ?>
 
 		    		</div>
-		    	    
+
 		    	<?php }
-		    	    
+
 		    } else {
 
 		    	echo 'no results';
 		    }
-		    	    
+
 		    wp_reset_postdata();
 
 	    }

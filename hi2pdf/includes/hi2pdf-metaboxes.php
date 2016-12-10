@@ -34,7 +34,7 @@ function hi2pdf_meta_box_setup () {
 
 		// add metabox to selected post types
 		foreach ( $pdfbutton_post_types as $post_type ) {
-			add_meta_box( 'post-data', __( 'DK PDF', 'hi2pdf' ), 'hi2pdf_meta_box_content', $post_type, 'normal', 'high' );
+			add_meta_box( 'post-data', __( 'Hi2PDF', 'hi2pdf' ), 'hi2pdf_meta_box_content', $post_type, 'normal', 'high' );
 		}
 
 	}
