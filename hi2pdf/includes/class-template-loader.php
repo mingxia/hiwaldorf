@@ -1,12 +1,12 @@
 <?php
 
-if ( ! class_exists( 'DKPDF_Template_Loader' ) )  {
+if ( ! class_exists( 'Hi2PDF_Template_Loader' ) )  {
 
-	class DKPDF_Template_Loader {
+	class Hi2PDF_Template_Loader {
 
-		protected $filter_prefix = 'dkpdf';
-		protected $theme_template_directory = 'dkpdf';
-		protected $plugin_directory = DKPDF_PLUGIN_DIR;
+		protected $filter_prefix = 'hi2pdf';
+		protected $theme_template_directory = 'hi2pdf';
+		protected $plugin_directory = Hi2PDF_PLUGIN_DIR;
 		protected $plugin_template_directory = 'templates';
 
 		public function get_template_part( $slug, $name = null, $load = true ) {
@@ -71,7 +71,7 @@ if ( ! class_exists( 'DKPDF_Template_Loader' ) )  {
 			}
 
 			return $located;
-			
+
 		}
 
 		protected function get_template_paths() {

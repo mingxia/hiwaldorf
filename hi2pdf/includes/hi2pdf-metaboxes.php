@@ -5,12 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
 * Return array with all fields in metabox
 */
-function dkpdf_get_custom_fields_settings() {
+function hi2pdf_get_custom_fields_settings() {
 
 	$fields = array();
 
 	$fields['_hide_pdfbutton'] = array(
-		'name' => __( 'Disable DK PDF Button:' , 'dkpdf' ),
+		'name' => __( 'Disable PDF Button:' , 'hi2pdf' ),
 		'description' => '',
 		'type' => 'checkbox',
 		'default' => '',
@@ -18,43 +18,43 @@ function dkpdf_get_custom_fields_settings() {
 	);
 
 	return $fields;
-	
+
 }
 
 /**
-* Add metabox to post types 
+* Add metabox to post types
 */
-function dkpdf_meta_box_setup () {
+function hi2pdf_meta_box_setup () {
 
 	// get post types selected in settings
 
-	$pdfbutton_post_types = sanitize_option( 'dkpdf_pdfbutton_post_types', get_option( 'dkpdf_pdfbutton_post_types' ) );
-	
+	$pdfbutton_post_types = sanitize_option( 'hi2pdf_pdfbutton_post_types', get_option( 'hi2pdf_pdfbutton_post_types' ) );
+
 	if( $pdfbutton_post_types ) {
 
 		// add metabox to selected post types
 		foreach ( $pdfbutton_post_types as $post_type ) {
-			add_meta_box( 'post-data', __( 'DK PDF', 'dkpdf' ), 'dkpdf_meta_box_content', $post_type, 'normal', 'high' );
+			add_meta_box( 'post-data', __( 'DK PDF', 'hi2pdf' ), 'hi2pdf_meta_box_content', $post_type, 'normal', 'high' );
 		}
 
 	}
-	
+
 }
 
-add_action( 'add_meta_boxes', 'dkpdf_meta_box_setup' );
+add_action( 'add_meta_boxes', 'hi2pdf_meta_box_setup' );
 
 /**
 * Add content to metabox
-*/ 
-function dkpdf_meta_box_content () {
+*/
+function hi2pdf_meta_box_content () {
 
 	global $post_id;
 	$fields = get_post_custom( $post_id );
-	$field_data = dkpdf_get_custom_fields_settings();
+	$field_data = hi2pdf_get_custom_fields_settings();
 
 	$html = '';
 
-	$html .= '<input type="hidden" name="' . 'dkpdf' . '_nonce" id="' . 'dkpdf' . '_nonce" value="' . wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
+	$html .= '<input type="hidden" name="' . 'hi2pdf' . '_nonce" id="' . 'hi2pdf' . '_nonce" value="' . wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
 
 	if ( 0 < count( $field_data ) ) {
 		$html .= '<table class="form-table">' . "\n";
@@ -89,15 +89,15 @@ function dkpdf_meta_box_content () {
 
 /**
 * Save metabox data
-*/ 
-function dkpdf_meta_box_save ( $post_id ) {
+*/
+function hi2pdf_meta_box_save ( $post_id ) {
 
 	global $post, $messages;
 
-	if ( isset( $_POST[ 'dkpdf' . '_nonce'] ) ) {
+	if ( isset( $_POST[ 'hi2pdf' . '_nonce'] ) ) {
 
 		// Verify nonce
-		if ( ! wp_verify_nonce( $_POST[ 'dkpdf' . '_nonce'], plugin_basename( __FILE__ ) ) ) {
+		if ( ! wp_verify_nonce( $_POST[ 'hi2pdf' . '_nonce'], plugin_basename( __FILE__ ) ) ) {
 			return $post_id;
 		}
 
@@ -113,7 +113,7 @@ function dkpdf_meta_box_save ( $post_id ) {
 	}
 
 	// Handle custom fields
-	$field_data = dkpdf_get_custom_fields_settings();
+	$field_data = hi2pdf_get_custom_fields_settings();
 	$fields = array_keys( $field_data );
 
 	foreach ( $fields as $f ) {
@@ -139,4 +139,4 @@ function dkpdf_meta_box_save ( $post_id ) {
 
 }
 
-add_action( 'save_post', 'dkpdf_meta_box_save' );
+add_action( 'save_post', 'hi2pdf_meta_box_save' );

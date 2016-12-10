@@ -2,7 +2,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class DKPDF_Admin_API {
+class Hi2PDF_Admin_API {
 
 	/**
 	 * Constructor function
