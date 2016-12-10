@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
 * hi2pdf-button.php
 * This template is used to display DK PDF Button
@@ -43,7 +43,7 @@ if ( ! $hide_pdfbutton ) { ?>
 
 	<div class="hi2pdf-button-container" style="<?php echo apply_filters( 'hi2pdf_button_container_css', '' );?> text-align:<?php echo $pdfbutton_align;?> ">
 
-		<a class="hi2pdf-button" href="<?php echo esc_url( add_query_arg( 'pdf', $post->ID ) );?>" target="_blank"><span class="hi2pdf-button-icon"><i class="fa fa-file-pdf-o"></i></span> <?php echo $pdfbutton_text;?></a>
+			<a class="hi2pdf-button" href="<?php echo esc_url( add_query_arg( 'pdf', $post->ID ) );?>" target="_blank" title="<?php echo $pdfbutton_text;?>"><span class="hi2pdf-button-icon"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span></a>
 
 	</div>
 

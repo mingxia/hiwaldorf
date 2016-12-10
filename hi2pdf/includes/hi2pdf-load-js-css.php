@@ -9,7 +9,7 @@ add_action( 'admin_enqueue_scripts', 'hi2pdf_admin_enqueue_styles', 10, 1 );
 
 function hi2pdf_enqueue_styles () {
 
-	wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(), '4.3.0' );
+	wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0' );
 	wp_enqueue_style( 'font-awesome' );
 
 	wp_register_style( 'hi2pdf-frontend', plugins_url( 'hi2pdf/assets/css/frontend.css' ), array(), Hi2PDF_VERSION );
