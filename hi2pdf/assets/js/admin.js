@@ -1,11 +1,11 @@
 jQuery(window).load(function(){
 
-	if( jQuery('#dkpdf_pdf_custom_css').length ) {
+	if( jQuery('#hi2pdf_pdf_custom_css').length ) {
 
 		// ref: http://jsfiddle.net/deepumohanp/tGF6y/
 
-		var textarea = jQuery('#dkpdf_pdf_custom_css');
-		jQuery('#dkpdf_pdf_custom_css').hide();
+		var textarea = jQuery('#hi2pdf_pdf_custom_css');
+		jQuery('#hi2pdf_pdf_custom_css').hide();
 
 		var editor = ace.edit("editor");
 		editor.setTheme("ace/theme/twilight");
@@ -18,5 +18,5 @@ jQuery(window).load(function(){
 		textarea.val(editor.getSession().getValue());
 
 	}
-	
+
 });

@@ -1,25 +1,25 @@
-.dkpdf-button-container {
+.hi2pdf-button-container {
 	width:100%;
 	float:left;
 	padding-top: 20px;
 	padding-bottom: 40px;
 }
 
-a.dkpdf-button {
+a.hi2pdf-button {
 	display: inline-block;
 }
 
-a.dkpdf-button:link, a.dkpdf-button:visited {
+a.hi2pdf-button:link, a.hi2pdf-button:visited {
 
 }
 
-a.dkpdf-button:hover {
+a.hi2pdf-button:hover {
 
 }
 
-a.dkpdf-button span.dkpdf-button-icon {
+a.hi2pdf-button span.hi2pdf-button-icon {
 	font-size:140%;
 	margin-right:5px;
 }
 
-.dkpdf-content {}
+.hi2pdf-content {}

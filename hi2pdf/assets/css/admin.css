@@ -1,4 +1,4 @@
-.dkpdf-item {
+.hi2pdf-item {
 	text-align: center;
 	width:89%;
 	padding:5%;
@@ -9,8 +9,8 @@
 	background:#FFF;
 }
 
-.dkpdf-item h3 { font-size:180%;}
-.dkpdf-item p { font-size:130%;} 
+.hi2pdf-item h3 { font-size:180%;}
+.hi2pdf-item p { font-size:130%;}
 
 #editor {
 	height:300px;
@@ -18,7 +18,7 @@
 
 @media only screen and (min-width: 996px) {
 
-	.dkpdf-item {
+	.hi2pdf-item {
 		width:29%;
 		padding:5%;
 		margin-right:5%;
