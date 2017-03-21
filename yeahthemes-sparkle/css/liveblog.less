@@ -1,0 +1,230 @@
+@import "../framework/css/mixins.less"; 
+@import "theme-mixins.less"; 
+@import "theme-vars.less"; 
+/* =Container
+-------------------------------------------------------------- */
+#liveblog-container {
+	margin: 10px 0;
+	width: 100%; 
+	display: block;
+	position: relative;
+	border-width:1px 0 0;
+	border-style:solid;
+	.border-color2rgba( #000, #ebebeb, @borderOpacity );
+	clear: both;
+}
+#liveblog-messages{
+	padding-bottom: 15px;
+	padding-top: 15px;
+	cursor: pointer;
+	&:before {
+		content: "\f093";
+		font-family: "FontAwesome";
+		text-align: center;
+		border-width:1px;
+		border-style:solid;
+		.border-color2rgba( #000, #ebebeb, @borderOpacity );
+		width: 32px;
+		height: 32px;
+		display: block;
+		margin: 0 auto;
+		line-height: 32px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+}
+/* =Form Actions
+-------------------------------------------------------------- */
+.liveblog-actions {
+	display: block;
+	padding: 5px 20px 16px 20px;
+	background-color:@grayBgColor;
+	border-width:1px;
+	border-style:solid;
+	.border-color2rgba( #000, #ebebeb, @borderOpacity );
+	&.uploading {
+		border-color: #ccc;
+		background: #e6e6e6;
+	}
+	legend {
+		background: transparent;
+		margin: 5px 0 10px;
+		float: left;
+		border:none;
+		font-size:14px;
+		text-transform: uppercase;	
+		ul,
+		li {
+			display: inline;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+	
+	}
+}
+
+.liveblog-form-entry {
+	color: #333;
+	background: #fff;
+	font-family: "Courier New", monospace;
+	margin-bottom: 15px;
+	clear: both;
+	&:focus {
+		border-color: #AAA;
+		-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+		-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+	}
+	&.drag-over {
+		background: #efe;
+		color: #333;
+	}
+}
+.liveblog-actions .liveblog-submit-wrapper {
+	position: relative;
+	text-align:right;
+}
+.liveblog-form-entry-submit {
+	margin: 0;
+}
+.liveblog-submit-spinner {
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	right: 50%;
+}
+#liveblog-container{
+	.button {
+		&:hover {
+		}
+		&:active {
+		}
+	}
+	.cancel {
+		margin-left: 4px;
+	}
+}
+
+/* =Feedback and Nags
+-------------------------------------------------------------- */
+.liveblog-message {
+	font-weight: 400;
+	text-align: center;
+	margin-bottom: 5px;
+	padding: 7px 10px;	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-shadow: 1px 1px 0 #0074a2;
+}
+
+.liveblog-hidden {
+	display: none;
+}
+
+/* =Entry Container
+-------------------------------------------------------------- */
+#liveblog-entries {
+	display: block;
+}
+.liveblog-loading {
+	color: #aaa;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+}
+.liveblog-preview {
+	clear: both;
+}
+.liveblog-archived-message {
+	background-color: lightYellow;
+	padding: 12px;
+	border: orange;
+	border-radius: 4px;
+}
+
+/* =Single Entry
+-------------------------------------------------------------- */
+.liveblog-entry {
+	overflow: hidden;
+	margin: 0;
+	padding: 15px 0;
+	border-width:1px 0 0 0;
+	border-style:solid;
+	.border-color2rgba( #000, #ebebeb, @borderOpacity );
+	&:first-child{
+		border-width:0;
+	}
+
+	&.highlight {
+		background-color: lightYellow;
+	}
+	.liveblog-entry-text {
+		padding: 10px 0 0;
+		margin-left: 45px;
+	}
+	.liveblog-meta{
+		overflow:hidden;
+		> *{
+			vertical-align:middle;
+			line-height: 32px;
+		}
+		.liveblog-author-name {
+			font-size: 18px;
+		}
+	
+		.liveblog-author-avatar {
+			float: left;
+			margin: 0 15px 0 0;
+		}
+		.liveblog-meta-time {
+			float: right;
+			margin-left: 10px;
+			font-size: 11px;
+			a {
+				color: @grayColor;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+			.time:before {
+				content: " - ";
+			}
+		}
+	}
+
+}
+.liveblog-entry-actions{
+	padding-top:15px;
+	text-align:right;
+	list-style: none;
+	li {
+		list-style: none;
+		button{
+			margin-left:5px;
+			font-size:11px;
+			text-transform:uppercase;
+		}
+	}
+}
+#liveblog-fixed-nag {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	.box-shadow(0px 0px 18px 0px rgba(0, 0, 0, 0.1));
+	.background-color2rgba(#FFF, #FFF, .9);
+	z-index:9999;
+	a {
+		text-decoration: none;
+		display: block;
+		.num {
+			font-size: 230%;
+			margin: 0 3px;
+			font-weight: bold;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+}

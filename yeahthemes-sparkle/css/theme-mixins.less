@@ -1,0 +1,72 @@
+//Mixins
+
+.em2px(@num; @base; @attr:""){
+	font-size: unit(round(@num/@base,5),em);
+}
+.em2px(@num; @base; @attr:"") when ( @attr = line-height ){
+	line-height: unit(round(@num/@base,5),em);
+}
+.em2px(@num; @base; @attr:"") when ( @attr = width ){
+	width: unit(round(@num/@base,5),em);
+}
+.em2px(@num; @base; @attr:"") when ( @attr = height ){
+	height: unit(round(@num/@base,5),em);
+}
+//Custom column generator
+.yt-cal-columns(@pre; @min; @max) when (@min > 0){
+	.@{pre}@{min}-@{max}{
+		width: percentage(@min/@max);
+	}
+}
+
+.yt-make-columns(@pre; @min; @max) when (@min < @max ){
+	.yt-cal-columns( @pre, @min, @max);
+	.yt-make-columns(@pre, ( @min + 1), @max );
+}
+
+
+
+.yt-make-columns-common-style(@extras; @pre; @_min; @_max) {
+	.loop( @number ) when (@number = 1) {
+		@_item: @extras;
+		.loop( @number + 1, @_item );
+  
+	}
+	.loop( @number, @_list ) when (@number =< @_max) {
+		
+		
+		.col(@index) when (@index = 1) { // initial
+			@item: ~".@{pre}@{index}-@{number}";
+			.col((@index + 1), @item);
+		}
+		.col(@index, @list) when (@index =< @number) { // general; "=<" isn't a typo
+			@item: ~".@{pre}@{index}-@{number}";
+			.col((@index + 1), ~"@{list}, @{item}");
+		}
+		
+		.col(@index, @list) when (@index = @number) { // terminal
+			@_item: ~"@{list}";
+		}
+		
+		.col(@_min);
+		
+		.loop( @number + 1, ~"@{_list}, @{_item}" );
+  
+	}
+	
+	.loop( @number, @_list ) when (@number > @_max) {
+		@{_list}{
+			float:left;
+			position: relative;
+			// Prevent columns from collapsing when empty
+			min-height: 1px;
+			// Inner gutter via padding
+			padding-left:  (30px/2);
+			padding-right: (30px/2);
+		}
+			
+	}
+	
+  
+  .loop(@_min); // kickstart it
+}
