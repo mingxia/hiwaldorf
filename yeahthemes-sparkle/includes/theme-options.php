@@ -740,7 +740,7 @@ if( !function_exists( 'yt_theme_options' ) ) {
 			array( 
 				'name' => 'Left Footer credit',
 				'id' => 'footer_text_left',
-				'std' => '&copy; ' . date("Y") . ' <a href="http://' . 'wpthms.com" title="Everything you need to create a trendy, uniquely beautiful website without any of coding knowledge">wpthms</a>. All Rights Reserved. Powered by <a href="http://wordpress.org">WordPress</a>.',
+				'std' => '&copy; ' . date("Y") . ' <a href="https://hiwaldorf.com/">HiWaldorf</a>. Powered by <a href="https://wordpress.org/">WordPress</a>.',
 				'type' => 'textarea',
 				'customize' => 1,
 			),
