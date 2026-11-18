@@ -80,7 +80,11 @@ if (typeof wpthms == 'undefined') {
 				},
 				success: function(count){
 					
-					console.log(count);
+					var newCount = parseInt(count, 10);
+					if (!isFinite(newCount)) {
+						self._eventRunning = false;
+						return;
+					}
 					/**
 					 * unlike
 					 */
@@ -112,10 +116,20 @@ if (typeof wpthms == 'undefined') {
 						desc.text(self._vars.likes);
 					}
 					
-					$el.data('count', count);
-					count_stt.text(count);
+					// The same post may have multiple counters on a listing page.
+					$('.yt-impressive-like-button').filter(function() {
+						return String($(this).attr('data-post-id')) === String(post_id);
+					}).each(function() {
+						$(this).data('count', newCount).attr('data-count', newCount);
+						$(this).find('.yt-il-counter-number').text(newCount);
+						$(this).find('.yt-il-counter-desc').text(newCount < 2 ? self._vars.like : self._vars.likes);
+					});
 					
 					self._eventRunning = false;
+				},
+				error: function() {
+						self._eventRunning = false;
+						console.warn('YT Impressive Like: AJAX request failed.');
 				}
 			});
 			
@@ -139,7 +153,7 @@ if (typeof wpthms == 'undefined') {
 				w = $(window).width(),
 				likeChild = $el.find('.yt-il-symbol'),
 				numberOfHearts = parseInt(self._vars.number),
-				heartClone; 			
+				heartClone = ''; 			
 				
 			for (var i = 0; i < numberOfHearts; i++) {
 				heartClone += '<span>' + self._vars.symbol + '</span>';
