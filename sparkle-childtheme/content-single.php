@@ -55,9 +55,10 @@ $feature_image = yt_get_options('blog_single_post_featured_image');
 	<header class="entry-header">
 
 		<?php do_action( 'yt_single_post_entry_header_start' );?>
-		<?php if(function_exists( 'yt_site_post_entry_category') ) yt_site_post_entry_category();?>
-
-		<h1 class="entry-title <?php echo $entry_title_class; ?>"><?php echo $entry_title; ?></h1>
+		<div class="hiwaldorf-single-title-row">
+			<?php if ( function_exists( 'yt_site_post_entry_category' ) ) yt_site_post_entry_category(); ?>
+			<h1 class="entry-title <?php echo esc_attr( $entry_title_class ); ?>"><?php echo $entry_title; ?></h1>
+		</div>
 		
 		 
 		<?php echo 'quote' === $format ? $quote_author : '';?>

@@ -270,3 +270,103 @@ form[role="search"] [type='submit']{
         margin-top: 0;
     }
 }
+
+/* Compact single-post category/title row and author credit. */
+.single .hiwaldorf-single-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    min-width: 0;
+}
+.single .hiwaldorf-single-title-row > .category-meta {
+    display: inline-block !important;
+    flex: 0 0 auto;
+    align-self: baseline;
+    margin: 0 !important;
+    padding: 3px 0;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-transform: none;
+}
+.single .hiwaldorf-single-title-row > .category-meta:empty {
+    display: none !important;
+}
+.single .hiwaldorf-single-title-row > .entry-title {
+    flex: 1 1 0%;
+    min-width: 0;
+    margin-top: 0;
+    overflow-wrap: anywhere;
+}
+.single .hiwaldorf-author-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 22px;
+    margin: 20px 0 30px;
+    background: #f7f5f1;
+    border-radius: 6px;
+    border: 0;
+    clear: both;
+}
+.single .hiwaldorf-author-avatar {
+    display: block;
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.single .hiwaldorf-author-avatar img {
+    display: block;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.single .hiwaldorf-author-content {
+    flex: 1;
+    min-width: 0;
+}
+.single .hiwaldorf-author-heading {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+    margin: 0 0 6px;
+    line-height: 1.5;
+}
+.single .hiwaldorf-author-label { font-size: 12px; color: #888; }
+.single .hiwaldorf-author-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+.single .hiwaldorf-author-name:hover,
+.single .hiwaldorf-author-all-posts:hover { color: #d34825; }
+.single .hiwaldorf-author-bio {
+    font-size: 13px;
+    line-height: 1.75;
+    color: #666;
+    margin: 0 0 7px;
+}
+.single .hiwaldorf-author-bio p { margin: 0 0 5px; }
+.single .hiwaldorf-author-all-posts {
+    display: inline-block;
+    color: #a24b34;
+    font-size: 12px;
+    text-decoration: none;
+}
+@media (max-width: 480px) {
+    .single .hiwaldorf-single-title-row { gap: 8px; }
+    .single .hiwaldorf-single-title-row > .category-meta {
+        font-size: 11px;
+        padding-top: 2px;
+    }
+    .single .hiwaldorf-author-card { gap: 12px; padding: 16px; }
+    .single .hiwaldorf-author-avatar,
+    .single .hiwaldorf-author-avatar img { width: 44px; height: 44px; }
+    .single .hiwaldorf-author-avatar { flex-basis: 44px; }
+}

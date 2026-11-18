@@ -5,7 +5,7 @@
 		<div class="site-modal-content site-modal-search" data-request="<?php echo esc_attr( yt_get_options( 'site_modal_search_request_type') );?>">
 			<form class="form-horizontal site-modal-content-inner search-form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 
-				<h3 class="site-modal-heading"><?php _e('Search the site', 'yeahthemes-sparkle');?></h3>
+				<h3 class="site-modal-heading"><?php esc_html_e( '站内搜索', 'yeahthemes-sparkle' ); ?></h3>
 				<div class="form-group has-feedback">
 				  <input class="form-control input-lg search-field" type="search" placeholder="<?php echo esc_attr_x( 'Text to search&hellip;', 'placeholder', 'yeahthemes-sparkle' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" title="<?php _ex( 'Search for:', 'label', 'yeahthemes-sparkle' ); ?>" data-swplive="true" autocomplete="off">
 				  <span class="form-control-feedback"><i class="fa fa-search"></i></span>

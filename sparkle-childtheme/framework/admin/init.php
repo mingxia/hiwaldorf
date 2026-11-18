@@ -205,12 +205,8 @@ class YT_Options_Framework_Theme_Options extends YT_Options_Framework{
 			'edit_theme_options', 
 			'yt-theme-options', 
 			array( &$this, 'load_template')
-		); 
-
-	    global $submenu;
-
-	    $submenu[$this->_menu_slug][] = array( 'Documentation', 'manage_options', apply_filters( 'yt_admin_top_menu_bar_document_url', '' ));
-	    $submenu[$this->_menu_slug][] = array( 'Support forum', 'manage_options', apply_filters( 'yt_admin_top_menu_bar_support_url', '' ));
+		);
+		// Removed dead original-developer Documentation / Support forum links.
 	
 		add_action("load-$yt_options_page", array( &$this, 'screen_options_help' ));
 	
