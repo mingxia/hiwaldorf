@@ -564,7 +564,7 @@ class YT_Shortcode_Generator {
 		wp_enqueue_script('wp-color-picker' );
 
 		//wp_enqueue_script( 'jquery-ui-tooltip' );
-		wp_enqueue_script( 'yt-shortcode-scripts', 		YT_SHORTCODE_URI . 'editor/js/custom.js', array('jquery'), '1.0', false );
+		wp_enqueue_script( 'yt-shortcode-scripts', 		YT_SHORTCODE_URI . 'editor/js/custom.js', array('jquery'), YT_SHORTCODE_VER, false );
 		
 		wp_localize_script( 'yt-shortcode-scripts', 'yt_shortcodeVars', apply_filters( 'yt_shortcode_vars', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -593,10 +593,10 @@ class YT_Shortcode_Generator {
 		wp_register_script( 'gmap-api',	'//maps.google.com/maps/api/js?sensor=true&v=3.6', array( 'jquery' ) );
 
 		if( apply_filters( 'yt_shortcode_front_js_bootstrap', true ) )
-			wp_enqueue_script( 'bootstrap',  YT_SHORTCODE_URI . "js/bootstrap$suffix.js", array('jquery'), '1.0', true  );
+			wp_enqueue_script( 'bootstrap',  YT_SHORTCODE_URI . "js/bootstrap$suffix.js", array('jquery'), YT_SHORTCODE_VER, true  );
 		
 		if( apply_filters( 'yt_shortcode_front_js_shortcodes', true ) )
-			wp_enqueue_script( 'yt-shortcodes',  YT_SHORTCODE_URI . "js/yt-shortcodes$suffix.js", array('jquery'), '1.0', true  );
+			wp_enqueue_script( 'yt-shortcodes',  YT_SHORTCODE_URI . "js/yt-shortcodes$suffix.js", array('jquery'), YT_SHORTCODE_VER, true  );
 
 	}
 	/**

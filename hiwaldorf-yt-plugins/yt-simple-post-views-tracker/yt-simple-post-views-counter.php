@@ -63,7 +63,7 @@ function yt_simple_post_views_setup(){
  */
 function yt_simple_post_views_scripts(){
 	$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
-	wp_enqueue_script('yt-simple-post-view-js', 		YT_POST_VIEWS_TRACKER_URI . "js/yt-simple-post-view$suffix.js", array('jquery'), '1.0', true );  
+	wp_enqueue_script('yt-simple-post-view-js', 		YT_POST_VIEWS_TRACKER_URI . "js/yt-simple-post-view$suffix.js", array('jquery'), YT_POST_VIEWS_TRACKER_VER, true );  
 	wp_localize_script('yt-simple-post-view-js', 'ytSimplePostViewVars', array(  
 		'ajax_url' => admin_url('admin-ajax.php'),  
 		'nonce' => wp_create_nonce('yt-simple-post-view-nonce'),
