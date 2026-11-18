@@ -77,7 +77,7 @@ jobs:
             if (!function_exists("all_view") || !function_exists("view_5000")) {
               throw new RuntimeException("Custom statistics functions missing");
             }
-            // WP-CLI's default context does not initialize admin includes in all
+            // WP-CLI default context does not initialize admin includes in all
             // configurations; explicitly require the theme module for this regression.
             require_once get_template_directory() . "/includes/theme-config.php";
             // Call the admin-only callbacks directly, even in CLI context; these
