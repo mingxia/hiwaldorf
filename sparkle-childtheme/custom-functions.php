@@ -159,7 +159,7 @@ function hiwaldorf_daily_views_for( $day ) {
 
 function custom_dashboard_help() {
     $today = current_time( 'Y-m-d' );
-    $yesterday = wp_date( 'Y-m-d', strtotime( '-1 day', current_time( 'timestamp' ) ), wp_timezone() );
+    $yesterday = ( new DateTimeImmutable( 'today', wp_timezone() ) )->modify( '-1 day' )->format( 'Y-m-d' );
     $since = get_option( 'hiwaldorf_daily_views_since', '' );
 
     $metrics = array(
