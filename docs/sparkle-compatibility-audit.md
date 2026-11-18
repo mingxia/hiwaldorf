@@ -66,3 +66,18 @@ Additional fixes identified by earlier smoke runs:
 - Parent `includes/theme-styling.php`: default values for missing CSS options with preservation of existing configured values.
 
 **This is a smoke-test baseline only, not a complete line-by-line source audit or complete browser/UI regression.**
+
+## Live preview failure investigation (2026-11-18)
+
+Reported: WordPress dashboard preview succeeds for branded parent theme installed under `hiwaldorf-sparkle-test` but shows a critical-error screen for the branded child installed under `hiwaldorf-magazine-test`. Production `debug.log` excerpt contained repeated `rtrim(null)` deprecations in WordPress formatting.php **without a recorded Fatal stack trace**; it does not establish a theme-specific fatal cause.
+
+### Findings and improvements
+- Framework `framework/admin/init.php` previously used `get_option('stylesheet')` for the theme settings namespace. During WordPress theme preview, this refers to the **currently active theme**, not necessarily the theme being previewed. Updated to preview-aware `get_stylesheet()` while leaving the historical saved option key convention intact in normal operation.
+- Added explicit `canonical` / `renamed` layout matrix to WordPress 7.1.4 / PHP 8.3 smoke workflow. Renamed layout reproduces `hiwaldorf-sparkle-test` + `hiwaldorf-magazine-test`, including the `Template` and CSS import edits used on the server.
+- Four combinations (both themes in both layouts) **passed** GitHub Actions run `44228444136`: activation, dashboard bootstrap, basic frontend routes.
+- **Remaining uncertainty:** CI tests activation and frontend responses, not the logged-in `Appearance -> Theme -> Live Preview` Customizer session with actual site plugins/options. A server-side Fatal stack trace is still required if error persists after synchronizing the newest PR revision. Avoid claiming a confirmed fatal code path based solely on deprecation spam.
+
+### Safe on-server triage
+- Check `wp_get_theme('hiwaldorf-magazine-test')->errors()`, `get('Template')`, and `parent()` with `wp --skip-plugins --skip-themes eval` to confirm local inheritance; this does not activate the theme.
+- Inspect web PHP error logs for the preview request and its stack trace (sanitize credentials before sharing).
+- Keep production active theme and its saved settings unchanged. Replace only *test copies* from the new PR commit before another preview attempt.
