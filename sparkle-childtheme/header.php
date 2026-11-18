@@ -29,7 +29,7 @@ do_action( 'yt_start_the_awesomeness' );
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php wp_head(); ?>
 <!--如果是密码文章，则禁止复制，2021年9月8日-->
-<?php if ( $post->post_password ) { ?>
+<?php if ( isset( $post ) && $post instanceof WP_Post && ! empty( $post->post_password ) ) { ?>
 <script>
 // 禁止右键
 document.oncontextmenu = function() {
