@@ -1,19 +1,25 @@
-<div class="post-author-area hidden-print margin-bottom-30">
-    <a href="<?php echo esc_url( get_author_posts_url(get_the_author_meta( 'ID' ) ) ); ?>" class="alignleft gravatar"><?php echo get_avatar( get_the_author_meta('user_email'), '75', '' );?></a>
-    <div class="author-meta-content">
-        <h3 class="secondary-2-primary"><?php echo __('By', 'yeahthemes-sparkle');?> <a href="<?php echo esc_url( get_author_posts_url(get_the_author_meta( 'ID' ) ) );?>"><strong><?php the_author_meta('display_name');?></strong></a></h3>
-    
-        <?php 
-        if(get_the_author_meta('description')){
-            
-            echo wpautop( get_the_author_meta('description') );
-            
-        }
-        ?>
-        <p><?php _e('View all articles by ', 'yeahthemes-sparkle');?><strong class="primary-2-secondary"><?php the_author_posts_link();?></strong></p>
-
+<?php
+/**
+ * Compact author information for single articles.
+ * Preserves WordPress author URL, biography and avatar.
+ */
+$hiw_author_id   = (int) get_the_author_meta( 'ID' );
+$hiw_author_name = get_the_author_meta( 'display_name' );
+$hiw_author_url  = get_author_posts_url( $hiw_author_id );
+$hiw_author_bio  = get_the_author_meta( 'description' );
+?>
+<section class="post-author-area hiwaldorf-author-card hidden-print" aria-label="发布者信息">
+    <a class="hiwaldorf-author-avatar" href="<?php echo esc_url( $hiw_author_url ); ?>" aria-label="<?php echo esc_attr( '查看' . $hiw_author_name . '的文章' ); ?>">
+        <?php echo get_avatar( $hiw_author_id, 56, '', $hiw_author_name, array( 'class' => 'hiwaldorf-author-image' ) ); ?>
+    </a>
+    <div class="hiwaldorf-author-content">
+        <div class="hiwaldorf-author-heading">
+            <span class="hiwaldorf-author-label">发布者</span>
+            <a class="hiwaldorf-author-name" href="<?php echo esc_url( $hiw_author_url ); ?>" rel="author"><?php echo esc_html( $hiw_author_name ); ?></a>
+        </div>
+        <?php if ( $hiw_author_bio ) : ?>
+            <div class="hiwaldorf-author-bio"><?php echo wpautop( esc_html( $hiw_author_bio ) ); ?></div>
+        <?php endif; ?>
+        <a class="hiwaldorf-author-all-posts" href="<?php echo esc_url( $hiw_author_url ); ?>">查看全部文章 <span aria-hidden="true">→</span></a>
     </div>
-    
-</div>
-
-<!--/Author Info-->
+</section>
