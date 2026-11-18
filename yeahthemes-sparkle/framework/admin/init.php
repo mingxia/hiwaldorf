@@ -22,7 +22,8 @@
  */
 $themedata;
 $themedata = wp_get_theme();
-$theme_stylesheet = get_option( 'stylesheet' );
+// Respect theme previews and Customizer filters; the raw option always refers to the live theme.
+$theme_stylesheet = get_stylesheet();
 $theme_dir_slug = preg_replace( '/[^a-zA-Z0-9-_]/', '', strtolower( trim( str_replace( '-', '_', $theme_stylesheet  ) ) ) );
 
 //echo preg_replace( '/[^a-zA-Z0-9-_]/', '', strtolower( trim( str_replace( '_', '-', 'fhdjsafh32423+++++_____++++__---d-as-d=-das_'  ) ) ) );
