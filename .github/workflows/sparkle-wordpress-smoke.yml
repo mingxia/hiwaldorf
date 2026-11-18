@@ -1,0 +1,77 @@
+name: Sparkle WordPress runtime smoke
+
+on:
+  pull_request:
+    paths:
+      - 'yeahthemes-sparkle/**'
+      - 'sparkle-childtheme/**'
+      - '.github/workflows/sparkle-wordpress-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  wordpress-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: smoke-password
+          MYSQL_DATABASE: sparkle_wp
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -p smoke-password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: wp-cli
+          coverage: none
+      - name: Install isolated current stable WordPress
+        run: |
+          mkdir -p /tmp/sparkle-wp/wp-content/themes
+          wp core download --path=/tmp/sparkle-wp --allow-root
+          cp -a yeahthemes-sparkle sparkle-childtheme /tmp/sparkle-wp/wp-content/themes/
+          wp config create --path=/tmp/sparkle-wp --dbname=sparkle_wp --dbuser=root --dbpass=smoke-password --dbhost=127.0.0.1:3306 --allow-root
+          wp core install --path=/tmp/sparkle-wp --url=http://127.0.0.1:8765 --title=SparkleSmoke --admin_user=admin --admin_password=nonproduction-smoke-password --admin_email=smoke@example.test --skip-email --allow-root
+      - name: Activate child theme and exercise WordPress hooks
+        shell: bash
+        run: |
+          set -uo pipefail
+          wp theme activate sparkle-childtheme --path=/tmp/sparkle-wp --allow-root > /tmp/sparkle-theme-activation.log 2>&1
+          code=$?
+          cat /tmp/sparkle-theme-activation.log
+          if [ "$code" -ne 0 ]; then exit "$code"; fi
+          wp eval 'echo "Theme ".wp_get_theme()->get("Name")."\n"; do_action("wp_dashboard_setup");' --path=/tmp/sparkle-wp --allow-root
+          wp post create --post_title='Smoke test' --post_content='Sparkle sample content' --post_status=publish --path=/tmp/sparkle-wp --allow-root
+      - name: Render frontend routes under PHP 8.3
+        shell: bash
+        run: |
+          set -uo pipefail
+          php -S 127.0.0.1:8765 -t /tmp/sparkle-wp > /tmp/sparkle-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          sleep 3
+          failed=0
+          for path in / /?p=1 /?s=smoke /?page_id=999999; do
+            status=$(curl -sS --max-time 20 -o /tmp/sparkle-body.html -w '%{http_code}' "http://127.0.0.1:8765$path" || true)
+            echo "$path: HTTP $status"
+            if [ "$status" != "200" ] && [ "$status" != "404" ]; then failed=1; fi
+          done
+          cat /tmp/sparkle-http.log
+          if grep -Eiq 'PHP (Fatal error|Parse error)' /tmp/sparkle-http.log; then failed=1; fi
+          exit "$failed"
+      - name: Upload diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sparkle-wordpress-smoke-logs
+          path: |
+            /tmp/sparkle-theme-activation.log
+            /tmp/sparkle-http.log
+          if-no-files-found: ignore
