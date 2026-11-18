@@ -3,7 +3,7 @@
 Plugin Name: YT Simple Post Views Tracker (HiWaldorf)
 Plugin URI: https://github.com/mingxia/hiwaldorf/tree/master/hiwaldorf-yt-plugins/yt-simple-post-views-tracker
 Description: Original wpthms Sparkle companion plugin; maintained by HiWaldorf for existing sites.
-Version: 2026.11.0
+Version: 2026.11.1
 Author: wpthms (original), HiWaldorf (maintenance)
 Author URI: https://hiwaldorf.com/
 Update URI: https://github.com/mingxia/hiwaldorf
@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if ( ! defined( 'ABSPATH' ) ) exit; 
 
-define( 'YT_POST_VIEWS_TRACKER_VER', '2026.11.0' );
+define( 'YT_POST_VIEWS_TRACKER_VER', '2026.11.1' );
 define( 'YT_POST_VIEWS_TRACKER_URI', plugin_dir_url( __FILE__ ) );
 define( 'YT_POST_VIEWS_TRACKER_DIR', plugin_dir_path( __FILE__ ) );
 define( 'YT_POST_VIEWS_TRACKER_PLUGIN', __FILE__ );
@@ -113,6 +113,7 @@ function yt_simple_post_views_counter( $post_id = 0 ){
 		$current_views++;
 
 		update_post_meta( $post_id, $post_views_meta_key, $current_views );
+		do_action( 'yt_simple_post_views_recorded', (int) $post_id );
 
 	}
 
@@ -170,6 +171,7 @@ function yt_simple_post_views_ajax_counter(){
 	$current_views++;
 
 	update_post_meta( $post_id, $post_views_meta_key, $current_views );
+		do_action( 'yt_simple_post_views_recorded', (int) $post_id );
 
 	die();
 }
