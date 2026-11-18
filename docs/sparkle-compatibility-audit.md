@@ -42,3 +42,15 @@
 
 ### Production safety
 No changes were deployed to the server. Keep the PR Draft, validate the code on a staging copy of hiwaldorf.com, and do not migrate theme options or alter the `_post_views` data before backups and equal-results tests.
+
+## Isolated WordPress PHP 8.3 runtime smoke results
+
+The separate GitHub Actions workflow `sparkle-wordpress-smoke.yml` installs current stable WordPress into an **ephemeral test database**, activates the Sparkle child, invokes dashboard setup (with WordPress admin APIs loaded), and requests the homepage, post, search and nonexistent-page routes.
+
+- First run exposed a dashboard test harness omission (missing `wp-admin/includes/dashboard.php` import); fixed test.
+- Second run found an actual **fatal missing optional dependency** `wpcc_output_navi()` in child top bar, plus many undefined style option keys when starting without historical settings. Both fixed without changing saved user settings.
+- Third run exposed PHP 8 **TypeError** from `in_array()` receiving a string rather than an array in the child theme interface, and a second unguarded language-switcher call in mobile nav. Both fixed.
+- Run **44225624153** (commit 3791d860) passed isolated child activation and page checks: homepage 200, sample post 200, search 200, missing page 404, with no PHP warnings/fatal errors in the logged requests.
+- Additional parent/child `in_array()` guards were added afterward. Confirm final-head CI checks before staging or merge.
+
+**Limitations:** The CI install uses empty options and placeholder content, not the production database, image uploads, plugins, customized theme options, or real browser interactions. Passing smoke tests does not constitute completed manual file-by-file review or production certification.
