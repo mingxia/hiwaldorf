@@ -11,7 +11,8 @@
 				</div>
 				<?php endif?>
 				<div class="site-social-networks">
-					<?php wpcc_output_navi($args = '');//添加上多语言转换函数 ?>
+					<?php // Optional language-switcher integration; omit when its plugin is unavailable. ?>
+					<?php if ( function_exists( 'wpcc_output_navi' ) ) { wpcc_output_navi( '' ); } ?>
 				</div>
 			</div>
 
