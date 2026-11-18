@@ -28,3 +28,17 @@
 - Record PHP error logs after simulated requests.
 - Back up WordPress database, uploads, parent/child themes and options; maintain rollback path.
 - Do not merge until staged runtime validation.
+
+## Full-tree audit status (2026-11-18)
+
+- Repository tree verified: **349 files** total in the parent and child, including **151 PHP**, **26 JavaScript**, **29 CSS**, **14 LESS**, and binary images/fonts/archives.
+- GitHub Actions inventory scanner enumerates every file and emits a searchable audit report as the `sparkle-full-file-audit` artifact. Text files receive heuristic pattern scans. Binary files receive an inventory entry but no source-code inspection.
+- PHP 8.3 and 8.4 syntax lint currently passes for all PHP files; JavaScript syntax check passes for all JS files.
+- PHPCompatibility sniff v9.3.5 ran with requested version 8.3 and reported no additional findings. **It is not full coverage of PHP 8.3 deprecations**, particularly dynamic property creation and framework runtime behavior.
+- Scanner initially reported ~132 dynamic-property assignment candidates and ~96 direct request-data references (many could be legitimate). They require comparison against class declarations, authorization checks, and escaping in call sites, not bulk regex rewriting.
+- High-risk `create_function` scanner matches were two commented-out lines, not live code, after the four active occurrences were replaced.
+- Code fixes added this round: two optional-before-required parameter declarations in `framework/admin/includes/yt-options-settings.api.php` and guarded global `$post` in the child header.
+- **Unfinished:** manual, semantic code review of every executable file and runtime testing in a staging WordPress install. The inventory is comprehensive, but it must not be described as a completed line-by-line manual audit.
+
+### Production safety
+No changes were deployed to the server. Keep the PR Draft, validate the code on a staging copy of hiwaldorf.com, and do not migrate theme options or alter the `_post_views` data before backups and equal-results tests.
