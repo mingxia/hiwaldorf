@@ -77,6 +77,16 @@ jobs:
             if (!function_exists("all_view") || !function_exists("view_5000")) {
               throw new RuntimeException("Custom statistics functions missing");
             }
+            // Exercise both admin metabox filters: ordinary frontend smoke tests miss these.
+            foreach (array("yt_main_metabox_page_controls", "yt_main_metabox_page_settings") as $hook) {
+              $result = apply_filters($hook, array(), "yt_");
+              if (!is_array($result) || count($result) === 0) {
+                throw new RuntimeException("Admin metabox filter failed: ".$hook);
+              }
+            }
+            if (!str_contains(wpthms_FRAMEWORK_URI, "/sparkle-childtheme/framework/")) {
+              throw new RuntimeException("Wrong standalone framework assets URI");
+            }
             require_once ABSPATH."wp-admin/includes/dashboard.php";
             do_action("wp_dashboard_setup");
             echo "Standalone theme, dashboard and HiWaldorf custom hooks loaded.\n";
