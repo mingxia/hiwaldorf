@@ -11,6 +11,10 @@ on:
 jobs:
   wordpress-smoke:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        theme: ['yeahthemes-sparkle', 'sparkle-childtheme']
     timeout-minutes: 15
     services:
       mysql:
@@ -43,7 +47,7 @@ jobs:
         shell: bash
         run: |
           set -uo pipefail
-          wp theme activate sparkle-childtheme --path=/tmp/sparkle-wp --allow-root > /tmp/sparkle-theme-activation.log 2>&1
+          wp theme activate ${{ matrix.theme }} --path=/tmp/sparkle-wp --allow-root > /tmp/sparkle-theme-activation.log 2>&1
           code=$?
           cat /tmp/sparkle-theme-activation.log
           if [ "$code" -ne 0 ]; then exit "$code"; fi
@@ -70,7 +74,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sparkle-wordpress-smoke-logs
+          name: sparkle-wordpress-smoke-logs-${{ matrix.theme }}
           path: |
             /tmp/sparkle-theme-activation.log
             /tmp/sparkle-http.log
