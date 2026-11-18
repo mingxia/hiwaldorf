@@ -77,11 +77,15 @@ jobs:
             if (!function_exists("all_view") || !function_exists("view_5000")) {
               throw new RuntimeException("Custom statistics functions missing");
             }
-            // Exercise both admin metabox filters: ordinary frontend smoke tests miss these.
-            foreach (array("yt_main_metabox_page_controls", "yt_main_metabox_page_settings") as $hook) {
-              $result = apply_filters($hook, array(), "yt_");
+            // Call the admin-only callbacks directly, even in CLI context; these
+            // callbacks caused the real wp-admin Fatal and must be exercised.
+            foreach (array("yt_site_main_metabox_page_controls", "yt_site_main_metabox_page_settings") as $callback) {
+              if (!function_exists($callback)) {
+                throw new RuntimeException("Missing admin metabox callback: ".$callback);
+              }
+              $result = $callback(array(), "yt_");
               if (!is_array($result) || count($result) === 0) {
-                throw new RuntimeException("Admin metabox filter failed: ".$hook);
+                throw new RuntimeException("Admin metabox callback returned no options: ".$callback);
               }
             }
             if (!str_contains(wpthms_FRAMEWORK_URI, "/sparkle-childtheme/framework/")) {
