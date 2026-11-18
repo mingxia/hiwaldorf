@@ -107,6 +107,13 @@ jobs:
             global $wp_customize;
             $wp_customize = new WP_Customize_Manager();
             do_action("customize_register", $wp_customize);
+            // Configure all premium slots with markers, plus the legacy donation.
+            $ad_options = (array) get_option(wpthms_THEME_OPTIONS);
+            $ad_options["site_ads_after_header"] = "<div data-ci-h1>H1-marker</div>";
+            $ad_options["site_ads_before_single_post"] = "<div data-ci-p1>P1-marker</div>";
+            $ad_options["site_ads_p2_after_article"] = "<div data-ci-p2>P2-marker</div>";
+            $ad_options["site_ads_after_single_post"] = "<div data-ci-donation>Donation-marker</div>";
+            update_option(wpthms_THEME_OPTIONS, $ad_options);
             echo "Legacy option key, _post_views and Customize hooks passed.\\n";
           ' --path=/tmp/hiwaldorf-wp --allow-root
 
@@ -128,6 +135,28 @@ jobs:
               failed=1
             fi
           done
+          # Actual WordPress HTML: home H1 only, post P1 before heading,
+          # P2 after article, and existing donation preserved inside article.
+          curl -fsS --max-time 20 'http://127.0.0.1:8766/' > /tmp/hiwaldorf-home.html
+          curl -fsS --max-time 20 'http://127.0.0.1:8766/?p=1' > /tmp/hiwaldorf-post.html
+          if ! grep -q 'data-ci-h1' /tmp/hiwaldorf-home.html; then echo 'H1 missing on home'; failed=1; fi
+          if grep -q 'data-ci-p1\|data-ci-p2' /tmp/hiwaldorf-home.html; then echo 'P1/P2 on home'; failed=1; fi
+          if grep -q 'data-ci-h1' /tmp/hiwaldorf-post.html; then echo 'H1 leaked into post'; failed=1; fi
+          if ! grep -q 'data-ci-p1' /tmp/hiwaldorf-post.html; then echo 'P1 missing on post'; failed=1; fi
+          if ! grep -q 'data-ci-p2' /tmp/hiwaldorf-post.html; then echo 'P2 missing on post'; failed=1; fi
+          if ! grep -q 'data-ci-donation' /tmp/hiwaldorf-post.html; then echo 'Existing donation missing'; failed=1; fi
+          php -r '
+            $html = file_get_contents("/tmp/hiwaldorf-post.html");
+            $p1 = strpos($html, "data-ci-p1");
+            $title = strpos($html, "<h1 class=");
+            $donation = strpos($html, "data-ci-donation");
+            $article_end = strpos($html, "</article>");
+            $p2 = strpos($html, "data-ci-p2");
+            if ($p1 === false || $title === false || $donation === false || $article_end === false || $p2 === false || !($p1 < $title && $donation < $article_end && $article_end < $p2)) {
+              fwrite(STDERR, "Premium ad position/order regression failed\\n");
+              exit(1);
+            }
+          ' || failed=1
           cat /tmp/hiwaldorf-http.log
           if grep -Eiq 'PHP (Fatal error|Parse error|Warning|Deprecated|Notice)' /tmp/hiwaldorf-http.log; then failed=1; fi
           exit "$failed"
