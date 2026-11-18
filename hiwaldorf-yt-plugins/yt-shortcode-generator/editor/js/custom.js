@@ -126,6 +126,11 @@ if (typeof wpthms == 'undefined') {
 							//Call shortcode searcher
 							self.searchShortcode('#yt-shortcode-item-list', '.yt-shortcode-item-filter input');
 							self.ajaxifying = false;
+						},
+						error: function() {
+							self.ajaxifying = false;
+							$body.removeClass(self.ajaxifyingClass).removeClass(self.pluginActivatingClass);
+							window.alert('短代码生成器加载失败，请检查浏览器控制台或 PHP 错误日志。');
 						}
 					});
 				}
