@@ -226,7 +226,7 @@ class YT_Sidebar_Generator{
 		 * Only enqueue script for specified setting page
 		 */
 		if ( strpos( $hook, 'sidebar-generator') !== false ) {
-		    wp_enqueue_script( 'yt-sidebar-generator-scripts',  YT_SIDEBAR_GENERATOR_URI . "js/yt-sidebar-generator{$suffix}.js", array('jquery'), '1.0', true  );
+		    wp_enqueue_script( 'yt-sidebar-generator-scripts',  YT_SIDEBAR_GENERATOR_URI . "js/yt-sidebar-generator{$suffix}.js", array('jquery'), YT_SIDEBAR_GENERATOR_VER, true  );
 			wp_localize_script( 'yt-sidebar-generator-scripts', 'yt_sidebarGeneratorVars',  array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'msgAddSidebarName' => __('Please enter Sidebar name!', 'wpthms'),
