@@ -838,8 +838,10 @@ if ( ! function_exists( 'yt_site_head_ads' ) ) {
 		}
 
 		echo '<div class="container hiwaldorf-premium-ad hiwaldorf-ad-h1 hidden-print" role="complementary" aria-label="品牌合作广告">';
-		echo '<div class="hiwaldorf-premium-ad-label">广告 · 品牌合作</div>';
-		echo '<div class="hiwaldorf-premium-ad-content">' . $ads . '</div>';
+		echo '<div class="hiwaldorf-premium-ad-content">';
+		echo '<span class="hiwaldorf-premium-ad-label">广告 · 品牌合作</span>';
+		echo $ads;
+		echo '</div>';
 		echo '</div>';
 	}
 }
@@ -1299,8 +1301,10 @@ if ( ! function_exists( 'hiwaldorf_render_p1_ad' ) ) {
 		}
 
 		echo '<div class="hiwaldorf-premium-ad hiwaldorf-ad-p1 hidden-print" role="complementary" aria-label="品牌合作广告">';
-		echo '<div class="hiwaldorf-premium-ad-label">广告 · 品牌合作</div>';
-		echo '<div class="hiwaldorf-premium-ad-content">' . $ads . '</div>';
+		echo '<div class="hiwaldorf-premium-ad-content">';
+		echo '<span class="hiwaldorf-premium-ad-label">广告 · 品牌合作</span>';
+		echo $ads;
+		echo '</div>';
 		echo '</div>';
 	}
 }
@@ -1326,8 +1330,10 @@ if ( ! function_exists( 'hiwaldorf_render_p2_ad' ) ) {
 		}
 
 		echo '<div class="hiwaldorf-premium-ad hiwaldorf-ad-p2 hidden-print" role="complementary" aria-label="品牌合作广告">';
-		echo '<div class="hiwaldorf-premium-ad-label">广告 · 品牌合作</div>';
-		echo '<div class="hiwaldorf-premium-ad-content">' . $ads . '</div>';
+		echo '<div class="hiwaldorf-premium-ad-content">';
+		echo '<span class="hiwaldorf-premium-ad-label">广告 · 品牌合作</span>';
+		echo $ads;
+		echo '</div>';
 		echo '</div>';
 	}
 }
