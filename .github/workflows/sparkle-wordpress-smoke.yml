@@ -14,7 +14,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        theme: ['yeahthemes-sparkle', 'sparkle-childtheme']
+        # Legacy parent regression only. The child has become a standalone theme;
+        # it is exercised by hiwaldorf-standalone-smoke.yml without the parent.
+        theme: ['yeahthemes-sparkle']
         layout: ['canonical', 'renamed']
     timeout-minutes: 15
     services:
