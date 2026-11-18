@@ -1,8 +1,8 @@
 <nav id="mobile-menu-nav-wrapper" class="mobile-navigation hidden-md hidden-lg" role="navigation">
 	<?php
-	if( 'hide' !== yt_get_options( 'header_social_links_position' ) )
-
-		wpcc_output_navi($args = '');
+	if ( 'hide' !== yt_get_options( 'header_social_links_position' ) && function_exists( 'wpcc_output_navi' ) ) {
+		wpcc_output_navi( '' );
+	}
 
 		yt_site_mobile_nav();
 

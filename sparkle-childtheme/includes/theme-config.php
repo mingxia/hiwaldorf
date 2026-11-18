@@ -261,9 +261,9 @@ if ( ! function_exists( 'yt_site_body_classes' ) ) {
 			$classes[] = 'default-search';
 
 		$layout = yt_get_options( 'layout' );
-		if(is_page()){
-      global $post;
-			$page_layout = get_post_meta( $post->ID, 'yt_page_sidebar_layout', true );
+		if ( is_page() ) {
+			$post_id = get_queried_object_id();
+			$page_layout = $post_id ? get_post_meta( $post_id, 'yt_page_sidebar_layout', true ) : '';
 			$page_layout = empty( $page_layout ) ? $layout : $page_layout;
 			$classes[] = "layout-$page_layout";
 		}
@@ -277,9 +277,10 @@ if ( ! function_exists( 'yt_site_body_classes' ) ) {
 			$classes[] = "layout-$layout";
 
 
-		if (is_singular('post') ) {
-      global $post;
-			foreach((get_the_category( $post->ID )) as $category) {
+		if ( is_singular( 'post' ) ) {
+			$post_id = get_queried_object_id();
+			$categories = $post_id ? get_the_category( $post_id ) : array();
+			foreach ( (array) $categories as $category ) {
 				// add category slug to the $classes array
 				$classes[] = "category-{$category->slug}";
 			}

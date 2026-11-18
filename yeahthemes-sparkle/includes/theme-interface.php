@@ -664,7 +664,7 @@ class YT_Site_Hero_Banner{
 YT_Site_Hero_Banner::init();
 
 // Flush the hero posts cache
-add_filter( 'yt_refresh_transient_list_after_updating_theme_options', create_function( '$list', '$list[] = "featured_content_ids"; return $list;') );
+add_filter( 'yt_refresh_transient_list_after_updating_theme_options', static function ( $list ) { $list[] = 'featured_content_ids'; return $list; } );
 /**
  * Site Hero bricks
  */
@@ -1316,7 +1316,7 @@ if(!function_exists( 'yt_site_post_entry_category' )){
 
 		$meta_info = yt_get_options('blog_post_meta_info');
 
-		if( !in_array( 'category',$meta_info ) ) 
+		if( !in_array( 'category', (array) $meta_info, true ) ) 
 			return;
 		
 		//Category

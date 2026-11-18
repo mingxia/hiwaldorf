@@ -387,7 +387,7 @@ if ( ! function_exists( 'yt_post_meta_description' ) ) {
 				echo trim($output, $separator);
 			}*/
 			$data = yt_get_options('blog_post_meta_info');
-			if( in_array( 'date', $data) ){
+			if( in_array( 'date', (array) $data, true ) ){
 				$time_string = '<time class="entry-date published%5$s" datetime="%1$s">%2$s</time>';
 				if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
 					$time_string .= '<time class="updated hidden" datetime="%3$s">%4$s</time>';
@@ -410,7 +410,7 @@ if ( ! function_exists( 'yt_post_meta_description' ) ) {
 				);
 			}
 			//Author
-			if( in_array( 'author', $data) ){
+			if( in_array( 'author', (array) $data, true ) ){
 				printf( '<%3$s class="by-author">%1$s%2$s</%3$s>',
 					_x( 'by ', 'post meta info', 'yeahthemes' ),
 					sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
@@ -422,7 +422,7 @@ if ( ! function_exists( 'yt_post_meta_description' ) ) {
 				);
 			}
 			//category
-			if( in_array( 'category', $data) ){
+			if( in_array( 'category', (array) $data, true ) ){
 				printf( '<%3$s class="in-cat">%1$s%2$s</%3$s>',
 					_x( 'in ', 'post meta info', 'yeahthemes' ),
 					get_the_category_list( __( ', ', 'yeahthemes' ) ),
@@ -431,7 +431,7 @@ if ( ! function_exists( 'yt_post_meta_description' ) ) {
 			}
 
 			//comments
-			if( in_array( 'comments', $data) ){
+			if( in_array( 'comments', (array) $data, true ) ){
 				echo sprintf( '<%s class="with-cmt">', esc_html( $_item_wrapper ) );
 					comments_popup_link( __( '0 Comments', 'yeahthemes' ), __( '1 Comment', 'yeahthemes' ), __( '% Comments', 'yeahthemes' ));
 				echo sprintf( '</%s>', $_item_wrapper );

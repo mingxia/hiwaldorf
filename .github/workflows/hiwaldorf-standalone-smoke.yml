@@ -1,0 +1,132 @@
+name: HiWaldorf Magazine standalone WordPress test
+
+on:
+  pull_request:
+    paths:
+      - 'sparkle-childtheme/**'
+      - '.github/workflows/hiwaldorf-standalone-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  standalone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: smoke-password
+          MYSQL_DATABASE: hiwaldorf_wp
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -psmoke-password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: wp-cli
+          coverage: none
+      - name: Verify self-contained directory and PHP syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -f sparkle-childtheme/parent.txt
+          test -f sparkle-childtheme/functions.php
+          test -f sparkle-childtheme/framework/admin/init.php
+          test -f sparkle-childtheme/includes/theme-init.php
+          test -f sparkle-childtheme/custom-functions.php
+          test -f sparkle-childtheme/license.txt
+          if grep -q '^Template:' sparkle-childtheme/style.css; then
+            echo 'Standalone style.css must not declare a parent Template'
+            exit 1
+          fi
+          if grep -q '../yeahthemes-sparkle/style.css' sparkle-childtheme/style.css; then
+            echo 'Standalone stylesheet may not import the parent'
+            exit 1
+          fi
+          find sparkle-childtheme -type f -name '*.php' -print0 |
+            while IFS= read -r -d '' file; do php -l "$file" >/dev/null; done
+      - name: Install only standalone theme and WordPress
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/hiwaldorf-wp/wp-content/themes
+          wp core download --path=/tmp/hiwaldorf-wp --allow-root
+          cp -a sparkle-childtheme /tmp/hiwaldorf-wp/wp-content/themes/
+          test ! -d /tmp/hiwaldorf-wp/wp-content/themes/yeahthemes-sparkle
+          wp config create --path=/tmp/hiwaldorf-wp --dbname=hiwaldorf_wp --dbuser=root --dbpass=smoke-password --dbhost=127.0.0.1:3306 --allow-root
+          wp core install --path=/tmp/hiwaldorf-wp --url=http://127.0.0.1:8766 --title=HiWaldorfSmoke --admin_user=admin --admin_password=nonproduction-smoke-password --admin_email=smoke@example.test --skip-email --allow-root
+      - name: Activate and inspect standalone theme
+        shell: bash
+        run: |
+          set -euo pipefail
+          wp theme activate sparkle-childtheme --path=/tmp/hiwaldorf-wp --allow-root
+          wp eval '
+            $t = wp_get_theme();
+            if ($t->get("Name") !== "HiWaldorf Magazine") { throw new RuntimeException("Unexpected theme name"); }
+            if ($t->get("Version") !== "3.0.0") { throw new RuntimeException("Unexpected version"); }
+            if ($t->parent()) { throw new RuntimeException("Unexpected parent theme"); }
+            if (get_stylesheet() !== "sparkle-childtheme" || get_template() !== "sparkle-childtheme") {
+              throw new RuntimeException("Theme slugs differ unexpectedly");
+            }
+            if (!function_exists("all_view") || !function_exists("view_5000")) {
+              throw new RuntimeException("Custom statistics functions missing");
+            }
+            require_once ABSPATH."wp-admin/includes/dashboard.php";
+            do_action("wp_dashboard_setup");
+            echo "Standalone theme, dashboard and HiWaldorf custom hooks loaded.\n";
+          ' --path=/tmp/hiwaldorf-wp --allow-root
+          wp post create --post_title='Smoke test' --post_content='HiWaldorf sample post' --post_status=publish --path=/tmp/hiwaldorf-wp --allow-root
+          wp eval '
+            if (wpthms_THEME_OPTIONS !== "yeahthemes_theme_options_sparkle_childtheme") {
+              throw new RuntimeException("Historical theme options namespace changed: ".wpthms_THEME_OPTIONS);
+            }
+            update_option(wpthms_THEME_OPTIONS, array("hiwaldorf_migration_probe" => "preserved"));
+            $saved = get_option(wpthms_THEME_OPTIONS);
+            if (!is_array($saved) || ($saved["hiwaldorf_migration_probe"] ?? null) !== "preserved") {
+              throw new RuntimeException("Historical option storage is not preserved");
+            }
+            update_post_meta(1, "_post_views", 5312);
+            if (all_view() < 5312 || view_5000() < 1) {
+              throw new RuntimeException("Historical post view metadata is not available");
+            }
+            require_once ABSPATH . WPINC . "/class-wp-customize-manager.php";
+            global $wp_customize;
+            $wp_customize = new WP_Customize_Manager();
+            do_action("customize_register", $wp_customize);
+            echo "Legacy option key, _post_views and Customize hooks passed.\\n";
+          ' --path=/tmp/hiwaldorf-wp --allow-root
+
+      - name: Render pages and report PHP errors
+        shell: bash
+        run: |
+          set -uo pipefail
+          php -d error_reporting=-1 -d log_errors=1 -d display_errors=0 -S 127.0.0.1:8766 -t /tmp/hiwaldorf-wp > /tmp/hiwaldorf-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          sleep 3
+          failed=0
+          for path in / /?p=1 /?s=smoke /?page_id=999999; do
+            status=$(curl -sS --max-time 20 -o /tmp/hiwaldorf-body.html -w '%{http_code}' "http://127.0.0.1:8766$path" || true)
+            echo "$path: HTTP $status"
+            if [ "$path" = "/?page_id=999999" ]; then
+              if [ "$status" != "404" ]; then failed=1; fi
+            elif [ "$status" != "200" ]; then
+              failed=1
+            fi
+          done
+          cat /tmp/hiwaldorf-http.log
+          if grep -Eiq 'PHP (Fatal error|Parse error|Warning|Deprecated|Notice)' /tmp/hiwaldorf-http.log; then failed=1; fi
+          exit "$failed"
+      - name: Upload runtime diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hiwaldorf-standalone-http-log
+          path: /tmp/hiwaldorf-http.log
+          if-no-files-found: ignore

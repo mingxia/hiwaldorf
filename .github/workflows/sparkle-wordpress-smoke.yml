@@ -1,0 +1,102 @@
+name: Sparkle WordPress runtime smoke
+
+on:
+  pull_request:
+    paths:
+      - 'yeahthemes-sparkle/**'
+      - 'sparkle-childtheme/**'
+      - '.github/workflows/sparkle-wordpress-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  wordpress-smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Legacy parent regression only. The child has become a standalone theme;
+        # it is exercised by hiwaldorf-standalone-smoke.yml without the parent.
+        theme: ['yeahthemes-sparkle']
+        layout: ['canonical', 'renamed']
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: smoke-password
+          MYSQL_DATABASE: sparkle_wp
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -psmoke-password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: wp-cli
+          coverage: none
+      - name: Install isolated current stable WordPress
+        run: |
+          mkdir -p /tmp/sparkle-wp/wp-content/themes
+          wp core download --path=/tmp/sparkle-wp --allow-root
+          cp -a yeahthemes-sparkle sparkle-childtheme /tmp/sparkle-wp/wp-content/themes/
+          if [ "${{ matrix.layout }}" = "renamed" ]; then
+            cd /tmp/sparkle-wp/wp-content/themes
+            mv yeahthemes-sparkle hiwaldorf-sparkle-test
+            mv sparkle-childtheme hiwaldorf-magazine-test
+            sed -i 's/^Template: yeahthemes-sparkle$/Template: hiwaldorf-sparkle-test/' hiwaldorf-magazine-test/style.css
+            sed -i 's@../yeahthemes-sparkle/style.css@../hiwaldorf-sparkle-test/style.css@' hiwaldorf-magazine-test/style.css
+          fi
+          wp config create --path=/tmp/sparkle-wp --dbname=sparkle_wp --dbuser=root --dbpass=smoke-password --dbhost=127.0.0.1:3306 --allow-root
+          wp core install --path=/tmp/sparkle-wp --url=http://127.0.0.1:8765 --title=SparkleSmoke --admin_user=admin --admin_password=nonproduction-smoke-password --admin_email=smoke@example.test --skip-email --allow-root
+      - name: Activate child theme and exercise WordPress hooks
+        shell: bash
+        run: |
+          set -uo pipefail
+          theme="${{ matrix.theme }}"
+          parent="yeahthemes-sparkle"
+          if [ "${{ matrix.layout }}" = "renamed" ]; then
+            parent="hiwaldorf-sparkle-test"
+            if [ "$theme" = "sparkle-childtheme" ]; then
+              theme="hiwaldorf-magazine-test"
+            else
+              theme="$parent"
+            fi
+          fi
+          wp theme activate "$theme" --path=/tmp/sparkle-wp --allow-root > /tmp/sparkle-theme-activation.log 2>&1
+          code=$?
+          cat /tmp/sparkle-theme-activation.log
+          if [ "$code" -ne 0 ]; then exit "$code"; fi
+          export SPARKLE_EXPECTED_PARENT="$parent"
+          wp eval 'echo "Theme ".wp_get_theme()->get("Name")."\n"; if (wp_get_theme()->get("Version") !== "3.0.0") { throw new RuntimeException("Wrong HiWaldorf theme version"); } if (get_template() !== getenv("SPARKLE_EXPECTED_PARENT")) { throw new RuntimeException("Parent theme slug changed"); } require_once ABSPATH."wp-admin/includes/dashboard.php"; do_action("wp_dashboard_setup");' --path=/tmp/sparkle-wp --allow-root
+          wp post create --post_title='Smoke test' --post_content='Sparkle sample content' --post_status=publish --path=/tmp/sparkle-wp --allow-root
+      - name: Render frontend routes under PHP 8.3
+        shell: bash
+        run: |
+          set -uo pipefail
+          php -d error_reporting=-1 -d log_errors=1 -d display_errors=0 -S 127.0.0.1:8765 -t /tmp/sparkle-wp > /tmp/sparkle-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          sleep 3
+          failed=0
+          for path in / /?p=1 /?s=smoke /?page_id=999999; do
+            status=$(curl -sS --max-time 20 -o /tmp/sparkle-body.html -w '%{http_code}' "http://127.0.0.1:8765$path" || true)
+            echo "$path: HTTP $status"
+            if [ "$status" != "200" ] && [ "$status" != "404" ]; then failed=1; fi
+          done
+          cat /tmp/sparkle-http.log
+          if grep -Eiq 'PHP (Fatal error|Parse error|Warning|Deprecated|Notice)' /tmp/sparkle-http.log; then failed=1; fi
+          exit "$failed"
+      - name: Upload diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sparkle-wordpress-smoke-logs-${{ matrix.theme }}-${{ matrix.layout }}
+          path: |
+            /tmp/sparkle-theme-activation.log
+            /tmp/sparkle-http.log
+          if-no-files-found: ignore

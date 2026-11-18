@@ -69,7 +69,7 @@ class WP_Help_Pointer {
                     'target' => $ptr['target'],
                     'options' => array(
                         'content' => sprintf( '<h3> %s </h3> <p> %s </p>',
-                            $ptr['title']
+                            $ptr['title'],
                             $ptr['content']
                         ),
                         'position' => $ptr['position']

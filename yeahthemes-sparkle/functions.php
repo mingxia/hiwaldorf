@@ -18,7 +18,7 @@
 
 define( 'wpthms_DIR', get_template_directory() . '/' );
 define( 'wpthms_URI', get_template_directory_uri() . '/' );
-define( 'THEME_VERSION', 2.0 );
+define( 'THEME_VERSION', '3.0.0' );
 
 if ( isset( $content_width ) )
 	$content_width = 710;

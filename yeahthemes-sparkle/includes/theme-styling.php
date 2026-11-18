@@ -57,7 +57,47 @@ function yt_adjust_color_brightness( $hex, $steps ) {
  */
 if( !function_exists( 'yt_site_css') ){
 	function yt_site_css(){
-		$data = yt_get_options();
+		// Preserve saved theme options while providing safe defaults for unset values.
+		$stored_options = yt_get_options();
+		$data = array_merge( array(
+			'primary_color' => '',
+			'builtin_skins' => '',
+			'secondary_color' => '',
+			'text_color' => '',
+			'typo_body_font' => array(),
+			'header_color_style' => '',
+			'header_bg_options' => array(),
+			'site_width' => '',
+			'custom_css' => '',
+			'typo_h1' => array(),
+			'typo_h2' => array(),
+			'typo_h3' => array(),
+			'typo_h4' => array(),
+			'typo_h5' => array(),
+			'typo_h6' => array(),
+			'typo_bold_heading' => array(),
+			'body_bg_pattern_mode' => '',
+			'body_bg_pattern' => '',
+			'body_bg_options' => array(),
+			'content_bg_pattern_mode' => '',
+			'content_bg_pattern' => '',
+			'content_bg_options' => array(),
+			'header_bg_pattern_mode' => '',
+			'header_bg_pattern' => '',
+			'typo_top_menu' => array(),
+			'typo_top_menu_child' => array(),
+			'typo_entry_title' => array(),
+			'typo_page_title' => array(),
+			'typo_sidebar_widget_headings' => array(),
+			'typo_home_brick_entry_title' => array(),
+			'footer_widgets_bg_pattern_mode' => '',
+			'footer_widgets_bg_pattern' => '',
+			'footer_widgets_bg_options' => array(),
+			'typo_footer_element' => array(),
+			'typo_footer_headings' => array(),
+			'footer_extra_bg_color' => '',
+			'site_width_large_mode' => '',
+		), is_array( $stored_options ) ? $stored_options : array() );
 		$primaryColor 	= $data['primary_color'] ? $data['primary_color'] : ( $data['builtin_skins'] ? $data['builtin_skins'] : '#2cae8c');
 		$secondaryColor = $data['secondary_color'] ? $data['secondary_color'] : '#363b3f';
 		$textColor 		= $data['text_color'] ? $data['text_color'] : '#777777';

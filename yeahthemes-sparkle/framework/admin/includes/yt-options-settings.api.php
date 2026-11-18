@@ -543,7 +543,7 @@ class YT_Options_Framework {
     * @return void
 	* @since 1.0.0
     **/
-	public function admin_bar_add_sub_menu($name, $link, $id = null, $root_menu, $meta = FALSE){
+	public function admin_bar_add_sub_menu($name, $link, $id, $root_menu, $meta = FALSE){
 		
 		global $wp_admin_bar;
 		
@@ -626,7 +626,7 @@ class YT_Options_Framework {
 	
 	}
 	
-	public function save_options( $name = '', $data, $id = null ){
+	public function save_options( $name, $data, $id = null ){
 		
 		if ( empty( $data ) ){
 			return;	
