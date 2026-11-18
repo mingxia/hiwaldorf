@@ -1,11 +1,14 @@
 /*
-Theme Name:     hiwaldorf2020
-Description:    Child theme of Sparkle
-Author:         mingxia
-Template:       yeahthemes-sparkle
-Version:	2.3
-Time:           2020年1月23日
-(optional values you can add: Theme URI, Author URI, Version)
+Theme Name: HiWaldorf Magazine
+Theme URI: https://hiwaldorf.com/
+Description: HiWaldorf's customized magazine theme, based on the HiWaldorf Sparkle Core parent (original upstream: Yeahthemes Sparkle 2.3).
+Author: HiWaldorf
+Author URI: https://hiwaldorf.com/
+Template: yeahthemes-sparkle
+Version: 3.0.0
+License: GNU General Public License v2.0
+License URI: ../yeahthemes-sparkle/license.txt
+Text Domain: wpthms
 */
 
 @import url("../yeahthemes-sparkle/style.css");
