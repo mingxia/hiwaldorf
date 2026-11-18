@@ -32,7 +32,7 @@ function wp_iframe_handler_youku( $matches, $attr, $url, $rawattr ) {
 
     $iframe = '<div style="padding-top: 83.3333%;" class="fluid-width-video-wrapper"><iframe src="http://player.youku.com/embed/'. esc_attr($matches[1]) .'" frameborder=0 allowfullscreen></iframe></div>';
 
-	return apply_filters( 'iframe_youku', $iframe, $matches, $attr, $url, $ramattr );
+	return apply_filters( 'iframe_youku', $iframe, $matches, $attr, $url, $rawattr );
 }
 
 wp_embed_register_handler( 'youku_iframe', '#http://v.youku.com/v_show/id_(.*?).html#i', 'wp_iframe_handler_youku' );
