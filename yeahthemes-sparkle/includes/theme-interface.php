@@ -1316,7 +1316,7 @@ if(!function_exists( 'yt_site_post_entry_category' )){
 
 		$meta_info = yt_get_options('blog_post_meta_info');
 
-		if( !in_array( 'category',$meta_info ) ) 
+		if( !in_array( 'category', (array) $meta_info, true ) ) 
 			return;
 		
 		//Category
