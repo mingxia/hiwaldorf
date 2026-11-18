@@ -6,7 +6,7 @@ Description: Original wpthms Sparkle companion plugin; maintained by HiWaldorf f
 Version: 2026.11.0
 Author: wpthms (original), HiWaldorf (maintenance)
 Author URI: https://hiwaldorf.com/
- Update URI: https://github.com/mingxia/hiwaldorf
+Update URI: https://github.com/mingxia/hiwaldorf
 License: GPL2
 
 This program is free software; you can redistribute it and/or modify
