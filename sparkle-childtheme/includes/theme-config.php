@@ -104,13 +104,6 @@ if ( ! function_exists( 'yt_theme_setup' ) ) {
 
 		add_filter('yt_theme_meta_viewport_conditions', '__return_true' );
 
-    add_filter('yt_admin_top_menu_bar_support_url', function() {
-      return 'http://wpthms.com/support/forum/wordpress-themes-support-center/sparkle/';
-    });
-		add_filter( 'yt_admin_top_menu_bar_document_url', function(){
-      return  'http://docs.wpthms.com/sparkle/';
-    });
-
 		add_filter( 'yt_support_theme_customizer', '__return_false' );
 
 	}
