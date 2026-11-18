@@ -1,0 +1,196 @@
+/*
+Theme Name:     hiwaldorf2020
+Description:    Child theme of Sparkle
+Author:         mingxia
+Template:       yeahthemes-sparkle
+Version:	2.3
+Time:           2020年1月23日
+(optional values you can add: Theme URI, Author URI, Version)
+*/
+
+@import url("../yeahthemes-sparkle/style.css");
+
+.main-navigation ul.menu > li {
+    padding: 0 10px;
+}
+.site-hero {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.social-share-buttons.style-color .weibo{
+	background-color:#ff3366
+}
+.social-share-buttons.style-color .weixin{
+	background-color:#ffd700
+}
+.social-share-buttons.style-color .qq{
+	background-color:#871F78
+}
+.label {
+    font-size: 95%;
+}
+.widget {
+    margin: 0 0 15px;
+    padding-top: 15px;
+}
+#primary, #secondary, #tertiary {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.widget.yt-smart-tabby-widget .yt-tabby-tabs-header ul li {
+    display: inline-block;
+    margin-right: 2px;
+}
+.site-header .main-navigation .menu > li > a {
+    color: white !important;
+}
+.yt-font-size-changer span {
+    font-size: 14px;
+}
+.margin-bottom-30 {
+    margin-bottom: 15px;
+}
+.drop-content {
+    display: none;
+}
+.site-breaking-news {
+    padding: 5px 0;
+}
+.widget {
+    margin: 0 0 5px;
+    padding-top: 5px;
+}
+.main-hentry.post {
+    padding-bottom: 15px;
+}
+.site-header .main-navigation .menu > li.menu-item:hover, .site-header .main-navigation .menu > li.current-menu-item {
+    background-color: #c99d9d !important;
+}
+html .main-menu-toggle > * {
+	opacity: 1 !important;
+}
+@media (max-width: 991px) {
+	.mobile-navigation {
+		position: fixed;
+		z-index: 999999;
+		width: 100%;
+		display: block;
+		min-width: 280px;
+		padding: 0px 20px;
+		font-weight: 700;
+		left: 0;
+		top: 45px;
+		bottom: auto;
+		overflow: auto;
+		opacity: 0;
+		pointer-events: none;
+		-moz-transition: -moz-transform 0.45s ease, opacity 0.2s linear;
+		-moz-transform: translate3d(-250px, 0, 0);
+	}
+	.mobile-navigation > div {
+		padding: 10px 20px;
+		text-align:center
+	}
+	.mobile-navigation ul.menu {
+		padding: 10px 20px;
+	}
+	.mobile-navigation .site-social-networks {
+		border-top: 1px dashed;
+		border-color: #FFF;
+	}
+	.mobile-navigation ul.menu:not(:first-child) {
+		border-top: 1px dashed;
+		border-color: #FFF;
+	}
+	.entry-header .entry-meta .post-meta-info {
+		margin-right: 10px;
+	}
+}
+form[role="search"] [type='submit']{
+	clear:both;
+	float:right;
+	margin-top:-34px;
+	position:relative;
+	z-index:1;
+	-webkit-border-radius:0 2px 2px 0;
+	-moz-border-radius:0 2px 2px 0;
+	-ms-border-radius:0 2px 2px 0;
+	-o-border-radius:0 2px 2px 0;
+	border-radius:0 2px 2px 0
+}
+.modal-dialog {
+	margin: 250px auto;
+    vertical-align: middle;
+	width: 236px;
+}
+.nav > li > a {
+    padding: 10px 18px;
+}
+.tab-content {
+	text-align: center;
+}
+.dropdown-menu > li > a {
+    padding: 10px 18px;
+}
+.dropdown-menu {
+    min-width: 0px;
+	right: 0;
+	left: 0;
+	width: 80.15px;
+}
+@media (max-width: 360px) {
+	.backtop {
+		display:none;
+	}
+	.modal-dialog {
+		margin: 150px auto;
+	}
+	.btn-block {
+		width: 20% !important;
+	}
+	.posted-on {
+		display:none;
+	}
+	blockquote p {
+		font-size: 13px !important;
+	}
+}
+.main-hentry.page {
+    padding-bottom: 10px;
+}
+.btn-block {
+    width: 80px !important;
+    margin: 0 auto !important;
+}
+@media (max-width: 767px) {
+	h1.page-title {
+		font-size: 24px !important;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+}
+.entry-content {
+    margin: 0 0 20px;
+	color: #2f2f2f;
+	word-break: break-word;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.7;
+}
+.entry-content a {
+    border-bottom: 1px dotted #dd5f0d;
+}
+.single-title-left {
+	font-weight: bold;
+	border-left: 4px solid rgba(0,0,0,0.8);
+	padding-left: 11px;
+	line-height: normal;
+	padding-bottom: 1px;
+	font-size: 15px;
+}
+.vsel-meta-title {
+	font-size: 20px;
+}
+.dlm-downloading-page {
+  text-align: center;
+}
