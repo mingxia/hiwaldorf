@@ -1,0 +1,96 @@
+/*!
+ * wpthms
+ *
+ * Custom CSS
+ */
+
+@import "mixins.less"; 
+
+.yt-impressive-like-button{
+	cursor:pointer;
+	white-space:nowrap;
+	position:relative;
+	display:inline-block;
+	span, a{
+		display:inline-block;
+		.transition(all .2s linear);
+	}
+	.yt-il-like-action{
+		.opacity(0);
+		visibility:hidden;
+		position:absolute;
+		left:26px;
+		top:0;
+		 
+	}
+	/*Symbol*/
+	.yt-il-symbol{
+		position:relative;
+		margin-right:8px;
+		.transition(background-color 1s ease);
+		> span{
+			position:absolute;
+			left:0;
+			top:0;
+			backface-visibility: hidden;
+			.transform(translateZ(0));
+			.transition(all 2s ease-out);
+		}
+		i{
+			font-size: 10px;
+			text-align: center;
+			margin: 0;
+		}
+	}
+	.yt-il-symbol,
+	.yt-il-symbol > span{
+		width:16px;
+		height:16px;
+		display:inline-block;
+		.border-radius(32px);
+		text-align:center;
+		font-size:12px;
+		line-height:14px;
+		margin-top: -2px;
+		vertical-align: middle;
+		border-width:1px;
+		border-style:solid;
+		font-family:Arial, sans-serif;
+		.border-color2rgba(#000, #EEE, .1 );
+	}
+	&.yt-impressive-already-liked{
+		cursor: default;
+		.yt-il-symbol,
+		.yt-il-symbol > span{
+			width:16px;
+			height:16px;
+			color:#FFF;
+			background-color:#E43A5C;
+		}
+	}
+	&.yt-impressive-unliked{
+		
+		.yt-il-symbol{
+			
+			.transform(rotateY(360deg));
+			.transition(all 1s ease);
+		}
+	}
+	
+	&.yt-impressive-allow-unlike:hover .yt-il-counter,
+	&.yt-impressive-allow-unlike.yt-impressive-already-liked:hover .yt-il-counter,
+	&.yt-impressive-allow-unlike.yt-impressive-already-liked:hover .yt-il-symbol,
+	&.yt-impressive-already-liked:hover .yt-il-like-action,
+	&.yt-impressive-unliked:hover .yt-il-counter,
+	&.yt-impressive-unliked:hover .yt-il-symbol{
+		.opacity(0);
+		visibility:hidden;
+	}
+	&.yt-impressive-allow-unlike:hover .yt-il-like-action,
+	&.yt-impressive-allow-unlike.yt-impressive-already-liked:hover .yt-il-like-action,
+	&.yt-impressive-already-liked:hover .yt-il-counter,
+	&.yt-impressive-unliked:hover .yt-il-like-action{
+		.opacity(1);
+		visibility:visible;
+	}
+}

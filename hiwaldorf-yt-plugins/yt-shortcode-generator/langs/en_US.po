@@ -1,0 +1,630 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: YT Shortcode Generator\n"
+"POT-Creation-Date: 2016-09-08 16:41+0700\n"
+"PO-Revision-Date: 2016-09-08 16:41+0700\n"
+"Last-Translator: wpthms.com <wpthms@gmail.com>\n"
+"Language-Team: wpthms.com <wpthms@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../yt-shortcodes-config.php:11
+msgid "True"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:12
+msgid "False"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:18
+msgid "Show"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:19
+msgid "Hide"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:25
+msgid "Center"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:26 ../yt-shortcodes-config.php:36
+msgid "Left"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:27 ../yt-shortcodes-config.php:34
+msgid "Right"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:33
+msgid "Top"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:35
+msgid "Bottom"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:42
+msgid "Descending"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:43
+msgid "Ascending"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:49
+msgid "No icon found."
+msgstr ""
+
+#: ../yt-shortcodes-config.php:60
+msgid "Button"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:61
+msgid "Insert button with various of colors, sizes..."
+msgstr ""
+
+#: ../yt-shortcodes-config.php:69
+msgid "Button text"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:75
+msgid "External URL"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:76
+msgid "Add the button's url eg http://example.com"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:82
+msgid "Internal Pages"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:83
+msgid "You can also link to internal pages. input page id here"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:88
+msgid "Button Style"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:89
+msgid "Select the button's color style"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:93 ../yt-shortcodes-config.php:108
+#: ../yt-shortcodes-config.php:163 ../yt-shortcodes-config.php:205
+#: ../yt-shortcodes-config.php:315 ../yt-shortcodes-config.php:535
+#: ../yt-shortcodes-config.php:586
+msgid "Default"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:94
+msgid "Primary (Theme color)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:95 ../yt-shortcodes-config.php:164
+#: ../yt-shortcodes-config.php:207 ../yt-shortcodes-config.php:286
+#: ../yt-shortcodes-config.php:317 ../yt-shortcodes-config.php:588
+msgid "Success"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:96 ../yt-shortcodes-config.php:165
+#: ../yt-shortcodes-config.php:208 ../yt-shortcodes-config.php:287
+#: ../yt-shortcodes-config.php:318 ../yt-shortcodes-config.php:589
+msgid "Info"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:97 ../yt-shortcodes-config.php:166
+#: ../yt-shortcodes-config.php:209 ../yt-shortcodes-config.php:288
+#: ../yt-shortcodes-config.php:319 ../yt-shortcodes-config.php:590
+msgid "Warning"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:98 ../yt-shortcodes-config.php:167
+#: ../yt-shortcodes-config.php:210 ../yt-shortcodes-config.php:289
+#: ../yt-shortcodes-config.php:320 ../yt-shortcodes-config.php:591
+msgid "Danger"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:99
+msgid "Link"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:103
+msgid "Button size"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:109
+msgid "Large"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:110
+msgid "Small"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:111
+msgid "Extra small"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:115
+msgid "Button target"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:116
+msgid "_self = open in same window. _blank = open in new window"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:128
+msgid "Fullwidth button"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:135
+msgid "Custom CSS"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:149
+msgid "Alert box"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:158 ../yt-shortcodes-config.php:200
+#: ../yt-shortcodes-config.php:282 ../yt-shortcodes-config.php:310
+#: ../yt-shortcodes-config.php:533 ../yt-shortcodes-config.php:584
+msgid "Style"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:159
+msgid "Select the alert's color style"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:171
+msgid "Close button"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:178 ../yt-shortcodes-config.php:330
+#: ../yt-shortcodes-config.php:383 ../yt-shortcodes-config.php:508
+#: ../yt-shortcodes-config.php:614
+msgid "Content"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:191
+msgid "Label"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:201
+msgid "Select the label's color style"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:206 ../yt-shortcodes-config.php:285
+#: ../yt-shortcodes-config.php:316
+msgid "Primary"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:214
+msgid "Label text"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:228
+msgid "Progress bars"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:239
+msgid "Is striped"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:246
+msgid "Is active"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:254
+msgid "Allowed multiple bars in a stack "
+msgstr ""
+
+#: ../yt-shortcodes-config.php:262
+msgid "progress bar"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:270 ../yt-shortcodes-config.php:608
+msgid "Title"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:271
+msgid "Add the progress bar title"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:276
+msgid "Width"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:277
+msgid "Width of progress bar in percent (input numeric number only)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:301
+msgid "Panel"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:311
+msgid "Select the Panel's color style"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:324
+msgid "Header title"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:336
+msgid "Footer"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:348
+msgid "List group"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:357
+msgid "Add list items"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:358
+msgid "if only content is entered, simple style will be used"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:365
+msgid "item"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:373
+msgid "Title (optional)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:379
+msgid "URL"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:380
+msgid "URL for this item (optional)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:397
+msgid "Column"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:410
+msgid "Add column"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:411
+msgid "if no column class was specified, use default column: col-md-4"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:418
+msgid "column"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:426
+msgid "Extra small (<768px)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:447
+msgid "Small (≥768px)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:468
+msgid "Medium (≥992px)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:489
+msgid "Large (≥1200px)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:523
+msgid "Tabs"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:536
+msgid "Pills"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:540
+msgid "Add tab"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:548
+msgid "tab"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:553
+msgid "Tab title"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:554 ../yt-shortcodes-config.php:609
+msgid "Title must be different to different to others"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:559
+msgid "Tab Content"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:574
+msgid "Accordion"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:587
+msgid "Primary color"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:595
+msgid "Add accordion"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:603
+msgid "accordion"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:630 ../yt-shortcodes-config.php:631
+msgid "Google Maps"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:639
+msgid "Address"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:640
+msgid "Enter your address (e.g: Melbourne Avenue, Birmingham, United Kingdom) "
+msgstr ""
+
+#: ../yt-shortcodes-config.php:644
+msgid "Latitude"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:645
+msgid ""
+"Enter Latitude <a href=\"http://9webtools.com/find-my-latitude-and-longitude/"
+"\" target=\"_blank\">Find your latitude,longitude</a>"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:650
+msgid "Longitude"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:651
+msgid "Enter Longitude"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:656
+msgid "Select the Maptype"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:657
+msgid "HYBRID, TERRAIN, SATELLITE, ROADMAP"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:660
+msgid "Road Map"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:661
+msgid "Terrain"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:662
+msgid "Hybrid"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:663
+msgid "Satellite"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:667
+msgid "Height"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:668
+msgid "default is 300) "
+msgstr ""
+
+#: ../yt-shortcodes-config.php:672
+msgid "HTML"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:673
+msgid "Short description in the Marker popup (e.g: My Hometown) "
+msgstr ""
+
+#: ../yt-shortcodes-config.php:675
+msgid "My Hometown"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:681
+msgid "Zoom level"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:682
+msgid "Zoom\t(default : 15)) "
+msgstr ""
+
+#: ../yt-shortcodes-config.php:687
+msgid "Map Hue"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:688
+msgid ""
+"Style your map by changing the hue color to any color (hex color start with "
+"#) Eg: Your main color of your site : #33B3D3"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:691
+msgid "Map saturation"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:692
+msgid ""
+"Alter the saturation of your map. Range (grayscale) -100 - 0 - 100 (color)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:697
+msgid "Road geometry lightness"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:698
+msgid "Alter the saturation of your map. Range (dark) -100 - 0 - 100 (light)"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:710
+msgid "Road geometry visibility"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:714
+msgid "Road labels visibility"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:733
+msgid "Show Control"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:738
+msgid "Show Marker"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:742
+msgid "Marker title"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:747
+msgid "Internal Image"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:748
+msgid "Upload Map pointer "
+msgstr ""
+
+#: ../yt-shortcodes-config.php:755
+msgid "External Image url"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:756
+msgid "Map pointer url that you want to display on map"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:760
+msgid "Marker width"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:761
+msgid "Width of marker in px"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:766
+msgid "Marker height"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:767
+msgid "Height of marker in px"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:772
+msgid "Marker Anchor Horizontal position"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:778
+msgid "Marker Anchor Vertical position"
+msgstr ""
+
+#: ../yt-shortcodes-config.php:784
+msgid "Show Popup"
+msgstr ""
+
+#: ../yt-shortcodes-field-types.php:42
+msgid "Add Media"
+msgstr ""
+
+#: ../yt-shortcodes-field-types.php:42
+msgid "Upload"
+msgstr ""
+
+#: ../yt-shortcodes-field-types.php:43
+msgid "Remove"
+msgstr ""
+
+#: ../yt-shortcodes-field-types.php:298
+msgid "Add more"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:38
+msgid "Searh shortcode"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:49
+msgid "Insert<span> </span>Shortcode"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:66
+msgid "Instruction:"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:68
+msgid "Select shortcode type from the sidebar"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:69
+msgid "Enter required fields"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:70
+msgid "Preview Shortcode"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:71
+msgid "Insert Shortcode"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:83
+msgid "Code:"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:87
+msgid "HTML Code:"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:91
+msgid "Preview:"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:114
+msgid "Preview"
+msgstr ""
+
+#: ../yt-shortcodes-ui.php:116
+msgid "Insert shortcode"
+msgstr ""
+
+#: ../yt-shortcodes.php:227 ../yt-shortcodes.php:241
+msgid "Insert Shortcodes"
+msgstr ""
+
+#: ../yt-shortcodes.php:447
+msgid "No shortcode found"
+msgstr ""
+
+#: ../yt-shortcodes.php:571
+msgid "Note: This file is not a valid image!"
+msgstr ""
+
+#: ../yt-shortcodes.php:572
+msgid "Use this one"
+msgstr ""
+
+#: ../yt-shortcodes.php:573
+msgid "View File"
+msgstr ""
+
+#: ../yt-shortcodes.php:574
+msgid "Not found"
+msgstr ""

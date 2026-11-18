@@ -1,0 +1,74 @@
+@import url( '../../css/bootstrap.min.css' );
+/**
+ * Alignment
+ ***************************************************************/
+.alignleft {
+  display: inline;
+  float: left;
+  margin: .5em 1.5em .5em 0;
+}
+.alignright {
+  display: inline;
+  float: right;
+  margin: .5em 0 1.5em .5em;
+}
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 1.5em auto;
+}
+/**
+ * Alignment
+ ***************************************************************/
+body{
+	padding:10px;
+	margin: 10px;
+}
+
+.yt-shortcode-row{
+	position: relative;
+	overflow: hidden;
+	border-width: 1px 0;
+	border-style: dotted;
+	border-color: #EEE;
+	margin-bottom: 30px;
+}
+.yt-shortcode-column{
+	position: relative;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-width: 0 1px;
+	border-style: dotted;
+	border-color: #EEE;
+}
+.yt-shortcode-row:after,
+.yt-shortcode-column:after{
+	text-transform: uppercase;
+	font-size: 10px;
+	content:'Row';
+	position: absolute;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: #fafafa;
+	pointer-events:none;
+	color: #aaa;
+	top: 0;
+}
+
+.yt-shortcode-row:after{
+	left: 15px;
+}
+.yt-shortcode-column:after{
+	content:'Column';
+	right: 0;
+	display: none;
+}
+.yt-shortcode-row:hover:after{
+	display: none;
+}
+
+.yt-shortcode-row:hover .yt-shortcode-column:after{
+	display: block;
+}

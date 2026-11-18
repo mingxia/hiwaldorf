@@ -1,0 +1,56 @@
+=== YT Shortcodes Generator ===
+Author: wpthms
+Author URL: http://wpthms.com
+
+== Credit ==
+Bootstrap
+
+== Changelog ==
+
+= 1.0.7.5 - Oct 10 2016
+- Minor Bug fixes for shortcode functions
+
+= 1.0.7.4 - Oct 10 2016
+- Update urls
+
+= 1.0.7.3 - Apr 10 2016
+- Removed deprecate jquery events and expressions.
+
+= 1.0.7.2 - Mar 05 2015
+
+* Changed: 
+	- Fixed shortcode tab/accordion issue with non-latin language
+
+= 1.0.7.1 - Mar 05 2015
+* Changed: 
+	- Update shortcode parser function
+
+= 1.0.7 - Feb 05 2015
+* Changed: 
+	- Change priority when including shortcode functions
+	- Change category and tag select field to plain text
+	- Faster speed
+	- Update element tabs and accordion
+	
+= 1.0.6 - October 24 2014
+* Changed: 
+	- Small bugs fixed
+
+= 1.0.5 - august 30 2014
+* Changed: 
+	- Small bugs fixed
+
+= 1.0.4 - august 23 2014
+* Changed: 
+	- Small bugs fixed
+
+= 1.0.3 - June 18 2014
+* Changed: 
+	- publicize $_shortcode variable
+
+= 1.0.2 - June 1 2014
+* Fixed: 
+	- Crash or blank admin (CRASH: PHP segmentation violation) when the site have too many posts
+
+= 1.0.1
+* New: Add number field and select_alt field.

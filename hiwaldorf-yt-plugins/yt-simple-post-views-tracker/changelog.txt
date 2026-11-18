@@ -1,0 +1,14 @@
+=== YT Simple Post View ===
+Author: wpthms (aka wpthms)
+Author URL: http://wpthms.com
+
+== Changelog ==
+
+= 1.0.3.4 - Oct 10 2016
+- Updated urls
+
+= 1.0.3.3 - Apr 10 2016
+- Removed deprecate jquery events and expressions.
+
+= 1.0.1
+* New: Add number field and select_alt field.

@@ -1,0 +1,60 @@
+Name: Sidebar Generator
+Author: wpthms
+Author URL: http://wpthms.com
+Description: Generate unlimited sidebars
+License: GNU General Public License v3.0
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+=== Support ===
+
+Please post your questions in our Support Forum - http://wpthms.com/
+
+=== Update Guide ===
+
+Recommendation: Backup old version of plugin before updating.
+
+* After updated:
+  - Clear your cache from Cache plugins, also to CDN cache and browser cache to take an effect.
+
+=== Changelog ===
+
+= 1.0.3.4 - Oct 10 2016
+************************************
+- Updated urls
+
+= v1.0.4 - Otc 4 2016
+************************************
+
+* Fixed: 
+  - WordPress 4.5+ compatible
+  
+* Files changed:
+  - js/yt-sidebar-generator.js
+
+= v1.0.3 - April 19 2016
+************************************
+
+* Fixed: 
+  - Replaced deprecated jquery event.
+  
+* Files changed:
+  - js/yt-sidebar-generator.js
+
+= v1.0.2
+************************************
+
+* Improved:
+  - Performance
+
+* Fixed: 
+  - Minor bugs
+
+= v1.0.1
+************************************
+
+* Fixed: 
+  - Minor bugs
+
+= v1.0
+************************************
+* First release!
