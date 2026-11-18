@@ -42,3 +42,51 @@ jobs:
             fi
           done < <(find yeahthemes-sparkle sparkle-childtheme -type f -name '*.php' -print0)
           exit "$failed"
+
+  phpcompatibility:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+      - name: Install PHPCompatibility sniff
+        run: |
+          composer --no-interaction --no-progress --no-scripts --working-dir=/tmp require squizlabs/php_codesniffer:^3.13 phpcompatibility/php-compatibility:^9.3
+      - name: Check all theme PHP files for compatibility with PHP 8.3
+        shell: bash
+        run: |
+          /tmp/vendor/bin/phpcs --config-set installed_paths /tmp/vendor/phpcompatibility/php-compatibility
+          set +e
+          /tmp/vendor/bin/phpcs --standard=PHPCompatibility --runtime-set testVersion 8.3 --extensions=php --report=full yeahthemes-sparkle sparkle-childtheme > phpcompatibility-8.3.txt 2>&1
+          code=$?
+          cat phpcompatibility-8.3.txt | tail -n 150
+          echo "PHPCompatibility exit code: $code (non-blocking during triage)"
+          exit 0
+      - name: Upload compatibility findings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sparkle-phpcompatibility-8.3
+          path: phpcompatibility-8.3.txt
+          if-no-files-found: warn
+
+  javascript-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse all bundled JavaScript
+        shell: bash
+        run: |
+          set -uo pipefail
+          failed=0
+          while IFS= read -r -d '' file; do
+            if ! node --check "$file"; then
+              echo "Syntax problem: $file"
+              failed=1
+            fi
+          done < <(find yeahthemes-sparkle sparkle-childtheme -type f -name '*.js' -print0)
+          exit "$failed"
