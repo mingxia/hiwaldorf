@@ -1,11 +1,12 @@
 <?php
 /*
-Plugin Name: YT Impressive like button (Yeah, i like this)
-Plugin URI: http://wpthms.com/plugins/yeah-i-like-this
-Description: Simple and Impressive like button for your blog
-Version: 1.0.1
-Author: wpthms
-Author URI: http://wpthms.com
+Plugin Name: YT Impressive Like Button (HiWaldorf)
+Plugin URI: https://github.com/mingxia/hiwaldorf/tree/master/hiwaldorf-yt-plugins/yt-impressive-like
+Description: Original wpthms Sparkle companion plugin; maintained by HiWaldorf for existing sites.
+Version: 2026.11.0
+Author: wpthms (original), HiWaldorf (maintenance)
+Author URI: https://hiwaldorf.com/
+ Update URI: https://github.com/mingxia/hiwaldorf
 License: GPL2
 
 This program is free software; you can redistribute it and/or modify
@@ -24,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if ( ! defined( 'ABSPATH' ) ) exit; 
 
-define( 'YT_IMPRESSIVE_LIKE_VER', '1.0' );
+define( 'YT_IMPRESSIVE_LIKE_VER', '2026.11.0' );
 define( 'YT_IMPRESSIVE_LIKE_URI', plugin_dir_url( __FILE__ ) );
 define( 'YT_IMPRESSIVE_LIKE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'YT_IMPRESSIVE_LIKE_PLUGIN', __FILE__ );
