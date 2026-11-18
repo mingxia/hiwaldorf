@@ -820,29 +820,31 @@ if ( ! function_exists( 'yt_site_footer' ) ) {
  */
 
 if ( ! function_exists( 'yt_site_head_ads' ) ) {
-
 	function yt_site_head_ads(){
-
-
-		if( !empty( $GLOBALS['post'] )){
-			$post = $GLOBALS['post'];
-			$post_id = $post->ID;
-		}else{
-			$post_id = 0;
+		// The full-width H1 placement belongs only after the homepage hero.
+		if ( ! ( is_home() || is_front_page() ) || is_paged() ) {
+			return;
 		}
 
-		if( yt_get_options( 'site_ads_after_header' ) ):
-			$output = sprintf('<div class="site-head-ads clearfix border-bottom">
-				<div class="container site-head-ads text-center padding-top-15 padding-bottom-15 clearfix">
-				%s
-				</div>
-			</div>', yt_get_options( 'site_ads_after_header' ));
+		$ads = yt_get_options( 'site_ads_after_header' );
+		if ( ! is_string( $ads ) || ! trim( $ads ) ) {
+			return;
+		}
 
-			echo do_shortcode( apply_filters( 'yt_site_head_ads', $output, $post_id ) );
-		endif;
+		$post_id = ! empty( $GLOBALS['post']->ID ) ? (int) $GLOBALS['post']->ID : 0;
+		$ads = do_shortcode( apply_filters( 'yt_site_head_ads', stripslashes( $ads ), $post_id ) );
+		if ( ! trim( $ads ) ) {
+			return;
+		}
+
+		echo '<div class="container hiwaldorf-premium-ad hiwaldorf-ad-h1 hidden-print" role="complementary" aria-label="品牌合作广告">';
+		echo '<div class="hiwaldorf-premium-ad-label">广告 · 品牌合作</div>';
+		echo '<div class="hiwaldorf-premium-ad-content">' . $ads . '</div>';
+		echo '</div>';
 	}
 }
-add_action( 'yt_after_header','yt_site_head_ads', 20);
+// The hero renders at priority 1 on this hook; H1 follows it at priority 2.
+add_action( 'yt_main_start', 'yt_site_head_ads', 2 );
 
 /**
  * Foot Ads
@@ -871,7 +873,7 @@ if ( ! function_exists( 'yt_site_foot_ads' ) ) {
 		endif;
 	}
 }
-add_action( 'yt_footer_start','yt_site_foot_ads', 20);
+// Legacy footer slot is preserved in settings but is not shown as a fourth commercial placement.
 
 /**
  * Single post ads
@@ -902,7 +904,7 @@ if ( ! function_exists( 'yt_site_ads_between_rlpaymasl_single_post' ) ) {
 
 	}
 }
-add_action( 'yt_after_loop_singular_post','yt_site_ads_between_rlpaymasl_single_post', 11);
+// Legacy related-post slot is preserved in settings but no longer rendered.
 
 
 /*---------------------------------------------------------------------------------------------------------*
@@ -1238,7 +1240,7 @@ if ( ! function_exists( 'yt_site_ads_between_single_post' ) ) {
 		return implode( '', $paragraphs );
 	}
 }
-add_filter( 'the_content', 'yt_site_ads_between_single_post', 10, 1 );
+// Legacy mid-article slot is intentionally disabled: never interrupt article text.
 /**
  * Single post ads
  *
@@ -1273,8 +1275,62 @@ if ( ! function_exists( 'yt_site_ads_after_single_post' ) ) {
 
 	}
 }
-add_filter( 'the_content', 'yt_site_ads_before_single_post', 15, 1 );
+// P1 now renders above the article heading rather than after the first paragraph.
 add_filter( 'the_content', 'yt_site_ads_after_single_post', 20 );
+
+/**
+ * Premium P1 placement: before the article title, outside the_content.
+ * Reuses the existing Before single post option to keep saved ad codes.
+ */
+if ( ! function_exists( 'hiwaldorf_render_p1_ad' ) ) {
+	function hiwaldorf_render_p1_ad() {
+		if ( ! is_singular( 'post' ) ) {
+			return;
+		}
+
+		$ads = yt_get_options( 'site_ads_before_single_post' );
+		if ( ! is_string( $ads ) || ! trim( $ads ) ) {
+			return;
+		}
+
+		$ads = do_shortcode( stripslashes( $ads ) );
+		if ( ! trim( $ads ) ) {
+			return;
+		}
+
+		echo '<div class="hiwaldorf-premium-ad hiwaldorf-ad-p1 hidden-print" role="complementary" aria-label="品牌合作广告">';
+		echo '<div class="hiwaldorf-premium-ad-label">广告 · 品牌合作</div>';
+		echo '<div class="hiwaldorf-premium-ad-content">' . $ads . '</div>';
+		echo '</div>';
+	}
+}
+
+/**
+ * Premium P2 placement: after the article, separate from the existing
+ * After single post setting used for donations and reader support.
+ */
+if ( ! function_exists( 'hiwaldorf_render_p2_ad' ) ) {
+	function hiwaldorf_render_p2_ad() {
+		if ( ! is_singular( 'post' ) ) {
+			return;
+		}
+
+		$ads = yt_get_options( 'site_ads_p2_after_article' );
+		if ( ! is_string( $ads ) || ! trim( $ads ) ) {
+			return;
+		}
+
+		$ads = do_shortcode( stripslashes( $ads ) );
+		if ( ! trim( $ads ) ) {
+			return;
+		}
+
+		echo '<div class="hiwaldorf-premium-ad hiwaldorf-ad-p2 hidden-print" role="complementary" aria-label="品牌合作广告">';
+		echo '<div class="hiwaldorf-premium-ad-label">广告 · 品牌合作</div>';
+		echo '<div class="hiwaldorf-premium-ad-content">' . $ads . '</div>';
+		echo '</div>';
+	}
+}
 
 /**
  * Modal search

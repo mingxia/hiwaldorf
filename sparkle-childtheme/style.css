@@ -203,3 +203,53 @@ form[role="search"] [type='submit']{
 .dlm-downloading-page {
   text-align: center;
 }
+
+
+/* HiWaldorf premium advertisements: H1 (home), P1 (above title), P2 (after article).
+ * Keep each ad separate from the editorial content. No space when unconfigured. */
+.hiwaldorf-premium-ad {
+    clear: both;
+    box-sizing: border-box;
+    margin-top: 22px;
+    margin-bottom: 24px;
+    max-width: 100%;
+}
+.hiwaldorf-premium-ad-label {
+    margin-bottom: 7px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #888;
+}
+.hiwaldorf-premium-ad-content {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+.hiwaldorf-premium-ad-content img,
+.hiwaldorf-premium-ad-content iframe,
+.hiwaldorf-premium-ad-content video {
+    max-width: 100%;
+}
+.hiwaldorf-premium-ad-content img {
+    height: auto;
+}
+.hiwaldorf-ad-h1 {
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+.hiwaldorf-ad-p1 {
+    margin-top: 0;
+    margin-bottom: 22px;
+}
+.hiwaldorf-ad-p2 {
+    margin-top: 24px;
+    margin-bottom: 30px;
+}
+@media (max-width: 767px) {
+    .hiwaldorf-premium-ad {
+        margin-top: 16px;
+        margin-bottom: 20px;
+    }
+    .hiwaldorf-ad-p1 {
+        margin-top: 0;
+    }
+}

@@ -48,6 +48,8 @@ $feature_image = yt_get_options('blog_single_post_featured_image');
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+	<?php if ( function_exists( 'hiwaldorf_render_p1_ad' ) ) hiwaldorf_render_p1_ad(); ?>
+
 	<?php do_action( 'yt_before_single_post_entry_header' );?>
 
 	<header class="entry-header">
@@ -222,3 +224,4 @@ $feature_image = yt_get_options('blog_single_post_featured_image');
 	<!-- /noptimize -->
 	
 </article><!-- #post-<?php the_ID(); ?>## -->
+<?php if ( function_exists( 'hiwaldorf_render_p2_ad' ) ) hiwaldorf_render_p2_ad(); ?>

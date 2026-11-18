@@ -590,8 +590,8 @@ function yt_site_theme_options_ads_manager( $options ){
 
 		/*After header*/
 		array(
-			'name' => __('After Header','yeahthemes'),
-			'desc' => __('This ads will be displayed before header (site menu)<br>Add your Ads code or use the following custom html structure:','yeahthemes') . '<br>' . esc_attr( '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>' ),
+			'name' => 'H1 · 首页焦点图下方（通栏 Banner）',
+			'desc' => '仅首页展示，位置为焦点新闻图下方、三栏文章区上方；占网站内容容器全宽，移动端自动缩放。原 After Header 的广告代码保留在此输入框。',
 			'id' => 'site_ads_after_header',
 			'std' => '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>',
 			'type' => 'textarea',
@@ -604,7 +604,7 @@ function yt_site_theme_options_ads_manager( $options ){
 		),
 		/*Before footer*/
 		array(
-			'name' => __('Before footer','yeahthemes'),
+			'name' => '旧版页脚前广告（已停用，内容保留）',
 			'desc' => __('This ads will be displayed before footer widgets section','yeahthemes') . '<br>Add your Ads code or use the following custom html structure:' . esc_attr( '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>' ),
 			'id' => 'site_ads_before_footer',
 			'std' => '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>',
@@ -619,8 +619,8 @@ function yt_site_theme_options_ads_manager( $options ){
 
 		/*Before single post*/
 		array(
-			'name' => __('Before single post','yeahthemes'),
-			'desc' => __('This ads will be displayed before single post content.<br>Add your Ads code or use the following custom html structure:','yeahthemes') . '<br>' . esc_attr( '<a href="#" target="_blank"><img src="http://placehold.it/300x250"></a>' ),
+			'name' => 'P1 · 文章标题上方（品牌合作）',
+			'desc' => '仅文章详情页：在文章内容列内，分类/标题之前展示，不插入正文。原 Before single post 的已保存代码继续使用。',
 			'id' => 'site_ads_before_single_post',
 			'std' => '<a href="#" target="_blank"><img src="http://placehold.it/300x250"></a>',
 			'type' => 'textarea',
@@ -633,7 +633,7 @@ function yt_site_theme_options_ads_manager( $options ){
 		),
 		/*Between single post*/
 		array(
-			'name' => __('Between single post','yeahthemes'),
+			'name' => '旧版正文中插入广告（已停用，内容保留）',
 			'desc' => __('This ads will be displayed between single post content automatically (only apply to the post which have at least 2 paragraphs )<br>Add your Ads code or use the following custom html structure:','yeahthemes') . '<br>' . esc_attr( '<a href="#" target="_blank"><img src="http://placehold.it/300x250"></a>' ),
 			'id' => 'site_ads_between_single_post',
 			'std' => '<a href="#" target="_blank"><img src="http://placehold.it/300x250"></a>',
@@ -646,10 +646,24 @@ function yt_site_theme_options_ads_manager( $options ){
 
 		),
 
+		/* P2: Commercial placement after the complete article, separate from legacy donations. */
+		array(
+			'name' => 'P2 · 文章结尾商业广告（正文外）',
+			'desc' => '只在文章详情页的文章内容、标签等全部结束后展示；不替换原有赞赏代码。可填写 HTML、短代码或 AdSense 广告代码，留空则整个广告位隐藏。',
+			'id' => 'site_ads_p2_after_article',
+			'std' => '',
+			'type' => 'textarea',
+			'class' => 'yt-tabifiable-textarea',
+			'customize' => 1,
+			'settings' => array(
+				'sanitize' => false
+			),
+		),
+
 		/*After single post*/
 		array(
-			'name' => __('After single post','yeahthemes'),
-			'desc' => __('This will be displayed right below the single post content.<br>Add your Ads code or use the following custom html structure:','yeahthemes') . '<br>' . esc_attr( '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>' ),
+			'name' => '原有文章尾部支持信息（保留）',
+			'desc' => '保留原有文章正文后追加的代码（例如捐赠/赞赏信息），不迁移、不清空，也不等同于新的 P2 商业广告。',
 			'id' => 'site_ads_after_single_post',
 			'std' => '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>',
 			'type' => 'textarea',
@@ -663,7 +677,7 @@ function yt_site_theme_options_ads_manager( $options ){
 
 		/*After single post*/
 		array(
-			'name' => __('Between Related posts and You might also like (single post)','yeahthemes'),
+			'name' => '旧版相关推荐间广告（已停用，内容保留）',
 			'desc' => __('This will be displayed right below the single post content. after single post navigation, between Related Articles and You might also like section<br>Add your Ads code or use the following custom html structure:','yeahthemes') . '<br>' . esc_attr( '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>' ),
 			'id' => 'site_ads_between_rlpaymasl_single_post',
 			'std' => '<a href="#" target="_blank"><img src="http://placehold.it/728x90"></a>',
