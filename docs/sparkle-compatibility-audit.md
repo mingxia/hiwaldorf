@@ -54,3 +54,15 @@ The separate GitHub Actions workflow `sparkle-wordpress-smoke.yml` installs curr
 - Additional parent/child `in_array()` guards were added afterward. Confirm final-head CI checks before staging or merge.
 
 **Limitations:** The CI install uses empty options and placeholder content, not the production database, image uploads, plugins, customized theme options, or real browser interactions. Passing smoke tests does not constitute completed manual file-by-file review or production certification.
+
+## Parent and child runtime matrix: passing
+
+On run **44225877382**, both `yeahthemes-sparkle` (parent activated alone) and `sparkle-childtheme` (child with parent) passed isolated WordPress + PHP 8.3 activation and frontend smoke checks. This includes homepage, sample post, search and expected 404 route.
+
+Additional fixes identified by earlier smoke runs:
+- `sparkle-childtheme/includes/theme-interface.php`: cast absent/invalid `blog_post_meta_info` values to array for `in_array()` (PHP 8 strict TypeError prevention).
+- `sparkle-childtheme/includes/templates/mobile-menu.php`: optional language-switcher call guarded.
+- Parent `includes/theme-interface.php`, parent and child `includes/theme-template-functions.php`: similarly guard metadata option values before `in_array()`.
+- Parent `includes/theme-styling.php`: default values for missing CSS options with preservation of existing configured values.
+
+**This is a smoke-test baseline only, not a complete line-by-line source audit or complete browser/UI regression.**
