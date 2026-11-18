@@ -303,10 +303,11 @@ form[role="search"] [type='submit']{
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    padding: 20px 0 22px;
+    padding: 22px;
     margin: 20px 0 30px;
-    border-top: 1px solid #ececec;
-    border-bottom: 1px solid #ececec;
+    background: #f7f5f1;
+    border-radius: 6px;
+    border: 0;
     clear: both;
 }
 .single .hiwaldorf-author-avatar {
@@ -364,7 +365,7 @@ form[role="search"] [type='submit']{
         font-size: 11px;
         padding-top: 2px;
     }
-    .single .hiwaldorf-author-card { gap: 12px; padding: 16px 0; }
+    .single .hiwaldorf-author-card { gap: 12px; padding: 16px; }
     .single .hiwaldorf-author-avatar,
     .single .hiwaldorf-author-avatar img { width: 44px; height: 44px; }
     .single .hiwaldorf-author-avatar { flex-basis: 44px; }
