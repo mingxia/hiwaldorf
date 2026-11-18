@@ -49,6 +49,14 @@ jobs:
             echo 'Standalone stylesheet may not import the parent'
             exit 1
           fi
+          # Admin-only callbacks are behind is_admin(); ensure they use defined
+          # standalone constants. CLI admin context alone lacks wp-admin menu setup.
+          if grep -Eq 'YEAHTHEMES_FRAMEWORK_URI|YEAHTHEMES_INCLUDES_DIR' sparkle-childtheme/includes/theme-config.php; then
+            echo 'Undefined legacy theme path constants still referenced'
+            exit 1
+          fi
+          grep -q "wpthms_FRAMEWORK_URI . 'admin/assets/images/'" sparkle-childtheme/includes/theme-config.php
+          grep -q "wpthms_INCLUDES_DIR . '/vc-templates/'" sparkle-childtheme/includes/theme-config.php
           find sparkle-childtheme -type f -name '*.php' -print0 |
             while IFS= read -r -d '' file; do php -l "$file" >/dev/null; done
       - name: Install only standalone theme and WordPress

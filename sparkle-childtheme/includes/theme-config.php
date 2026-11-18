@@ -710,7 +710,7 @@ function yt_theme_options_advancedsettings_miscs_extras( $options ){
 add_filter( 'yt_main_metabox_page_controls', 'yt_site_main_metabox_page_controls', 10 , 2 );
 
 function yt_site_main_metabox_page_controls( $options, $shortname ){
-	$framework_image_uri = YEAHTHEMES_FRAMEWORK_URI . 'admin/assets/images/';
+	$framework_image_uri = wpthms_FRAMEWORK_URI . 'admin/assets/images/';
 	$image_uri = YEAHTHEMES_INCLUDES_URI . 'images/' ;
 
 	$sidebar_list = yt_get_registered_sidebars();
@@ -754,7 +754,7 @@ add_filter( 'yt_main_metabox_page_settings', 'yt_site_main_metabox_page_settings
 if( !function_exists( 'yt_site_main_metabox_page_settings' ) ){
 	function yt_site_main_metabox_page_settings( $settings, $shortname ) {
 
-		$framework_image_uri = YEAHTHEMES_FRAMEWORK_URI . 'admin/assets/images/';
+		$framework_image_uri = wpthms_FRAMEWORK_URI . 'admin/assets/images/';
 
 		$sidebar_list = yt_get_registered_sidebars();
 		$sidebar_list['none'] = __( 'None', 'yeahthemes');
@@ -948,7 +948,7 @@ function yt_vc_after_setup_theme(){
 	 * Locate Theme's vc templates
 	 */
 	if( function_exists( 'vc_set_shortcodes_templates_dir') && !apply_filters( 'yt_vc_disable_theme_templates', false ) ){
-		$dir = YEAHTHEMES_INCLUDES_DIR . '/vc-templates/';
+		$dir = wpthms_INCLUDES_DIR . '/vc-templates/';
 		vc_set_shortcodes_templates_dir($dir);
 	}
 
