@@ -42,3 +42,7 @@ with open("sparkle-static-audit.md","w") as f:
  f.write("\n## Complete file inventory\n\n| Path | Extension | Bytes |\n|---|---|---:|\n")
  for path,ext,size in inventory: f.write("| "+path+" | "+ext+" | "+str(size)+" |\n")
 print("files",len(inventory),"matches",len(hits),"rules",dict(count))
+
+for rule,path,line,excerpt in hits:
+ if rule in {'removed_create_function','removed_each','removed_magic_quotes','removed_mysql','removed_curly_offset','deprecated_utf8','deprecated_FILTER_SANITIZE_STRING','jquery_legacy'}:
+  print('REVIEW',rule,path,line,excerpt[:120])
