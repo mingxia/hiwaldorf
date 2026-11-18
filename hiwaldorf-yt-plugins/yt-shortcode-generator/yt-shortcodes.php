@@ -1,11 +1,12 @@
 <?php
 /**
- * Plugin Name: YT Shortcode Generator
- * Plugin URI: http://wpthms.com/plugins/yt-shortcode-generator
- * Description: Advanced shortcode generator.
- * Version: 1.0.7.4
- * Author: wpthms
- * Author URI: http://wpthms.com
+ * Plugin Name: YT Shortcode Generator (HiWaldorf)
+ * Plugin URI: https://github.com/mingxia/hiwaldorf/tree/master/hiwaldorf-yt-plugins/yt-shortcode-generator
+ * Description: Original wpthms Sparkle companion plugin; maintained by HiWaldorf for existing sites.
+ * Version: 2026.11.0
+ * Author: wpthms (original), HiWaldorf (maintenance)
+ * Author URI: https://hiwaldorf.com/
+ * Update URI: https://github.com/mingxia/hiwaldorf
  * License: GPL2
 
 This program is free software; you can redistribute it and/or modify
@@ -28,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if ( ! defined( 'ABSPATH' ) ) exit; 
 
 
-define( 'YT_SHORTCODE_VER', '1.0.7.4' );
+define( 'YT_SHORTCODE_VER', '2026.11.0' );
 define( 'YT_SHORTCODE_PREFIX', 'yt-' );
 define( 'YT_SHORTCODE_DOMAIN', 'yt-shortcode-generator' );
 define( 'YT_SHORTCODE_NAME', 'YT Shortcode Generator' );

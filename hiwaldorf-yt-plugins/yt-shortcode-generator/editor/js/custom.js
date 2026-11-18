@@ -85,7 +85,7 @@ if (typeof wpthms == 'undefined') {
 
 				var $body = $('body');
 				
-				self.currentEditor = tinymce.activeEditor ? tinymce.activeEditor.id : self.currentEditor;
+				self.currentEditor = (typeof tinymce !== 'undefined' && tinymce.activeEditor) ? tinymce.activeEditor.id : self.currentEditor;
 				//console.log( window.wpActiveEditor );
 				
 				if( $('#yt-shortcode-media-modal, #yt-shortcode-media-modal-backdrop').length ){
@@ -110,6 +110,12 @@ if (typeof wpthms == 'undefined') {
 						},
 						success: function( data ){
 							$body.removeClass( self.ajaxifyingClass );
+							if (!data || data === '0' || data === '-1') {
+								self.ajaxifying = false;
+								$body.removeClass(self.pluginActivatingClass);
+								window.alert('短代码生成器无法打开，请检查 PHP 错误日志。');
+								return;
+							}
 							$body.append( data );						
 							
 							// $( '#yt-shortcode-item-list li a' ).tooltip({
@@ -120,6 +126,11 @@ if (typeof wpthms == 'undefined') {
 							//Call shortcode searcher
 							self.searchShortcode('#yt-shortcode-item-list', '.yt-shortcode-item-filter input');
 							self.ajaxifying = false;
+						},
+						error: function() {
+							self.ajaxifying = false;
+							$body.removeClass(self.ajaxifyingClass).removeClass(self.pluginActivatingClass);
+							window.alert('短代码生成器加载失败，请检查浏览器控制台或 PHP 错误日志。');
 						}
 					});
 				}
