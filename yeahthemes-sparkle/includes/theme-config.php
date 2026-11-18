@@ -85,12 +85,12 @@ if ( ! function_exists( 'yt_theme_setup' ) ) {
 
 		add_filter( 'wp_page_menu_args', 'yt_page_menu_args' );
 
-		add_filter( 'yt_pagination_nav_paginate_links_args', create_function( '$args', '$args["mid_size"] = 1; return $args;') );
+		add_filter( 'yt_pagination_nav_paginate_links_args', static function ( $args ) { $args['mid_size'] = 1; return $args; } );
 
 		add_filter('yt_theme_meta_viewport_conditions', '__return_true' );
 
-		add_filter( 'yt_admin_top_menu_bar_support_url', create_function( '', 'return "http://wpthms.com/support/forum/wordpress-themes-support-center/sparkle/";') );
-		add_filter( 'yt_admin_top_menu_bar_document_url', create_function( '', 'return "http://docs.wpthms.com/sparkle/";') );
+		add_filter( 'yt_admin_top_menu_bar_support_url', static function () { return 'http://wpthms.com/support/forum/wordpress-themes-support-center/sparkle/'; } );
+		add_filter( 'yt_admin_top_menu_bar_document_url', static function () { return 'http://docs.wpthms.com/sparkle/'; } );
 
 
 		add_filter( 'yt_support_theme_customizer', '__return_false' );
