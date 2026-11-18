@@ -272,32 +272,31 @@ form[role="search"] [type='submit']{
 }
 
 /* Compact single-post category/title row and author credit. */
-.single .hiwaldorf-single-title-row {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    min-width: 0;
-}
-.single .hiwaldorf-single-title-row > .category-meta {
-    display: inline-block !important;
-    flex: 0 0 auto;
-    align-self: baseline;
-    margin: 0 !important;
-    padding: 3px 0;
-    font-size: 12px;
-    line-height: 1.5;
-    font-weight: 600;
-    letter-spacing: .02em;
-    text-transform: none;
-}
-.single .hiwaldorf-single-title-row > .category-meta:empty {
-    display: none !important;
-}
+/* A category is a small inline label, not a separate flex column.
+ * Subsequent title lines return to the full width of the article. */
 .single .hiwaldorf-single-title-row > .entry-title {
-    flex: 1 1 0%;
+    display: block;
     min-width: 0;
     margin-top: 0;
     overflow-wrap: anywhere;
+}
+.single .hiwaldorf-single-title-row .entry-title > .category-meta {
+    display: inline-block !important;
+    margin: 0 12px 0 0 !important;
+    padding: 5px 8px;
+    border-radius: 4px;
+    background: #f7f3ee;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: .01em;
+    text-transform: none;
+    /* Slight lift keeps the smaller label near the top half of the first title line. */
+    vertical-align: .14em;
+    white-space: nowrap;
+}
+.single .hiwaldorf-single-title-row .entry-title > .category-meta:empty {
+    display: none !important;
 }
 .single .hiwaldorf-author-card {
     display: flex;
@@ -360,10 +359,10 @@ form[role="search"] [type='submit']{
     text-decoration: none;
 }
 @media (max-width: 480px) {
-    .single .hiwaldorf-single-title-row { gap: 8px; }
-    .single .hiwaldorf-single-title-row > .category-meta {
+    .single .hiwaldorf-single-title-row .entry-title > .category-meta {
         font-size: 11px;
-        padding-top: 2px;
+        margin-right: 9px !important;
+        padding: 4px 6px;
     }
     .single .hiwaldorf-author-card { gap: 12px; padding: 16px; }
     .single .hiwaldorf-author-avatar,
