@@ -22,6 +22,15 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: none
           coverage: none
+      - name: Inventory and heuristic scan of every theme file
+        if: matrix.php == '8.3'
+        run: python3 scripts/sparkle_static_audit.py
+      - name: Upload full file inventory and findings
+        if: matrix.php == '8.3'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sparkle-full-file-audit
+          path: sparkle-static-audit.md
       - name: Lint all theme PHP files
         shell: bash
         run: |
