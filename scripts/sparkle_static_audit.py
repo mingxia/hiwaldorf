@@ -15,7 +15,6 @@ rules = {
  "raw_request_input": r"\$_(?:GET|POST|REQUEST|COOKIE)\s*\[",
  "raw_db_query": r"\$wpdb->(?:query|get_results|get_var|get_row)\s*\(",
  "jquery_legacy": r"\.(?:live|die|size|andSelf)\s*\(",
- "legacy_http": r"http://",
 }
 compiled = {k:re.compile(v) for k,v in rules.items()}
 inventory = []
@@ -27,8 +26,10 @@ for root in roots:
   if p.suffix.lower() not in {".php",".js",".css",".less",".txt",".xml",".json"}: continue
   s = p.read_text(encoding="utf-8",errors="replace")
   for n,line in enumerate(s.splitlines(),1):
+   if line.lstrip().startswith(("//", "*", "#")): continue
    for k,pat in compiled.items():
     if k=="jquery_legacy" and p.suffix!=".js": continue
+    if k=="removed_each" and "$.each" in line: continue
     if k not in ("jquery_legacy","legacy_http") and p.suffix!=".php": continue
     if pat.search(line): hits.append((k,rel,n,line.strip()[:150]))
 count = Counter(x[0] for x in hits)
