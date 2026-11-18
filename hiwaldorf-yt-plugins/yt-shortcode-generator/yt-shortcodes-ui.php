@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						<input type="text" placeholder="<?php _e('Searh shortcode', YT_SHORTCODE_DOMAIN);?>" class="widefat">
 					</div>
 					<ul id="yt-shortcode-item-list">
-						<?php echo join( $this->_shortcode_menu_items, '');?>
+						<?php echo implode( '', (array) $this->_shortcode_menu_items );?>
 					</ul>
 					
 				</div>
