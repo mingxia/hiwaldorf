@@ -113,7 +113,7 @@ if( !function_exists( 'yt_admin_options_init' ) ) {
 				 * Administration Menus location
 				 * http://codex.wordpress.org/Adding_Administration_Menus
 				 */									
-				'page_title' 	=> 'wpthms Theme options',		//$page_title
+				'page_title' 	=> 'HiWaldorf Theme Options',		//$page_title
 				'menu_title' 	=> THEMENAME, 				//$menu_title
 				'capability' 	=> 'edit_theme_options',								//$capability
 				'menu_slug' 	=> 'yt-theme-options',								//$menu_slug
