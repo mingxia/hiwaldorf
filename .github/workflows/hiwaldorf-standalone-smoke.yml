@@ -77,9 +77,6 @@ jobs:
             if (!function_exists("all_view") || !function_exists("view_5000")) {
               throw new RuntimeException("Custom statistics functions missing");
             }
-            // WP-CLI default context does not initialize admin includes in all
-            // configurations; explicitly require the theme module for this regression.
-            require_once get_template_directory() . "/includes/theme-config.php";
             // Call the admin-only callbacks directly, even in CLI context; these
             // callbacks caused the real wp-admin Fatal and must be exercised.
             foreach (array("yt_site_main_metabox_page_controls", "yt_site_main_metabox_page_settings") as $callback) {
@@ -97,7 +94,7 @@ jobs:
             require_once ABSPATH."wp-admin/includes/dashboard.php";
             do_action("wp_dashboard_setup");
             echo "Standalone theme, dashboard and HiWaldorf custom hooks loaded.\n";
-          ' --path=/tmp/hiwaldorf-wp --allow-root
+          ' --path=/tmp/hiwaldorf-wp --allow-root --context=admin
           wp post create --post_title='Smoke test' --post_content='HiWaldorf sample post' --post_status=publish --path=/tmp/hiwaldorf-wp --allow-root
           wp eval '
             if (wpthms_THEME_OPTIONS !== "yeahthemes_theme_options_sparkle_childtheme") {
