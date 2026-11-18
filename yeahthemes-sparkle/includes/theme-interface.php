@@ -664,7 +664,7 @@ class YT_Site_Hero_Banner{
 YT_Site_Hero_Banner::init();
 
 // Flush the hero posts cache
-add_filter( 'yt_refresh_transient_list_after_updating_theme_options', create_function( '$list', '$list[] = "featured_content_ids"; return $list;') );
+add_filter( 'yt_refresh_transient_list_after_updating_theme_options', static function ( $list ) { $list[] = 'featured_content_ids'; return $list; } );
 /**
  * Site Hero bricks
  */
