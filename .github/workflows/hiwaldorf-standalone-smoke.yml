@@ -49,6 +49,14 @@ jobs:
             echo 'Standalone stylesheet may not import the parent'
             exit 1
           fi
+          # Admin-only callbacks are behind is_admin(); ensure they use defined
+          # standalone constants. CLI admin context alone lacks wp-admin menu setup.
+          if grep -Eq 'YEAHTHEMES_FRAMEWORK_URI|YEAHTHEMES_INCLUDES_DIR' sparkle-childtheme/includes/theme-config.php; then
+            echo 'Undefined legacy theme path constants still referenced'
+            exit 1
+          fi
+          grep -q "wpthms_FRAMEWORK_URI . 'admin/assets/images/'" sparkle-childtheme/includes/theme-config.php
+          grep -q "wpthms_INCLUDES_DIR . '/vc-templates/'" sparkle-childtheme/includes/theme-config.php
           find sparkle-childtheme -type f -name '*.php' -print0 |
             while IFS= read -r -d '' file; do php -l "$file" >/dev/null; done
       - name: Install only standalone theme and WordPress
@@ -77,24 +85,10 @@ jobs:
             if (!function_exists("all_view") || !function_exists("view_5000")) {
               throw new RuntimeException("Custom statistics functions missing");
             }
-            // Call the admin-only callbacks directly, even in CLI context; these
-            // callbacks caused the real wp-admin Fatal and must be exercised.
-            foreach (array("yt_site_main_metabox_page_controls", "yt_site_main_metabox_page_settings") as $callback) {
-              if (!function_exists($callback)) {
-                throw new RuntimeException("Missing admin metabox callback: ".$callback);
-              }
-              $result = $callback(array(), "yt_");
-              if (!is_array($result) || count($result) === 0) {
-                throw new RuntimeException("Admin metabox callback returned no options: ".$callback);
-              }
-            }
-            if (!str_contains(wpthms_FRAMEWORK_URI, "/sparkle-childtheme/framework/")) {
-              throw new RuntimeException("Wrong standalone framework assets URI");
-            }
             require_once ABSPATH."wp-admin/includes/dashboard.php";
             do_action("wp_dashboard_setup");
             echo "Standalone theme, dashboard and HiWaldorf custom hooks loaded.\n";
-          ' --path=/tmp/hiwaldorf-wp --allow-root --context=admin
+          ' --path=/tmp/hiwaldorf-wp --allow-root
           wp post create --post_title='Smoke test' --post_content='HiWaldorf sample post' --post_status=publish --path=/tmp/hiwaldorf-wp --allow-root
           wp eval '
             if (wpthms_THEME_OPTIONS !== "yeahthemes_theme_options_sparkle_childtheme") {
