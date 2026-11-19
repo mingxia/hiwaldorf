@@ -250,8 +250,8 @@ form[role="search"] [type='submit']{
     height: auto;
 }
 .hiwaldorf-ad-h1 {
-    margin-top: 22px;
-    margin-bottom: 22px;
+    margin-top: 9px;
+    margin-bottom: 9px;
 }
 .hiwaldorf-ad-p1 {
     margin-top: 0;
@@ -265,6 +265,10 @@ form[role="search"] [type='submit']{
     .hiwaldorf-premium-ad {
         margin-top: 16px;
         margin-bottom: 20px;
+    }
+    .hiwaldorf-premium-ad.hiwaldorf-ad-h1 {
+        margin-top: 9px;
+        margin-bottom: 9px;
     }
     .hiwaldorf-ad-p1 {
         margin-top: 0;
