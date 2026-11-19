@@ -202,3 +202,7 @@ function hiwaldorf_dashboard_stats_styles() {
     </style>';
 }
 add_action( 'admin_head-index.php', 'hiwaldorf_dashboard_stats_styles' );
+
+
+// Lightweight daily ad clicks (H1 DongDong Park banner).
+require_once get_template_directory() . '/includes/hiwaldorf-ad-clicks.php';
