@@ -133,9 +133,7 @@ function hsq_quote_markup( $q, $compact = false ) {
         <?php endif; ?>
         <blockquote class="hsq-quotation"><span class="hsq-opening" aria-hidden="true">“</span><span class="hsq-quote-cn"><?php echo esc_html( $p['cn'] ); ?></span><span class="hsq-closing" aria-hidden="true">”</span></blockquote>
         <p class="hsq-author">鲁道夫·施泰纳</p>
-        <?php if ( $p['original'] !== '' ) : ?>
-            <div class="hsq-original" hidden><p><?php echo nl2br( esc_html( $p['original'] ) ); ?></p></div>
-        <?php endif; ?>
+        <div class="hsq-original" hidden><p><?php echo nl2br( esc_html( $p['original'] ) ); ?></p></div>
         <div class="hsq-meta">
             <?php if ( $p['gaid'] !== '' ) : ?>
                 <span class="hsq-gaid">GA <?php echo esc_html( $p['gaid'] ); ?></span>
@@ -145,7 +143,7 @@ function hsq_quote_markup( $q, $compact = false ) {
             <?php endif; ?>
         </div>
         <div class="hsq-actions">
-            <?php if ( $p['original'] !== '' ) : ?><button type="button" class="hsq-original-toggle" aria-expanded="false">查看原文</button><?php endif; ?>
+            <button type="button" class="hsq-original-toggle" aria-expanded="false" <?php echo $p['original'] === '' ? 'hidden' : ''; ?>>查看原文</button>
             <button type="button" class="hsq-share" data-url="<?php echo esc_url( $p['url'] ); ?>">分享语录</button>
             <?php if ( $compact ) : ?>
                 <a href="<?php echo esc_url( $p['url'] ); ?>">阅读这条语录</a>
@@ -264,7 +262,7 @@ function hsq_admin_page() {
     if ( isset( $_POST['hsq_save'] ) ) {
         check_admin_referer( 'hsq_save_quote' );
         $id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
-        $code = isset( $_POST['code'] ) ? sanitize_title( wp_unslash( $_POST['code'] ) ) : '';
+        $code = isset( $_POST['code'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['code'] ) ) ) : '';
         $cn = isset( $_POST['content_cn'] ) ? sanitize_textarea_field( wp_unslash( $_POST['content_cn'] ) ) : '';
         $original = isset( $_POST['content'] ) ? sanitize_textarea_field( wp_unslash( $_POST['content'] ) ) : '';
         $gaid = isset( $_POST['gaid'] ) ? sanitize_text_field( wp_unslash( $_POST['gaid'] ) ) : '';
