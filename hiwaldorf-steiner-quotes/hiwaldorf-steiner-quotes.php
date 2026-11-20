@@ -100,12 +100,13 @@ function hsq_head_metadata() {
     if ( ! $q ) { return; }
     $p = hsq_public_quote( $q );
     $description = wp_trim_words( $p['cn'], 45, '…' );
+    $canonical = get_query_var( 'hsq_code' ) ? $p['url'] : home_url( '/quotes/' );
     echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
     echo '<meta property="og:type" content="article">' . "\n";
     echo '<meta property="og:title" content="' . esc_attr( '施泰纳语录 · HiWaldorf' ) . '">' . "\n";
     echo '<meta property="og:description" content="' . esc_attr( $description ) . '">' . "\n";
-    echo '<meta property="og:url" content="' . esc_url( $p['url'] ) . '">' . "\n";
-    echo '<link rel="canonical" href="' . esc_url( $p['url'] ) . '">' . "\n";
+    echo '<meta property="og:url" content="' . esc_url( $canonical ) . '">' . "\n";
+    echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
 }
 add_action( 'wp_head', 'hsq_head_metadata', 3 );
 add_filter( 'pre_get_document_title', function( $title ) {
@@ -136,7 +137,7 @@ function hsq_quote_markup( $q, $compact = false ) {
         <div class="hsq-original" hidden><p><?php echo nl2br( esc_html( $p['original'] ) ); ?></p></div>
         <div class="hsq-meta">
             <?php if ( $p['gaid'] !== '' ) : ?>
-                <span class="hsq-gaid">GA <?php echo esc_html( $p['gaid'] ); ?></span>
+                <span class="hsq-gaid">作品 <?php echo esc_html( $p['gaid'] ); ?></span>
             <?php endif; ?>
             <?php if ( $p['note'] !== '' ) : ?>
                 <span class="hsq-note"><?php echo esc_html( $p['note'] ); ?></span>
