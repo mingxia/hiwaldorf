@@ -34,7 +34,7 @@
       if (q.gaid) {
         const ga = document.createElement('span');
         ga.className = 'hsq-gaid';
-        ga.textContent = 'GA ' + q.gaid;
+        ga.textContent = '作品 ' + q.gaid;
         meta.appendChild(ga);
       }
       if (q.note) {
