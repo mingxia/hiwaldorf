@@ -1,0 +1,19 @@
+name: Steiner Quotes plugin validation
+on:
+  pull_request:
+    paths:
+      - 'hiwaldorf-steiner-quotes/**'
+      - '.github/workflows/steiner-quotes-check.yml'
+  push:
+    paths:
+      - 'hiwaldorf-steiner-quotes/**'
+      - '.github/workflows/steiner-quotes-check.yml'
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PHP lint
+        run: php -l hiwaldorf-steiner-quotes/hiwaldorf-steiner-quotes.php
+      - name: JS syntax check
+        run: node --check hiwaldorf-steiner-quotes/assets/quotes.js

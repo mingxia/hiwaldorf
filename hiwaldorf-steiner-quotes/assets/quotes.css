@@ -1,0 +1,150 @@
+/* HiWaldorf Steiner Quotes 1.0.3 — immersive reader only. */
+/* No page-wide overrides outside the two quotes routes. */
+body.hw-steiner-route {
+  --hw-steiner-scene: #466f70;
+  background: var(--hw-steiner-scene);
+}
+body.hw-steiner-route .site-newsticker { display: none !important; }
+/* No white margins between the shared masthead, reading space and footer. */
+body.hw-steiner-route #page,
+body.hw-steiner-route .inner-wrapper,
+body.hw-steiner-route #main,
+body.hw-steiner-route .site-main,
+body.hw-steiner-route .hw-steiner-page {
+  background: var(--hw-steiner-scene) !important;
+}
+body.hw-steiner-route #main { padding: 0 !important; margin: 0 !important; }
+body.hw-steiner-route .hw-steiner-page {
+  box-sizing: border-box;
+  width: 100%; max-width: none; margin: 0; padding: 0;
+  min-height: min(75vh, 820px);
+  font-family: inherit; color: #fff;
+}
+.hw-steiner-top {
+  width: min(100% - 52px, 1130px); margin: 0 auto;
+  padding: 27px 0 0; display: flex; align-items: center;
+  justify-content: space-between; gap: 18px;
+  color: rgba(255,255,255,.76); font-size: 13px; letter-spacing: .07em;
+}
+.hw-steiner-top a { color: inherit; text-decoration: none; }
+.hw-steiner-top a:hover { color: #fff; text-decoration: underline; }
+.hw-steiner-card { --hw-quote-bg:#466f70; background: var(--hw-quote-bg);
+  color:#fff; position:relative; isolation:isolate; overflow:hidden; border-radius:0;
+}
+/* Full-bleed route: colored reading area from edge to edge. */
+body.hw-steiner-route .hw-steiner-immersive { background:transparent; }
+.hw-steiner-stage { box-sizing:border-box; display:flex; justify-content:center; align-items:center;
+  text-align:center; min-height:430px; padding:58px 36px 86px;
+  outline-offset:-5px;
+}
+.hw-steiner-immersive .hw-steiner-stage { min-height:clamp(490px,69vh,790px); cursor:pointer; }
+.hw-steiner-copy { width:100%; max-width:850px; margin:auto; cursor:text; }
+.hw-steiner-mark { font-family:Georgia,serif; font-size:52px; line-height:.85;
+  color:rgba(255,255,255,.63); margin-bottom:22px; }
+.hw-steiner-quote { display:block; margin:0; padding:0; border:0;
+  color:#fff; letter-spacing:.012em; font-size:clamp(24px,3vw,39px);
+  font-weight:400; line-height:1.75; white-space:pre-wrap; overflow-wrap:anywhere;
+}
+.hw-steiner-author { color:rgba(255,255,255,.96); font-size:17px; margin:31px 0 6px; }
+.hw-steiner-ga { color:rgba(255,255,255,.76); font-size:12px; margin:0 0 10px; }
+.hw-steiner-toggle, .hw-steiner-actions button {
+  appearance:none; background:none; border:0; color:inherit; font:inherit;
+  cursor:pointer; padding:6px;
+}
+.hw-steiner-toggle { font-size:13px; text-decoration:underline;
+  text-underline-offset:4px; margin-top:11px;
+}
+.hw-steiner-original { max-width:690px; margin:15px auto 0; color:#fff;
+  font-size:16px; line-height:1.9; opacity:.94; text-align:left;
+}
+.hw-steiner-actions { display:flex; flex-wrap:wrap; justify-content:center;
+  align-items:center; gap:18px; margin-top:23px; font-size:12px;
+}
+.hw-steiner-actions a,.hw-steiner-actions button { color:rgba(255,255,255,.85);
+  text-decoration:none; font-size:12px; font-weight:400;
+}
+.hw-steiner-actions a:hover,.hw-steiner-actions button:hover { color:#fff; text-decoration:underline; }
+.hw-steiner-hint { position:absolute; left:20px; right:20px; bottom:24px;
+  margin:0; text-align:center; color:rgba(255,255,255,.77);
+  font-size:12px; pointer-events:none;
+}
+.hw-steiner-status { position:absolute; width:1px; height:1px; margin:-1px;
+  padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+.hw-steiner-empty { background:transparent; color:#fff; padding:70px 24px; text-align:center; }
+/* Keep shortcode cards as compact cards on all ordinary site pages. */
+.hw-steiner-shortcode .hw-steiner-card { border-radius:3px; }
+.hw-steiner-shortcode .hw-steiner-stage { min-height:175px; padding:34px 26px 28px; }
+.hw-steiner-shortcode .hw-steiner-mark { font-size:34px; margin-bottom:8px; }
+.hw-steiner-shortcode .hw-steiner-quote { font-size:clamp(18px,2vw,26px); line-height:1.6; }
+.hw-steiner-shortcode .hw-steiner-author { font-size:13px; margin:15px 0 0; }
+.hw-steiner-shortcode .hw-steiner-actions { margin-top:12px; }
+.hw-steiner-shortcode .hw-steiner-original { font-size:14px; }
+.hw-steiner-card.hw-steiner-changing .hw-steiner-copy { opacity:.25; transition:opacity .13s ease; }
+/* The reader is a focused destination, not an article with site navigation. */
+body.hw-steiner-route #masthead,
+body.hw-steiner-route #colophon,
+body.hw-steiner-route .site-newsticker { display: none !important; }
+body.hw-steiner-route #page,
+body.hw-steiner-route .inner-wrapper { min-height: 100svh; }
+body.hw-steiner-route .hw-steiner-page { min-height: 100svh; position: relative; }
+body.hw-steiner-route.admin-bar .hw-steiner-page { min-height: calc(100svh - 32px); }
+body.hw-steiner-route .hw-steiner-immersive .hw-steiner-stage {
+  min-height: calc(100svh - 108px);
+}
+body.hw-steiner-route.admin-bar .hw-steiner-immersive .hw-steiner-stage {
+  min-height: calc(100svh - 140px);
+}
+.hw-steiner-top { position: relative; z-index: 3; }
+.hw-steiner-home { font-weight: 600; letter-spacing: 0; }
+.hw-steiner-eyebrow { text-align: center; }
+.hw-steiner-random { text-align: right; }
+.hw-steiner-home:focus-visible,
+.hw-steiner-random:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
+@media (max-width: 782px) {
+  body.hw-steiner-route.admin-bar .hw-steiner-page { min-height: calc(100svh - 46px); }
+  body.hw-steiner-route.admin-bar .hw-steiner-immersive .hw-steiner-stage { min-height: calc(100svh - 154px); }
+}
+@media(max-width:767px) {
+  .hw-steiner-top { width:calc(100% - 36px); padding-top:18px; font-size:12px; }
+  .hw-steiner-eyebrow { font-size: 11px; }
+  .hw-steiner-stage { padding:38px 22px 86px; }
+  .hw-steiner-immersive .hw-steiner-stage { min-height:clamp(490px,73svh,760px); }
+  .hw-steiner-quote { font-size:clamp(23px,5.5vw,31px); line-height:1.72; }
+  .hw-steiner-author { font-size:15px; }
+  .hw-steiner-original { font-size:15px; }
+  .hw-steiner-hint { font-size:11px; bottom:17px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hw-steiner-card.hw-steiner-changing .hw-steiner-copy { transition:none; }
+}
+
+/* v1.0.7 — one restrained image-sharing dialog, isolated from the theme. */
+.hw-steiner-image-share:disabled { opacity:.5;cursor:wait; }
+.hw-steiner-modal-shade {
+  position:fixed;inset:0;z-index:100010;background:rgba(12,22,24,.79);
+  display:flex;justify-content:center;align-items:center;padding:22px;box-sizing:border-box;
+  overflow-y:auto;
+}
+.hw-steiner-modal {
+  width:min(100%,450px);max-height:calc(100dvh - 44px);overflow:auto;
+  padding:20px;box-sizing:border-box;border-radius:10px;
+  background:#f9f8f5;color:#2d3737;box-shadow:0 20px 70px rgba(0,0,0,.22);
+  font-family:inherit;
+}
+.hw-steiner-modal-top {display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px;}
+.hw-steiner-modal-top strong {font-size:16px;font-weight:600;}
+.hw-steiner-modal button, .hw-steiner-modal a {font:inherit;}
+.hw-steiner-modal-close {border:0;background:transparent;color:#596665;cursor:pointer;padding:5px 0;}
+.hw-steiner-modal-preview {display:block;width:min(100%,290px);height:auto;aspect-ratio:4/5;object-fit:contain;margin:0 auto;background:#466f70;border-radius:2px;}
+.hw-steiner-modal-note {text-align:center;color:#6b7775;font-size:12px;line-height:1.6;margin:13px auto;}
+.hw-steiner-modal-actions {display:flex;gap:12px;align-items:center;justify-content:center;}
+.hw-steiner-modal-actions a,.hw-steiner-modal-actions button {
+  border:1px solid #466f70;background:#466f70;color:#fff;
+  text-decoration:none;border-radius:5px;font-size:14px;line-height:1.3;
+  padding:11px 18px;cursor:pointer;text-align:center;
+}
+.hw-steiner-modal-actions [aria-disabled="true"] {pointer-events:none;opacity:.45;}
+.hw-steiner-modal-actions button {background:transparent;color:#466f70;}
+@media(max-height:700px){.hw-steiner-modal-preview{width:min(100%,210px);}}
+@media(max-width:520px){.hw-steiner-modal-shade{padding:12px}.hw-steiner-modal{padding:16px;max-height:calc(100dvh - 24px)}}
