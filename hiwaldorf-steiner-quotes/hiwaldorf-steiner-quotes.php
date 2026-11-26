@@ -2,14 +2,14 @@
 /**
  * Plugin Name: HiWaldorf Steiner Quotes
  * Description: 施泰纳语录：沉浸式随机阅读、固定链接、分享及后台管理。使用现有 wp_steiner_quotes 数据。
- * Version: 1.0.7
+ * Version: 1.0.8
  * Requires PHP: 7.4
  * Text Domain: hiwaldorf-steiner-quotes
  */
 if (!defined('ABSPATH')) { exit; }
 
 final class HiWaldorf_Steiner_Quotes {
-    private const VERSION = '1.0.7';
+    private const VERSION = '1.0.8';
     private const BASE = 'quotes';
     private const PALETTE = array('#a24c59', '#466f70', '#655c80', '#91654e', '#376a7e', '#746446');
 
@@ -46,7 +46,9 @@ final class HiWaldorf_Steiner_Quotes {
     public static function deactivate(): void { flush_rewrite_rules(); }
     public static function query_vars(array $vars): array { $vars[] = 'hw_steiner'; $vars[] = 'hw_steiner_code'; return $vars; }
     private static function permalink(string $code): string { return home_url('/quotes/' . rawurlencode($code) . '/'); }
-    private static function eligible_sql(): string { return 'endif = 1 AND TRIM(content_cn) <> \'\''; }
+    public static function eligible_sql(): string {
+        return "content_cn REGEXP '[^[:space:]]'";
+    }
     private static function random_row(int $exclude = 0): ?array {
         global $wpdb;
         if (!self::ready()) { return null; }
@@ -63,12 +65,12 @@ final class HiWaldorf_Steiner_Quotes {
         if (!self::ready()) { return null; }
         $table = self::table();
         $row = $wpdb->get_row($wpdb->prepare(
-            "SELECT id, code, content, content_cn, gaid, note, endif FROM {$table} WHERE code = %s LIMIT 1", $code
+            "SELECT id, code, content, content_cn, gaid, note FROM {$table} WHERE code = %s LIMIT 1", $code
         ), ARRAY_A);
         return $row ?: null;
     }
     private static function is_public(array $row): bool {
-        return !empty($row['endif']) && trim((string) $row['content_cn']) !== '';
+        return preg_match('/[^\s]/u', (string) ($row['content_cn'] ?? '')) === 1;
     }
     private static function tone(int $id): string { return self::PALETTE[abs($id) % count(self::PALETTE)]; }
     /** Normalize legacy gaid forms such as 293, GA293 or GA 293 for display only. */
@@ -395,7 +397,7 @@ final class HiWaldorf_Steiner_Quotes {
         if ($edit || isset($_GET['new'])) {
             $row = $edit ? $wpdb->get_row($wpdb->prepare("SELECT * FROM {$table} WHERE id = %d", $edit), ARRAY_A) : null;
             if ($edit && !$row) { echo '<p>记录不存在。</p></div>'; return; }
-            $row = wp_parse_args((array) $row, array('id' => 0, 'code' => '', 'content' => '', 'content_cn' => '', 'gaid' => '', 'note' => '', 'endif' => 0));
+            $row = wp_parse_args((array) $row, array('id' => 0, 'code' => '', 'content' => '', 'content_cn' => '', 'gaid' => '', 'note' => ''));
             echo '<h2>' . ($edit ? '编辑语录 #' . $edit : '新增语录') . '</h2><form method="post" action="' . esc_url(admin_url('admin-post.php')) . '">';
             wp_nonce_field('hw_steiner_save');
             echo '<input type="hidden" name="action" value="hw_steiner_save"><input type="hidden" name="id" value="' . (int) $row['id'] . '">';
@@ -406,7 +408,6 @@ final class HiWaldorf_Steiner_Quotes {
             foreach (array('content' => '原文', 'content_cn' => '中文译文') as $key => $label) {
                 echo '<tr><th><label for="hw-' . esc_attr($key) . '">' . esc_html($label) . '</label></th><td><textarea id="hw-' . esc_attr($key) . '" name="' . esc_attr($key) . '" rows="7" class="large-text">' . esc_textarea($row[$key]) . '</textarea></td></tr>';
             }
-            echo '<tr><th>翻译完成</th><td><label><input type="checkbox" name="endif" value="1" ' . checked((int) $row['endif'], 1, false) . '> 已完成中文翻译（可在前台展示）</label></td></tr>';
             echo '</tbody></table>'; submit_button('保存语录');
             echo '</form><p><a href="' . esc_url(admin_url('admin.php?page=hw-steiner-quotes')) . '">返回列表</a></p></div>';
             return;
@@ -418,15 +419,15 @@ final class HiWaldorf_Steiner_Quotes {
         if ($q !== '') { $like = '%' . $wpdb->esc_like($q) . '%'; $where = '(code LIKE %s OR content LIKE %s OR content_cn LIKE %s OR gaid LIKE %s)'; $args = array($like, $like, $like, $like); }
         $count_sql = "SELECT COUNT(*) FROM {$table} WHERE {$where}";
         $total = (int) $wpdb->get_var($args ? $wpdb->prepare($count_sql, $args) : $count_sql);
-        $list_sql = "SELECT id, code, content_cn, gaid, endif, views FROM {$table} WHERE {$where} ORDER BY id DESC LIMIT %d OFFSET %d";
+        $list_sql = "SELECT id, code, content_cn, gaid, views FROM {$table} WHERE {$where} ORDER BY id DESC LIMIT %d OFFSET %d";
         $list = $wpdb->get_results($wpdb->prepare($list_sql, array_merge($args, array($per, ($page - 1) * $per))), ARRAY_A);
         echo '<p><a class="button button-primary" href="' . esc_url(admin_url('admin.php?page=hw-steiner-quotes&new=1')) . '">新增语录</a> <a class="button" href="' . esc_url(home_url('/quotes/')) . '" target="_blank">打开语录页</a></p>';
         echo '<form method="get"><input type="hidden" name="page" value="hw-steiner-quotes"><input type="search" name="s" value="' . esc_attr($q) . '" placeholder="搜索语录、Slug、GA"> '; submit_button('搜索', 'secondary', '', false); echo '</form>';
-        echo '<p>符合条件的记录：' . (int) $total . ' 条。仅 endif=1 且有中文内容的记录公开展示。</p>';
+        echo '<p>符合条件的记录：' . (int) $total . ' 条。有中文译文的记录会公开展示。</p>';
         echo '<table class="widefat striped"><thead><tr><th>ID</th><th>Slug</th><th>中文内容</th><th>GA</th><th>翻译</th><th>浏览</th></tr></thead><tbody>';
         foreach ($list as $row) {
             $url = admin_url('admin.php?page=hw-steiner-quotes&edit=' . (int) $row['id']);
-            echo '<tr><td>' . (int) $row['id'] . '</td><td><a href="' . esc_url($url) . '">' . esc_html($row['code']) . '</a></td><td>' . esc_html(wp_trim_words($row['content_cn'], 35, '…')) . '</td><td>' . esc_html($row['gaid']) . '</td><td>' . ((int) $row['endif'] === 1 ? '完成' : '未完成') . '</td><td>' . (int) $row['views'] . '</td></tr>';
+            echo '<tr><td>' . (int) $row['id'] . '</td><td><a href="' . esc_url($url) . '">' . esc_html($row['code']) . '</a></td><td>' . esc_html(wp_trim_words($row['content_cn'], 35, '…')) . '</td><td>' . esc_html($row['gaid']) . '</td><td>' . (self::is_public($row) ? '完成' : '未完成') . '</td><td>' . (int) $row['views'] . '</td></tr>';
         }
         echo '</tbody></table>';
         echo '<p>';
@@ -453,17 +454,16 @@ final class HiWaldorf_Steiner_Quotes {
         }
         $values['gaid'] = substr($values['gaid'], 0, 32);
         $values['note'] = substr($values['note'], 0, 255);
-        $values['endif'] = isset($_POST['endif']) ? 1 : 0;
         $dup = (int) $wpdb->get_var($wpdb->prepare("SELECT id FROM {$table} WHERE code = %s LIMIT 1", $code));
         if ($dup && $dup !== $id) { wp_die('此 Slug 已被使用，请选择其他名称。'); }
         if ($id) {
             // Both original timestamps use ON UPDATE; preserve creation time explicitly.
             $result = $wpdb->query($wpdb->prepare(
-                "UPDATE {$table} SET code=%s, content=%s, content_cn=%s, gaid=%s, note=%s, endif=%d, created_at=created_at WHERE id=%d",
-                $code, $values['content'], $values['content_cn'], $values['gaid'], $values['note'], $values['endif'], $id
+                "UPDATE {$table} SET code=%s, content=%s, content_cn=%s, gaid=%s, note=%s, created_at=created_at WHERE id=%d",
+                $code, $values['content'], $values['content_cn'], $values['gaid'], $values['note'], $id
             ));
         } else {
-            $result = $wpdb->insert($table, array_merge(array('code' => $code, 'views' => 0), $values), array('%s', '%d', '%s', '%s', '%s', '%s', '%d'));
+            $result = $wpdb->insert($table, array_merge(array('code' => $code, 'views' => 0), $values), array('%s', '%d', '%s', '%s', '%s', '%s'));
         }
         if ($result === false) { wp_die('保存失败：请检查字段长度或数据库错误。'); }
         wp_safe_redirect(admin_url('admin.php?page=hw-steiner-quotes&saved=1'));
@@ -482,13 +482,13 @@ if (class_exists('WP_Sitemaps_Provider')) {
         public function get_max_num_pages($object_subtype = ''): int {
             if (!HiWaldorf_Steiner_Quotes::ready()) { return 0; }
             global $wpdb; $table = HiWaldorf_Steiner_Quotes::table();
-            $total = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$table} WHERE endif=1 AND TRIM(content_cn) <> ''");
+            $total = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$table} WHERE " . HiWaldorf_Steiner_Quotes::eligible_sql());
             return (int) ceil($total / 1000);
         }
         public function get_url_list($page_num, $object_subtype = ''): array {
             if (!HiWaldorf_Steiner_Quotes::ready()) { return array(); }
             global $wpdb; $table = HiWaldorf_Steiner_Quotes::table();
-            $rows = $wpdb->get_col($wpdb->prepare("SELECT code FROM {$table} WHERE endif=1 AND TRIM(content_cn) <> '' ORDER BY id ASC LIMIT %d OFFSET %d", 1000, (max(1, (int) $page_num)-1)*1000));
+            $rows = $wpdb->get_col($wpdb->prepare("SELECT code FROM {$table} WHERE " . HiWaldorf_Steiner_Quotes::eligible_sql() . " ORDER BY id ASC LIMIT %d OFFSET %d", 1000, (max(1, (int) $page_num)-1)*1000));
             return array_map(static function($code) { return array('loc' => home_url('/quotes/' . rawurlencode($code) . '/')); }, $rows);
         }
     }
